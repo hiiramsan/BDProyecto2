@@ -29,7 +29,7 @@ import javax.persistence.TemporalType;
  * @author carlo
  */
 @Entity
-@Table(name="tramite")
+@Table(name="tramites")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo_tramite", discriminatorType = DiscriminatorType.STRING)
 public class Tramite implements Serializable {
@@ -52,18 +52,16 @@ public class Tramite implements Serializable {
     @JoinColumn(name="persona_id", nullable=false)
     private Persona persona;
     
-    @OneToMany(mappedBy = "persona", cascade = CascadeType.PERSIST)
-    private List<Tramite> tramites;
+    
 
     public Tramite() {
     }
 
-    public Tramite(float costo, String estado, Calendar fechaExpedicion, Persona persona, List<Tramite> tramites) {
+    public Tramite(float costo, String estado, Calendar fechaExpedicion, Persona persona) {
         this.costo = costo;
         this.estado = estado;
         this.fechaExpedicion = fechaExpedicion;
         this.persona = persona;
-        this.tramites = tramites;
     }
 
     public Long getId() {
@@ -106,18 +104,12 @@ public class Tramite implements Serializable {
         this.persona = persona;
     }
 
-    public List<Tramite> getTramites() {
-        return tramites;
-    }
-
-    public void setTramites(List<Tramite> tramites) {
-        this.tramites = tramites;
-    }
-
     @Override
     public String toString() {
-        return "Tramite{" + "id=" + id + ", costo=" + costo + ", estado=" + estado + ", fechaExpedicion=" + fechaExpedicion + ", persona=" + persona + ", tramites=" + tramites + '}';
+        return "Tramite{" + "id=" + id + ", costo=" + costo + ", estado=" + estado + ", fechaExpedicion=" + fechaExpedicion + ", persona=" + persona + '}';
     }
+
+  
      
      
     
