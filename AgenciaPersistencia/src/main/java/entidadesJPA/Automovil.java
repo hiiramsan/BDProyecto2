@@ -5,6 +5,8 @@
 package entidadesJPA;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -41,6 +44,10 @@ public class Automovil implements Serializable {
     @ManyToOne
     @JoinColumn(name="persona_id", nullable=false)
     private Persona persona;
+    
+    @OneToMany(mappedBy = "automovil", cascade = CascadeType.PERSIST)
+    private List<Placa> placas;
+    
 
     public Automovil() {
     }
