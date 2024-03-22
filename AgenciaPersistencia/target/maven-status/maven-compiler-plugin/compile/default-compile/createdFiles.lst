@@ -2,5 +2,7 @@ entidadesJPA\Licencia.class
 entidadesJPA\Persona.class
 entidadesJPA\Tramite.class
 entidadesJPA\Placa.class
+com\mycompany\agenciapersistencia\controlador\ControladorPersistencia.class
+com\mycompany\agenciapersistencia\daos\PersonaDAO.class
 com\mycompany\agenciapersistencia\AgenciaPersistencia.class
 entidadesJPA\Automovil.class

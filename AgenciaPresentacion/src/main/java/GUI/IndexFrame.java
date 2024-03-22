@@ -4,6 +4,9 @@
  */
 package GUI;
 
+import com.mycompany.agencianegocio.controlador.ControladorNegocio;
+import dtos.PersonaDTO;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -15,6 +18,8 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class IndexFrame extends javax.swing.JFrame {
 
+    ControladorNegocio cn = new ControladorNegocio();
+    
     /**
      * Creates new form Index
      */
@@ -421,7 +426,10 @@ public class IndexFrame extends javax.swing.JFrame {
     private void insercionPersonasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insercionPersonasBtnActionPerformed
         
         // logica con negocio y persistencia para insertarlas
-        
+        Calendar fecha1 = Calendar.getInstance();
+        fecha1.set(2004, Calendar.JANUARY, 22);
+        PersonaDTO persona = new PersonaDTO("1234567891234", "Carlos", "Sanchez", "Meneses", "6443018817", fecha1, false);
+        cn.registrarPersona(persona);
         
         // desactivar el boton
         insercionPersonasBtn.setEnabled(false);
