@@ -37,7 +37,7 @@ public class IndexFrame extends javax.swing.JFrame {
         panelRound1 = new utils.PanelRound();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        btn1 = new utils.Btn();
+        licenciasBtn = new utils.Btn();
         jLabel12 = new javax.swing.JLabel();
         panelRound2 = new utils.PanelRound();
         jLabel10 = new javax.swing.JLabel();
@@ -51,9 +51,9 @@ public class IndexFrame extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         btn4 = new utils.Btn();
+        insercionPersonasBtn = new utils.Btn();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(950, 670));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -133,19 +133,19 @@ public class IndexFrame extends javax.swing.JFrame {
 
         jLabel9.setText("Expedición de licencias");
 
-        btn1.setBackground(new java.awt.Color(148, 13, 73));
-        btn1.setBorder(null);
-        btn1.setForeground(new java.awt.Color(255, 255, 255));
-        btn1.setText("Iniciar Trámite\n");
-        btn1.setBorderColor(new java.awt.Color(227, 215, 215));
-        btn1.setBorderPainted(false);
-        btn1.setColor(new java.awt.Color(148, 13, 73));
-        btn1.setColorClick(new java.awt.Color(65, 3, 36));
-        btn1.setColorOver(new java.awt.Color(65, 3, 36));
-        btn1.setRadius(15);
-        btn1.addActionListener(new java.awt.event.ActionListener() {
+        licenciasBtn.setBackground(new java.awt.Color(148, 13, 73));
+        licenciasBtn.setBorder(null);
+        licenciasBtn.setForeground(new java.awt.Color(255, 255, 255));
+        licenciasBtn.setText("Iniciar Trámite\n");
+        licenciasBtn.setBorderColor(new java.awt.Color(227, 215, 215));
+        licenciasBtn.setBorderPainted(false);
+        licenciasBtn.setColor(new java.awt.Color(148, 13, 73));
+        licenciasBtn.setColorClick(new java.awt.Color(65, 3, 36));
+        licenciasBtn.setColorOver(new java.awt.Color(65, 3, 36));
+        licenciasBtn.setRadius(15);
+        licenciasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn1ActionPerformed(evt);
+                licenciasBtnActionPerformed(evt);
             }
         });
 
@@ -161,7 +161,7 @@ public class IndexFrame extends javax.swing.JFrame {
                 .addContainerGap(92, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(licenciasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panelRound1Layout.setVerticalGroup(
@@ -172,7 +172,7 @@ public class IndexFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(licenciasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -353,6 +353,17 @@ public class IndexFrame extends javax.swing.JFrame {
 
         jPanel1.add(panelRound4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 260, -1));
 
+        insercionPersonasBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        insercionPersonasBtn.setText("Insertar 20 personas");
+        insercionPersonasBtn.setColorClick(new java.awt.Color(255, 255, 255));
+        insercionPersonasBtn.setColorOver(new java.awt.Color(255, 255, 255));
+        insercionPersonasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insercionPersonasBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(insercionPersonasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(748, 600, 140, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -368,9 +379,12 @@ public class IndexFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+    private void licenciasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_licenciasBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn1ActionPerformed
+        LicenciasFrame1 lf1 = new LicenciasFrame1();
+        lf1.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_licenciasBtnActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         // TODO add your handling code here:
@@ -383,6 +397,16 @@ public class IndexFrame extends javax.swing.JFrame {
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn4ActionPerformed
+
+    private void insercionPersonasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insercionPersonasBtnActionPerformed
+        
+        // logica con negocio y persistencia para insertarlas
+        
+        
+        // desactivar el boton
+        insercionPersonasBtn.setEnabled(false);
+        insercionPersonasBtn.setText("20 peronas insertadas");
+    }//GEN-LAST:event_insercionPersonasBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -421,10 +445,10 @@ public class IndexFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private utils.Btn btn1;
     private utils.Btn btn2;
     private utils.Btn btn3;
     private utils.Btn btn4;
+    private utils.Btn insercionPersonasBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -442,6 +466,7 @@ public class IndexFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private utils.Btn licenciasBtn;
     private utils.PanelRound panelRound1;
     private utils.PanelRound panelRound2;
     private utils.PanelRound panelRound3;

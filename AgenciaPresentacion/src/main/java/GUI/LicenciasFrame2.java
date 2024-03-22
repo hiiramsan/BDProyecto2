@@ -51,10 +51,14 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         nombreefw = new javax.swing.JLabel();
         nombreefw1 = new javax.swing.JLabel();
+        nombreefw2 = new javax.swing.JLabel();
+        nombreefw3 = new javax.swing.JLabel();
+        nombreefw4 = new javax.swing.JLabel();
+        nombreefw5 = new javax.swing.JLabel();
+        nombreefw6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(950, 670));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -139,12 +143,12 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel9.setText("Datos del solicitante");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 280, -1, -1));
 
         btn1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 3, 36)));
         btn1.setForeground(new java.awt.Color(65, 3, 36));
         btn1.setText("Solicitar Licencia");
-        btn1.setColorClick(new java.awt.Color(255, 255, 255));
+        btn1.setColorClick(new java.awt.Color(204, 204, 204));
         btn1.setColorOver(new java.awt.Color(255, 255, 255));
         jPanel1.add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 120, 30));
 
@@ -224,11 +228,26 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
         jLabel12.setText("Seleccionar vigencia:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
 
-        nombreefw.setText("Apellido Paterno:");
-        jPanel1.add(nombreefw, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 360, -1, -1));
+        nombreefw.setText("Discapacidad (Y/N):");
+        jPanel1.add(nombreefw, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 440, -1, -1));
 
-        nombreefw1.setText("Nombre:");
-        jPanel1.add(nombreefw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, -1, -1));
+        nombreefw1.setText("RFC:");
+        jPanel1.add(nombreefw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 320, -1, -1));
+
+        nombreefw2.setText("Apellido Paterno:");
+        jPanel1.add(nombreefw2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 360, -1, -1));
+
+        nombreefw3.setText("Apellido Materno:");
+        jPanel1.add(nombreefw3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 380, -1, -1));
+
+        nombreefw4.setText("Fecha de Nacimiento:");
+        jPanel1.add(nombreefw4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 400, -1, -1));
+
+        nombreefw5.setText("Telefono:");
+        jPanel1.add(nombreefw5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 420, -1, -1));
+
+        nombreefw6.setText("Nombre:");
+        jPanel1.add(nombreefw6, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, -1, -1));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -322,6 +341,11 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel nombreefw;
     private javax.swing.JLabel nombreefw1;
+    private javax.swing.JLabel nombreefw2;
+    private javax.swing.JLabel nombreefw3;
+    private javax.swing.JLabel nombreefw4;
+    private javax.swing.JLabel nombreefw5;
+    private javax.swing.JLabel nombreefw6;
     private utils.PanelRound panelRound1;
     private utils.PanelRound panelRound2;
     private utils.PanelRound panelRound3;
