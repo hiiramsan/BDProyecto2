@@ -39,6 +39,7 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
@@ -250,6 +251,7 @@
                 <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="24" green="3" red="41" type="rgb"/>
                 </Property>
+                <Property name="focusable" type="boolean" value="false"/>
                 <Property name="radius" type="int" value="15"/>
               </Properties>
               <Events>
@@ -303,7 +305,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btn2" min="-2" pref="110" max="-2" attributes="0"/>
+                      <Component id="placasBtn" min="-2" pref="110" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -316,7 +318,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="20" max="32767" attributes="0"/>
-                      <Component id="btn2" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="placasBtn" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -336,7 +338,7 @@
                 <Property name="text" type="java.lang.String" value="Expedici&#xf3;n de placas"/>
               </Properties>
             </Component>
-            <Component class="utils.Btn" name="btn2">
+            <Component class="utils.Btn" name="placasBtn">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="49" green="d" red="94" type="rgb"/>
@@ -361,10 +363,11 @@
                 <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="24" green="3" red="41" type="rgb"/>
                 </Property>
+                <Property name="focusable" type="boolean" value="false"/>
                 <Property name="radius" type="int" value="15"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="placasBtnActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -398,7 +401,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btn3" min="-2" pref="110" max="-2" attributes="0"/>
+                      <Component id="consultasBtn" min="-2" pref="110" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -411,7 +414,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="20" max="32767" attributes="0"/>
-                      <Component id="btn3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="consultasBtn" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -431,7 +434,7 @@
                 <Property name="text" type="java.lang.String" value="Historial de Licencias y Placas"/>
               </Properties>
             </Component>
-            <Component class="utils.Btn" name="btn3">
+            <Component class="utils.Btn" name="consultasBtn">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="49" green="d" red="94" type="rgb"/>
@@ -456,10 +459,11 @@
                 <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="24" green="3" red="41" type="rgb"/>
                 </Property>
+                <Property name="focusable" type="boolean" value="false"/>
                 <Property name="radius" type="int" value="15"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultasBtnActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -488,7 +492,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="btn4" min="-2" pref="110" max="-2" attributes="0"/>
+                              <Component id="reportesBtn" min="-2" pref="110" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -510,7 +514,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="20" max="32767" attributes="0"/>
-                      <Component id="btn4" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="reportesBtn" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -530,7 +534,7 @@
                 <Property name="text" type="java.lang.String" value="Generar un reporte PDF de tr&#xe1;mites "/>
               </Properties>
             </Component>
-            <Component class="utils.Btn" name="btn4">
+            <Component class="utils.Btn" name="reportesBtn">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="49" green="d" red="94" type="rgb"/>
@@ -555,10 +559,11 @@
                 <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="24" green="3" red="41" type="rgb"/>
                 </Property>
+                <Property name="focusable" type="boolean" value="false"/>
                 <Property name="radius" type="int" value="15"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn4ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reportesBtnActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -577,6 +582,7 @@
             <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insercionPersonasBtnActionPerformed"/>

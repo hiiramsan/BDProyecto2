@@ -4,6 +4,11 @@
  */
 package GUI;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  *
  * @author carlo
@@ -42,21 +47,22 @@ public class IndexFrame extends javax.swing.JFrame {
         panelRound2 = new utils.PanelRound();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        btn2 = new utils.Btn();
+        placasBtn = new utils.Btn();
         panelRound3 = new utils.PanelRound();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        btn3 = new utils.Btn();
+        consultasBtn = new utils.Btn();
         panelRound4 = new utils.PanelRound();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        btn4 = new utils.Btn();
+        reportesBtn = new utils.Btn();
         insercionPersonasBtn = new utils.Btn();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setFocusable(false);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(148, 13, 73));
@@ -142,6 +148,7 @@ public class IndexFrame extends javax.swing.JFrame {
         licenciasBtn.setColor(new java.awt.Color(148, 13, 73));
         licenciasBtn.setColorClick(new java.awt.Color(65, 3, 36));
         licenciasBtn.setColorOver(new java.awt.Color(65, 3, 36));
+        licenciasBtn.setFocusable(false);
         licenciasBtn.setRadius(15);
         licenciasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,19 +201,20 @@ public class IndexFrame extends javax.swing.JFrame {
 
         jLabel11.setText("Expedición de placas");
 
-        btn2.setBackground(new java.awt.Color(148, 13, 73));
-        btn2.setBorder(null);
-        btn2.setForeground(new java.awt.Color(255, 255, 255));
-        btn2.setText("Iniciar Trámite\n");
-        btn2.setBorderColor(new java.awt.Color(227, 215, 215));
-        btn2.setBorderPainted(false);
-        btn2.setColor(new java.awt.Color(148, 13, 73));
-        btn2.setColorClick(new java.awt.Color(65, 3, 36));
-        btn2.setColorOver(new java.awt.Color(65, 3, 36));
-        btn2.setRadius(15);
-        btn2.addActionListener(new java.awt.event.ActionListener() {
+        placasBtn.setBackground(new java.awt.Color(148, 13, 73));
+        placasBtn.setBorder(null);
+        placasBtn.setForeground(new java.awt.Color(255, 255, 255));
+        placasBtn.setText("Iniciar Trámite\n");
+        placasBtn.setBorderColor(new java.awt.Color(227, 215, 215));
+        placasBtn.setBorderPainted(false);
+        placasBtn.setColor(new java.awt.Color(148, 13, 73));
+        placasBtn.setColorClick(new java.awt.Color(65, 3, 36));
+        placasBtn.setColorOver(new java.awt.Color(65, 3, 36));
+        placasBtn.setFocusable(false);
+        placasBtn.setRadius(15);
+        placasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn2ActionPerformed(evt);
+                placasBtnActionPerformed(evt);
             }
         });
 
@@ -222,7 +230,7 @@ public class IndexFrame extends javax.swing.JFrame {
                 .addContainerGap(122, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(placasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panelRound2Layout.setVerticalGroup(
@@ -233,7 +241,7 @@ public class IndexFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(placasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -250,19 +258,20 @@ public class IndexFrame extends javax.swing.JFrame {
 
         jLabel14.setText("Historial de Licencias y Placas");
 
-        btn3.setBackground(new java.awt.Color(148, 13, 73));
-        btn3.setBorder(null);
-        btn3.setForeground(new java.awt.Color(255, 255, 255));
-        btn3.setText("Iniciar Consulta");
-        btn3.setBorderColor(new java.awt.Color(227, 215, 215));
-        btn3.setBorderPainted(false);
-        btn3.setColor(new java.awt.Color(148, 13, 73));
-        btn3.setColorClick(new java.awt.Color(65, 3, 36));
-        btn3.setColorOver(new java.awt.Color(65, 3, 36));
-        btn3.setRadius(15);
-        btn3.addActionListener(new java.awt.event.ActionListener() {
+        consultasBtn.setBackground(new java.awt.Color(148, 13, 73));
+        consultasBtn.setBorder(null);
+        consultasBtn.setForeground(new java.awt.Color(255, 255, 255));
+        consultasBtn.setText("Iniciar Consulta");
+        consultasBtn.setBorderColor(new java.awt.Color(227, 215, 215));
+        consultasBtn.setBorderPainted(false);
+        consultasBtn.setColor(new java.awt.Color(148, 13, 73));
+        consultasBtn.setColorClick(new java.awt.Color(65, 3, 36));
+        consultasBtn.setColorOver(new java.awt.Color(65, 3, 36));
+        consultasBtn.setFocusable(false);
+        consultasBtn.setRadius(15);
+        consultasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn3ActionPerformed(evt);
+                consultasBtnActionPerformed(evt);
             }
         });
 
@@ -278,7 +287,7 @@ public class IndexFrame extends javax.swing.JFrame {
                 .addContainerGap(92, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(consultasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panelRound3Layout.setVerticalGroup(
@@ -289,7 +298,7 @@ public class IndexFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(btn3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(consultasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -306,19 +315,20 @@ public class IndexFrame extends javax.swing.JFrame {
 
         jLabel16.setText("Generar un reporte PDF de trámites ");
 
-        btn4.setBackground(new java.awt.Color(148, 13, 73));
-        btn4.setBorder(null);
-        btn4.setForeground(new java.awt.Color(255, 255, 255));
-        btn4.setText("Generar Reporte");
-        btn4.setBorderColor(new java.awt.Color(227, 215, 215));
-        btn4.setBorderPainted(false);
-        btn4.setColor(new java.awt.Color(148, 13, 73));
-        btn4.setColorClick(new java.awt.Color(65, 3, 36));
-        btn4.setColorOver(new java.awt.Color(65, 3, 36));
-        btn4.setRadius(15);
-        btn4.addActionListener(new java.awt.event.ActionListener() {
+        reportesBtn.setBackground(new java.awt.Color(148, 13, 73));
+        reportesBtn.setBorder(null);
+        reportesBtn.setForeground(new java.awt.Color(255, 255, 255));
+        reportesBtn.setText("Generar Reporte");
+        reportesBtn.setBorderColor(new java.awt.Color(227, 215, 215));
+        reportesBtn.setBorderPainted(false);
+        reportesBtn.setColor(new java.awt.Color(148, 13, 73));
+        reportesBtn.setColorClick(new java.awt.Color(65, 3, 36));
+        reportesBtn.setColorOver(new java.awt.Color(65, 3, 36));
+        reportesBtn.setFocusable(false);
+        reportesBtn.setRadius(15);
+        reportesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn4ActionPerformed(evt);
+                reportesBtnActionPerformed(evt);
             }
         });
 
@@ -331,7 +341,7 @@ public class IndexFrame extends javax.swing.JFrame {
                 .addGroup(panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRound4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(reportesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelRound4Layout.createSequentialGroup()
                         .addGroup(panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
@@ -347,7 +357,7 @@ public class IndexFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(btn4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(reportesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -357,6 +367,7 @@ public class IndexFrame extends javax.swing.JFrame {
         insercionPersonasBtn.setText("Insertar 20 personas");
         insercionPersonasBtn.setColorClick(new java.awt.Color(255, 255, 255));
         insercionPersonasBtn.setColorOver(new java.awt.Color(255, 255, 255));
+        insercionPersonasBtn.setFocusable(false);
         insercionPersonasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insercionPersonasBtnActionPerformed(evt);
@@ -386,17 +397,26 @@ public class IndexFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_licenciasBtnActionPerformed
 
-    private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
+    private void placasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placasBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn2ActionPerformed
+        PlacasFrame1 pf = new PlacasFrame1();
+        pf.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_placasBtnActionPerformed
 
-    private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
+    private void consultasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultasBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn3ActionPerformed
+        ConsultasFrame1 cf = new ConsultasFrame1();
+        cf.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_consultasBtnActionPerformed
 
-    private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
+    private void reportesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportesBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn4ActionPerformed
+        ReportesFrame1 rf = new ReportesFrame1();
+        rf.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_reportesBtnActionPerformed
 
     private void insercionPersonasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insercionPersonasBtnActionPerformed
         
@@ -439,15 +459,27 @@ public class IndexFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
+                try {
+                    // Set cross-platform Java L&F (also called "Metal")
+                    UIManager.setLookAndFeel(
+                            UIManager.getCrossPlatformLookAndFeelClassName());
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ConsultasFrame1.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InstantiationException ex) {
+                    Logger.getLogger(ConsultasFrame1.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IllegalAccessException ex) {
+                    Logger.getLogger(ConsultasFrame1.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(ConsultasFrame1.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 new IndexFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private utils.Btn btn2;
-    private utils.Btn btn3;
-    private utils.Btn btn4;
+    private utils.Btn consultasBtn;
     private utils.Btn insercionPersonasBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -471,5 +503,7 @@ public class IndexFrame extends javax.swing.JFrame {
     private utils.PanelRound panelRound2;
     private utils.PanelRound panelRound3;
     private utils.PanelRound panelRound4;
+    private utils.Btn placasBtn;
+    private utils.Btn reportesBtn;
     // End of variables declaration//GEN-END:variables
 }
