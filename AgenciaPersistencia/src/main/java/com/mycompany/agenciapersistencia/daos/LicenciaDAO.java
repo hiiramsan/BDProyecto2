@@ -5,6 +5,7 @@
 package com.mycompany.agenciapersistencia.daos;
 
 import com.mycompany.agenciapersistencia.controlador.utils.EstadoTramite;
+import dtos.LicenciaDTO;
 import dtos.PersonaDTO;
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
@@ -52,7 +53,7 @@ public class LicenciaDAO {
         return false;
     }
     
-    public void registrarLicencia(PersonaDTO persona, int vigencia, float costo) {
+    public LicenciaDTO registrarLicencia(PersonaDTO persona, int vigencia, float costo) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ConexionPU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
@@ -70,6 +71,16 @@ public class LicenciaDAO {
             Licencia licencia = new Licencia(fechaVigencia, costo, EstadoTramite.ACTIVA, fechaHoy, personaSolicitante);
             entityManager.persist(licencia);
             entityManager.getTransaction().commit();
+            
+            LicenciaDTO licenciaDTO = new LicenciaDTO();
+            licenciaDTO.setFechaExpedicion(licencia.getFechaExpedicion());
+            licenciaDTO.setFechaVigencia(licencia.getVigencia());
+            licenciaDTO.setCosto(licencia.getCosto());
+            licenciaDTO.setEstado(licencia.getEstado());
+            
+            return licenciaDTO;
+
+            
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
             throw e;

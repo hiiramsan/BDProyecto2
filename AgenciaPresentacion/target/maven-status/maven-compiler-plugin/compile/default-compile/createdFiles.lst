@@ -6,7 +6,9 @@ GUI\ReportesFrame1.class
 GUI\LicenciasFrame2.class
 utils\Btn.class
 GUI\AvisoFrame.class
+GUI\LicenciaRegistradaFrame$2.class
 GUI\PlacasFrame1$1.class
+GUI\LicenciaRegistradaFrame.class
 GUI\PlacasFrame2$6.class
 GUI\AvisoFrame$1.class
 GUI\LicenciasFrame2$1.class
@@ -44,6 +46,7 @@ GUI\IndexFrame.class
 GUI\ConsultasFrame2$1.class
 GUI\PlacasFrame1$2.class
 GUI\LicenciasFrame2$3.class
+GUI\LicenciaRegistradaFrame$1.class
 GUI\ConsultasFrame1$6.class
 GUI\PlacasFrame2$4.class
 utils\Btn$1.class

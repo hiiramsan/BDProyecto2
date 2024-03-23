@@ -4,6 +4,7 @@
  */
 package com.mycompany.agencianegocio.controlador;
 
+import dtos.LicenciaDTO;
 import dtos.PersonaDTO;
 import entidadesJPA.Persona;
 import negocio.ILicencias;
@@ -42,7 +43,7 @@ public class ControladorNegocio {
         return this.lb.consultarLicencia(persona);
     }
     
-    public void registrarLicencia(PersonaDTO persona, int vigencia, float costo) {
-        this.lb.registrarLicencia(persona, vigencia, costo);
+    public LicenciaDTO registrarLicencia(PersonaDTO persona, int vigencia, float costo) {
+        return this.lb.registrarLicencia(persona, vigencia, costo);
     }
 }

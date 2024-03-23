@@ -49,6 +49,8 @@ public class Licencia extends Tramite implements Serializable {
         this.vigencia = vigencia;
     }
     
+    
+    
     public EstadoTramite determinarEstado() {
         Calendar fechaActual = Calendar.getInstance();
         if (getVigencia().after(fechaActual)) {

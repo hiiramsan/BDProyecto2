@@ -489,7 +489,7 @@ public class IndexFrame extends javax.swing.JFrame {
         // Crear 20 instancias de PersonaDTO con nombres aleatorios y fechas de nacimiento diferentes
         PersonaDTO persona1 = new PersonaDTO("1234567891234", "Carlos", "Sanchez", "Meneses", "6443018817", fecha1, false);
         PersonaDTO persona2 = new PersonaDTO("9876543219876", "Alejandro", "López", "Pérez", "6443022244", fecha2, false);
-        PersonaDTO persona3 = new PersonaDTO("5555555555555", "Laura", "García", "Hernández", "6443000011", fecha3, true);
+        PersonaDTO persona3 = new PersonaDTO("1234560987656", "Laura", "García", "Hernández", "6443000011", fecha3, true);
         PersonaDTO persona4 = new PersonaDTO("1111111111111", "María", "Martínez", "González", "6443055577", fecha4, false);
         PersonaDTO persona5 = new PersonaDTO("2222222222222", "Javier", "Rodríguez", "Díaz", "6443044400", fecha5, true);
         PersonaDTO persona6 = new PersonaDTO("3333333333333", "Ana", "Pérez", "Sánchez", "6443012345", fecha6, false);

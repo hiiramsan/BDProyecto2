@@ -5,6 +5,7 @@
 package negocio;
 
 import com.mycompany.agenciapersistencia.controlador.ControladorPersistencia;
+import dtos.LicenciaDTO;
 import dtos.PersonaDTO;
 import entidadesJPA.Persona;
 
@@ -48,8 +49,8 @@ public class LicenciaBO implements ILicencias {
     }
 
     @Override
-    public void registrarLicencia(PersonaDTO persona, int vigencia, float costo) {
-        this.cp.registrarLicencia(persona, vigencia, costo);
+    public LicenciaDTO registrarLicencia(PersonaDTO persona, int vigencia, float costo) {
+        return this.cp.registrarLicencia(persona, vigencia, costo);
     }
     
     

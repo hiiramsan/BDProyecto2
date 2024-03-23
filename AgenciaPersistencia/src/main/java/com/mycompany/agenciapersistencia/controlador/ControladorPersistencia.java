@@ -6,6 +6,7 @@ package com.mycompany.agenciapersistencia.controlador;
 
 import com.mycompany.agenciapersistencia.daos.LicenciaDAO;
 import com.mycompany.agenciapersistencia.daos.PersonaDAO;
+import dtos.LicenciaDTO;
 import dtos.PersonaDTO;
 import entidadesJPA.Persona;
 
@@ -36,7 +37,7 @@ public class ControladorPersistencia {
         return this.licenciaDAO.consultarLicencia(persona);
     }
     
-    public void registrarLicencia(PersonaDTO persona, int vigencia, float costo) {
-        this.licenciaDAO.registrarLicencia(persona, vigencia, costo);
+    public LicenciaDTO registrarLicencia(PersonaDTO persona, int vigencia, float costo) {
+        return this.licenciaDAO.registrarLicencia(persona, vigencia, costo);
     }
 }

@@ -4,6 +4,7 @@
  */
 package negocio;
 
+import dtos.LicenciaDTO;
 import dtos.PersonaDTO;
 import entidadesJPA.Persona;
 
@@ -16,5 +17,5 @@ public interface ILicencias {
     
     public boolean consultarLicencia(PersonaDTO persona);
     
-    public void registrarLicencia(PersonaDTO persona, int vigencia, float costo);
+    public LicenciaDTO registrarLicencia(PersonaDTO persona, int vigencia, float costo);
 }

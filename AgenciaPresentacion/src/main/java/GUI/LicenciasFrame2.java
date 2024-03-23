@@ -5,6 +5,7 @@
 package GUI;
 
 import com.mycompany.agencianegocio.controlador.ControladorNegocio;
+import dtos.LicenciaDTO;
 import dtos.PersonaDTO;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -376,8 +377,16 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
                IndexFrame ifr = new IndexFrame();
                ifr.setVisible(true);
             } else {
-                cn.registrarLicencia(personaDTO, vigencia, costo);
-                // imma check if it works
+                LicenciaDTO license = cn.registrarLicencia(personaDTO, vigencia, costo);
+                if(license != null) {
+                    LicenciaRegistradaFrame lrf = new LicenciaRegistradaFrame(personaDTO, license);
+                    lrf.setVisible(true);
+                    dispose();
+                } else {
+                    // no se pudo
+                }
+              
+                
                 
             }
                 
