@@ -15,4 +15,6 @@ public interface ILicencias {
     public float calcularCostoLicencia(int vigencia, boolean esDiscapacitado);
     
     public boolean consultarLicencia(PersonaDTO persona);
+    
+    public void registrarLicencia(PersonaDTO persona, int vigencia, float costo);
 }

@@ -4,6 +4,7 @@
 
 package com.mycompany.agenciapersistencia;
 
+import com.mycompany.agenciapersistencia.controlador.utils.EstadoTramite;
 import entidadesJPA.Automovil;
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
@@ -27,7 +28,7 @@ public class AgenciaPersistencia {
         Calendar fecha1 = Calendar.getInstance();
         fecha1.set(2024, Calendar.APRIL, 22);
         Persona persona = entityManager.find(Persona.class, 2L);
-        Licencia licencia1 = new Licencia(fecha1, 600, "Activa", fecha1, persona);
+        Licencia licencia1 = new Licencia(fecha1, 600, EstadoTramite.ACTIVA, fecha1, persona);
         entityManager.persist(licencia1); 
         
         

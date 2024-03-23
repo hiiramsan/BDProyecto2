@@ -41,4 +41,8 @@ public class ControladorNegocio {
     public boolean consultarLicencia(PersonaDTO persona) {
         return this.lb.consultarLicencia(persona);
     }
+    
+    public void registrarLicencia(PersonaDTO persona, int vigencia, float costo) {
+        this.lb.registrarLicencia(persona, vigencia, costo);
+    }
 }

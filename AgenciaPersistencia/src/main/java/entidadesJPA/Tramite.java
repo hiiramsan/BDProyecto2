@@ -43,7 +43,7 @@ public class Tramite implements Serializable {
     private float costo;
     
     @Column(name="estado", length=50, nullable=false)
-    private String estado;
+    private EstadoTramite estado;
     
     @Column(name = "fecha_expedicion")
     @Temporal(TemporalType.DATE)
@@ -58,13 +58,21 @@ public class Tramite implements Serializable {
     public Tramite() {
     }
 
-    public Tramite(float costo, String estado, Calendar fechaExpedicion, Persona persona) {
+    public Tramite(float costo, EstadoTramite estado, Calendar fechaExpedicion, Persona persona) {
         this.costo = costo;
         this.estado = estado;
         this.fechaExpedicion = fechaExpedicion;
         this.persona = persona;
     }
+    
+    public EstadoTramite getEstado() {
+        return estado;
+    }
 
+    public void setEstado(EstadoTramite estado) {
+        this.estado = estado;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -79,14 +87,6 @@ public class Tramite implements Serializable {
 
     public void setCosto(float costo) {
         this.costo = costo;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
     }
 
     public Calendar getFechaExpedicion() {

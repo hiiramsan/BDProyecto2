@@ -35,4 +35,8 @@ public class ControladorPersistencia {
     public boolean consultarLicencia(PersonaDTO persona) {
         return this.licenciaDAO.consultarLicencia(persona);
     }
+    
+    public void registrarLicencia(PersonaDTO persona, int vigencia, float costo) {
+        this.licenciaDAO.registrarLicencia(persona, vigencia, costo);
+    }
 }

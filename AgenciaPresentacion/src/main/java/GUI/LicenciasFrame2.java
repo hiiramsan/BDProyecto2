@@ -18,6 +18,7 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
     private PersonaDTO personaDTO;
     ControladorNegocio cn = new ControladorNegocio();
     float costo;
+    int vigencia;
     /**
      * Creates new form LicenciasFrame
      */
@@ -375,7 +376,9 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
                IndexFrame ifr = new IndexFrame();
                ifr.setVisible(true);
             } else {
-                // registrarLicencia(persona, vigencia)
+                cn.registrarLicencia(personaDTO, vigencia, costo);
+                // imma check if it works
+                
             }
                 
         }
@@ -384,6 +387,7 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
     private void oneRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oneRBActionPerformed
         // TODO add your handling code here:
         errorTxt.setText("");
+        vigencia = 1;
         costo = cn.calcularCostoLicencia(1, personaDTO.isDiscapacidad());
         costoTxt.setText("Costo: $" + String.valueOf(costo));
     }//GEN-LAST:event_oneRBActionPerformed
@@ -391,6 +395,7 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
     private void twoRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_twoRBActionPerformed
         // TODO add your handling code here:
          errorTxt.setText("");
+         vigencia = 2;
          costo = cn.calcularCostoLicencia(2, personaDTO.isDiscapacidad());
          costoTxt.setText("Costo: $" + String.valueOf(costo));
     }//GEN-LAST:event_twoRBActionPerformed
@@ -398,6 +403,7 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
     private void threeRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_threeRBActionPerformed
         // TODO add your handling code here:
          errorTxt.setText("");
+         vigencia = 3;
          costo = cn.calcularCostoLicencia(3, personaDTO.isDiscapacidad());
          costoTxt.setText("Costo: $" + String.valueOf(costo));
     }//GEN-LAST:event_threeRBActionPerformed

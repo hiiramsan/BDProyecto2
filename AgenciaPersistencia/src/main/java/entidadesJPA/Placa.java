@@ -4,6 +4,7 @@
  */
 package entidadesJPA;
 
+import com.mycompany.agenciapersistencia.controlador.utils.EstadoTramite;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
@@ -43,7 +44,7 @@ public class Placa extends Tramite implements Serializable {
         this.automovil = automovil;
     }
 
-    public Placa(Calendar fechaRecepcion, String numeroAlfanumerico, Automovil automovil, float costo, String estado, Calendar fechaExpedicion, Persona persona) {
+    public Placa(Calendar fechaRecepcion, String numeroAlfanumerico, Automovil automovil, float costo, EstadoTramite estado, Calendar fechaExpedicion, Persona persona) {
         super(costo, estado, fechaExpedicion, persona);
         this.fechaRecepcion = fechaRecepcion;
         this.numeroAlfanumerico = numeroAlfanumerico;
@@ -76,6 +77,8 @@ public class Placa extends Tramite implements Serializable {
     public void setAutomovil(Automovil automovil) {
         this.automovil = automovil;
     }
+    
+    
 
     @Override
     public String toString() {

@@ -22,9 +22,6 @@ import javax.persistence.TypedQuery;
 public class PersonaDAO {
 
     public void registrar(PersonaDTO persona) {
-        System.out.println("AQUI LOGICA DE REGISTRARRRRR!!!!!!!!!");
-        System.out.println(persona);
-
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ConexionPU");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();

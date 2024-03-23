@@ -9,6 +9,8 @@ import dtos.PersonaDTO;
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import entidadesJPA.Tramite;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -48,6 +50,33 @@ public class LicenciaDAO {
             
         }
         return false;
+    }
+    
+    public void registrarLicencia(PersonaDTO persona, int vigencia, float costo) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ConexionPU");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+
+        try {
+
+            Persona personaSolicitante = personaDAO.buscarPersonaPorRFC(persona.getRfc());
+
+            Calendar fechaHoy = Calendar.getInstance();
+
+            Calendar fechaVigencia = Calendar.getInstance();
+            fechaVigencia.setTimeInMillis(fechaHoy.getTimeInMillis());
+            fechaVigencia.add(Calendar.YEAR, vigencia);
+
+            Licencia licencia = new Licencia(fechaVigencia, costo, EstadoTramite.ACTIVA, fechaHoy, personaSolicitante);
+            entityManager.persist(licencia);
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            throw e;
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
     }
    
 

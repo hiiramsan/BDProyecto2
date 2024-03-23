@@ -46,6 +46,11 @@ public class LicenciaBO implements ILicencias {
     public boolean consultarLicencia(PersonaDTO persona) {
         return this.cp.consultarLicencia(persona);
     }
+
+    @Override
+    public void registrarLicencia(PersonaDTO persona, int vigencia, float costo) {
+        this.cp.registrarLicencia(persona, vigencia, costo);
+    }
     
     
 }
