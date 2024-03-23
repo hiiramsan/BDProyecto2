@@ -13,9 +13,14 @@ import dtos.PersonaDTO;
  */
 public class ControladorPersistencia {
     
-    PersonaDAO pd = new PersonaDAO();
+    PersonaDAO personaDAO = new PersonaDAO();
     
     public void registrarPersona(PersonaDTO persona){
-        pd.registrar(persona);
+        this.personaDAO.registrar(persona);
+    }
+    
+    public boolean consultarPersona(String rfc) {
+        Boolean personaExiste = this.personaDAO.consultarPersona(rfc);
+        return personaExiste;
     }
 }

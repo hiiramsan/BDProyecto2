@@ -5,6 +5,9 @@
 package com.mycompany.agencianegocio.controlador;
 
 import dtos.PersonaDTO;
+import negocio.ILicencias;
+import negocio.IRegistroPersona;
+import negocio.LicenciaBO;
 import negocio.RegistroPersonaBO;
 
 /**
@@ -13,9 +16,15 @@ import negocio.RegistroPersonaBO;
  */
 public class ControladorNegocio {
     
-    RegistroPersonaBO rp = new RegistroPersonaBO();
+    IRegistroPersona rp = new RegistroPersonaBO();
+    ILicencias lb = new LicenciaBO();
     
     public void registrarPersona(PersonaDTO persona) {
-        rp.registrarPersona(persona);
+        this.rp.registrarPersona(persona);
+    }
+    
+    public boolean consultarPersona(String rfc) {
+        Boolean personaExiste = this.lb.consultarPersona(rfc);
+        return personaExiste;
     }
 }

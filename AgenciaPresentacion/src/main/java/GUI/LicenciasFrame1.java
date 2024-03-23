@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import com.mycompany.agencianegocio.controlador.ControladorNegocio;
+
 /**
  *
  * @author carlo
@@ -40,8 +42,8 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        btn1 = new utils.Btn();
+        rfcTxt = new javax.swing.JTextField();
+        buscarBtn = new utils.Btn();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -169,22 +171,27 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
         jLabel9.setText("Registro Federal de Contribuyentes (RFC):");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField1.setName(""); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        rfcTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rfcTxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        rfcTxt.setName(""); // NOI18N
+        rfcTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                rfcTxtActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 390, 40));
+        jPanel1.add(rfcTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 390, 40));
 
-        btn1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 3, 36)));
-        btn1.setForeground(new java.awt.Color(65, 3, 36));
-        btn1.setText("Buscar");
-        btn1.setColorClick(new java.awt.Color(204, 204, 204));
-        btn1.setColorOver(new java.awt.Color(255, 255, 255));
-        jPanel1.add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 420, 100, 40));
+        buscarBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 3, 36)));
+        buscarBtn.setForeground(new java.awt.Color(65, 3, 36));
+        buscarBtn.setText("Buscar");
+        buscarBtn.setColorClick(new java.awt.Color(204, 204, 204));
+        buscarBtn.setColorOver(new java.awt.Color(255, 255, 255));
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buscarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 420, 100, 40));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -218,9 +225,9 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void rfcTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rfcTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_rfcTxtActionPerformed
 
     private void regresarMenuBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresarMenuBtnMouseClicked
         // TODO add your handling code here:
@@ -228,6 +235,21 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
         ifr.setVisible(true);
         dispose();
     }//GEN-LAST:event_regresarMenuBtnMouseClicked
+
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        // TODO add your handling code here:
+        ControladorNegocio cn = new ControladorNegocio();
+        Boolean personaExiste = cn.consultarPersona(rfcTxt.getText());
+        
+        if(personaExiste) {
+            //licenciasframe2 se abre y se manda con el objeto con la persona as a param 
+            System.out.println("nos movemos a licenciasFrame2");
+        } else {
+            System.out.println("NO EXISTE LA PERRA");
+        }
+        
+        
+    }//GEN-LAST:event_buscarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,7 +290,7 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private utils.Btn btn1;
+    private utils.Btn buscarBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -281,9 +303,9 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     private utils.PanelRound panelRound1;
     private utils.PanelRound panelRound2;
     private javax.swing.JLabel regresarMenuBtn;
+    private javax.swing.JTextField rfcTxt;
     // End of variables declaration//GEN-END:variables
 }

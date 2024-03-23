@@ -19,7 +19,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class IndexFrame extends javax.swing.JFrame {
 
     ControladorNegocio cn = new ControladorNegocio();
-    
+
     /**
      * Creates new form Index
      */
@@ -424,12 +424,111 @@ public class IndexFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_reportesBtnActionPerformed
 
     private void insercionPersonasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insercionPersonasBtnActionPerformed
-        
+
         // logica con negocio y persistencia para insertarlas
         Calendar fecha1 = Calendar.getInstance();
         fecha1.set(2004, Calendar.JANUARY, 22);
-        PersonaDTO persona = new PersonaDTO("1234567891234", "Carlos", "Sanchez", "Meneses", "6443018817", fecha1, false);
-        cn.registrarPersona(persona);
+        
+        Calendar fecha2 = Calendar.getInstance();
+        fecha2.set(1998, Calendar.MARCH, 15);
+        
+        Calendar fecha3 = Calendar.getInstance();
+        fecha3.set(1990, Calendar.DECEMBER, 5);
+
+        Calendar fecha4 = Calendar.getInstance();
+        fecha4.set(1995, Calendar.SEPTEMBER, 18);
+
+        Calendar fecha5 = Calendar.getInstance();
+        fecha5.set(1987, Calendar.JULY, 30);
+
+        Calendar fecha6 = Calendar.getInstance();
+        fecha6.set(2000, Calendar.FEBRUARY, 10);
+
+        Calendar fecha7 = Calendar.getInstance();
+        fecha7.set(1983, Calendar.NOVEMBER, 25);
+
+        Calendar fecha8 = Calendar.getInstance();
+        fecha8.set(1992, Calendar.AUGUST, 3);
+
+        Calendar fecha9 = Calendar.getInstance();
+        fecha9.set(1979, Calendar.MAY, 12);
+
+        Calendar fecha10 = Calendar.getInstance();
+        fecha10.set(1988, Calendar.APRIL, 9);
+
+        Calendar fecha11 = Calendar.getInstance();
+        fecha11.set(1996, Calendar.JUNE, 28);
+
+        Calendar fecha12 = Calendar.getInstance();
+        fecha12.set(2002, Calendar.OCTOBER, 14);
+
+        Calendar fecha13 = Calendar.getInstance();
+        fecha13.set(1975, Calendar.FEBRUARY, 2);
+
+        Calendar fecha14 = Calendar.getInstance();
+        fecha14.set(1999, Calendar.MARCH, 20);
+
+        Calendar fecha15 = Calendar.getInstance();
+        fecha15.set(1991, Calendar.AUGUST, 8);
+
+        Calendar fecha16 = Calendar.getInstance();
+        fecha16.set(1982, Calendar.JANUARY, 17);
+
+        Calendar fecha17 = Calendar.getInstance();
+        fecha17.set(1986, Calendar.MAY, 6);
+
+        Calendar fecha18 = Calendar.getInstance();
+        fecha18.set(2001, Calendar.JULY, 23);
+
+        Calendar fecha19 = Calendar.getInstance();
+        fecha19.set(1994, Calendar.APRIL, 12);
+
+        Calendar fecha20 = Calendar.getInstance();
+        fecha20.set(1980, Calendar.OCTOBER, 31);
+
+        // Crear 20 instancias de PersonaDTO con nombres aleatorios y fechas de nacimiento diferentes
+        PersonaDTO persona1 = new PersonaDTO("1234567891234", "Carlos", "Sanchez", "Meneses", "6443018817", fecha1, false);
+        PersonaDTO persona2 = new PersonaDTO("9876543219876", "Alejandro", "López", "Pérez", "6443022244", fecha2, false);
+        PersonaDTO persona3 = new PersonaDTO("5555555555555", "Laura", "García", "Hernández", "6443000011", fecha3, true);
+        PersonaDTO persona4 = new PersonaDTO("1111111111111", "María", "Martínez", "González", "6443055577", fecha4, false);
+        PersonaDTO persona5 = new PersonaDTO("2222222222222", "Javier", "Rodríguez", "Díaz", "6443044400", fecha5, true);
+        PersonaDTO persona6 = new PersonaDTO("3333333333333", "Ana", "Pérez", "Sánchez", "6443012345", fecha6, false);
+        PersonaDTO persona7 = new PersonaDTO("4444444444444", "David", "Gómez", "López", "6443088888", fecha7, false);
+        PersonaDTO persona8 = new PersonaDTO("5555555555555", "Sofía", "Hernández", "Ramírez", "6443077777", fecha8, true);
+        PersonaDTO persona9 = new PersonaDTO("6666666666666", "Miguel", "Cruz", "Flores", "6443066666", fecha9, false);
+        PersonaDTO persona10 = new PersonaDTO("7777777777777", "Paola", "Ruiz", "Vázquez", "6443000000", fecha10, false);
+        PersonaDTO persona11 = new PersonaDTO("8888888888888", "Diego", "Gutiérrez", "Torres", "6443099999", fecha11, true);
+        PersonaDTO persona12 = new PersonaDTO("9999999999999", "Isabel", "Díaz", "Ortiz", "6443023456", fecha12, false);
+        PersonaDTO persona13 = new PersonaDTO("1212121212121", "Fernando", "Santiago", "Núñez", "6443032109", fecha13, false);
+        PersonaDTO persona14 = new PersonaDTO("2323232323232", "Carmen", "Flores", "Luna", "6443087654", fecha14, true);
+        PersonaDTO persona15 = new PersonaDTO("3434343434343", "José", "García", "Mendoza", "6443012345", fecha15, false);
+        PersonaDTO persona16 = new PersonaDTO("4545454545454", "Elena", "Hernández", "Jiménez", "6443054321", fecha16, false);
+        PersonaDTO persona17 = new PersonaDTO("5656565656565", "Manuel", "Pérez", "Díaz", "6443078943", fecha17, true);
+        PersonaDTO persona18 = new PersonaDTO("6767676767676", "Luisa", "Martínez", "Sánchez", "6443043210", fecha18, false);
+        PersonaDTO persona19 = new PersonaDTO("7878787878787", "Juan", "González", "Romero", "6443098765", fecha19, false);
+        PersonaDTO persona20 = new PersonaDTO("8989898989898", "Patricia", "Sánchez", "Gómez", "6443007894", fecha20, false);
+        
+        
+        cn.registrarPersona(persona1);
+        cn.registrarPersona(persona2);
+        cn.registrarPersona(persona3);
+        cn.registrarPersona(persona4);
+        cn.registrarPersona(persona5);
+        cn.registrarPersona(persona6);
+        cn.registrarPersona(persona7);
+        cn.registrarPersona(persona8);
+        cn.registrarPersona(persona9);
+        cn.registrarPersona(persona10);
+        cn.registrarPersona(persona11);
+        cn.registrarPersona(persona12);
+        cn.registrarPersona(persona13);
+        cn.registrarPersona(persona14);
+        cn.registrarPersona(persona15);
+        cn.registrarPersona(persona16);
+        cn.registrarPersona(persona17);
+        cn.registrarPersona(persona18);
+        cn.registrarPersona(persona19);
+        cn.registrarPersona(persona20);
         
         // desactivar el boton
         insercionPersonasBtn.setEnabled(false);
@@ -467,7 +566,7 @@ public class IndexFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
                 try {
                     // Set cross-platform Java L&F (also called "Metal")
                     UIManager.setLookAndFeel(
