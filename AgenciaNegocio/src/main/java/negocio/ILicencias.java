@@ -5,11 +5,14 @@
 package negocio;
 
 import dtos.PersonaDTO;
+import entidadesJPA.Persona;
 
 /**
  *
  * @author carlo
  */
 public interface ILicencias {
+    public float calcularCostoLicencia(int vigencia, boolean esDiscapacitado);
     
+    public boolean consultarLicencia(PersonaDTO persona);
 }

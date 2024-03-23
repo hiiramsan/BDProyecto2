@@ -93,4 +93,24 @@ public class PersonaDAO {
             entityManagerFactory.close();
         }   
     }
+    
+    public Persona buscarPersonaPorRFC(String rfc) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ConexionPU");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        
+        try {
+            
+            String jpql = "SELECT p FROM Persona p WHERE p.rfc = :rfc";
+            TypedQuery<Persona> query = entityManager.createQuery(jpql, Persona.class);
+            query.setParameter("rfc", rfc);
+            return query.getSingleResult();
+        } catch(Exception e) {
+            entityManager.getTransaction().rollback();
+            throw e;
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }  
+    }
 }

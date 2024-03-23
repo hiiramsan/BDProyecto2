@@ -5,6 +5,7 @@
 package com.mycompany.agencianegocio.controlador;
 
 import dtos.PersonaDTO;
+import entidadesJPA.Persona;
 import negocio.ILicencias;
 import negocio.IPersona;
 import negocio.LicenciaBO;
@@ -18,7 +19,7 @@ import negocio.PersonaBO;
 public class ControladorNegocio {
     
     IPersona rp = new PersonaBO();
-    //ILicencias lb = new LicenciaBO();
+    ILicencias lb = new LicenciaBO();
     
     public void registrarPersona(PersonaDTO persona) {
         this.rp.registrarPersona(persona);
@@ -31,5 +32,13 @@ public class ControladorNegocio {
     
     public PersonaDTO obtenerPersona(String rfc) {
         return this.rp.obtenerPersona(rfc);
+    }
+    
+    public float calcularCostoLicencia(int vigencia, boolean esDiscapacitado) {
+        return this.lb.calcularCostoLicencia(vigencia, esDiscapacitado);
+    }
+    
+    public boolean consultarLicencia(PersonaDTO persona) {
+        return this.lb.consultarLicencia(persona);
     }
 }

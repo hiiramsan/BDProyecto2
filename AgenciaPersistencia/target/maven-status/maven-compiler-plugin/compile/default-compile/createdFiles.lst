@@ -1,3 +1,4 @@
+com\mycompany\agenciapersistencia\controlador\utils\EstadoTramite.class
 entidadesJPA\Licencia.class
 entidadesJPA\Persona.class
 entidadesJPA\Tramite.class
@@ -6,3 +7,4 @@ com\mycompany\agenciapersistencia\controlador\ControladorPersistencia.class
 com\mycompany\agenciapersistencia\daos\PersonaDAO.class
 com\mycompany\agenciapersistencia\AgenciaPersistencia.class
 entidadesJPA\Automovil.class
+com\mycompany\agenciapersistencia\daos\LicenciaDAO.class

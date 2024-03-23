@@ -153,6 +153,8 @@ public class Persona implements Serializable {
         this.tramites = tramites;
     }
 
+    
+    
     @Override
     public String toString() {
         return "Persona{" + "id=" + id + ", rfc=" + rfc + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", telefono=" + telefono + ", fechaNacimiento=" + fechaNacimiento + ", discapacidad=" + discapacidad + ", automoviles=" + automoviles + ", tramites=" + tramites + '}';

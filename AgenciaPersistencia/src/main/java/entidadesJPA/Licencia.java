@@ -4,6 +4,7 @@
  */
 package entidadesJPA;
 
+import com.mycompany.agenciapersistencia.controlador.utils.EstadoTramite;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
@@ -47,11 +48,21 @@ public class Licencia extends Tramite implements Serializable {
     public void setVigencia(Calendar vigencia) {
         this.vigencia = vigencia;
     }
+    
+    public EstadoTramite determinarEstado() {
+        Calendar fechaActual = Calendar.getInstance();
+        if (getVigencia().after(fechaActual)) {
+            return EstadoTramite.ACTIVA;
+        } else {
+            return EstadoTramite.VENCIDA;
+        }
+    }
 
     @Override
     public String toString() {
         return "Licencia{" + "vigencia=" + vigencia + '}';
     }
+
 
     
     

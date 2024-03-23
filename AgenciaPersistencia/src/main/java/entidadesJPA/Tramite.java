@@ -4,6 +4,7 @@
  */
 package entidadesJPA;
 
+import com.mycompany.agenciapersistencia.controlador.utils.EstadoTramite;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
@@ -104,6 +105,8 @@ public class Tramite implements Serializable {
         this.persona = persona;
     }
 
+    
+    
     @Override
     public String toString() {
         return "Tramite{" + "id=" + id + ", costo=" + costo + ", estado=" + estado + ", fechaExpedicion=" + fechaExpedicion + ", persona=" + persona + '}';

@@ -4,8 +4,10 @@
  */
 package com.mycompany.agenciapersistencia.controlador;
 
+import com.mycompany.agenciapersistencia.daos.LicenciaDAO;
 import com.mycompany.agenciapersistencia.daos.PersonaDAO;
 import dtos.PersonaDTO;
+import entidadesJPA.Persona;
 
 /**
  *
@@ -14,6 +16,8 @@ import dtos.PersonaDTO;
 public class ControladorPersistencia {
     
     PersonaDAO personaDAO = new PersonaDAO();
+    LicenciaDAO licenciaDAO = new LicenciaDAO();
+    
     
     public void registrarPersona(PersonaDTO persona){
         this.personaDAO.registrar(persona);
@@ -26,5 +30,9 @@ public class ControladorPersistencia {
     
     public PersonaDTO obtenerPersona(String rfc) {
         return this.personaDAO.obtenerPersona(rfc);
+    }
+    
+    public boolean consultarLicencia(PersonaDTO persona) {
+        return this.licenciaDAO.consultarLicencia(persona);
     }
 }

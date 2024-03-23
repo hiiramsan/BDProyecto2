@@ -4,9 +4,11 @@
  */
 package GUI;
 
+import com.mycompany.agencianegocio.controlador.ControladorNegocio;
 import dtos.PersonaDTO;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,6 +16,8 @@ import java.util.Calendar;
  */
 public class LicenciasFrame2 extends javax.swing.JFrame {
     private PersonaDTO personaDTO;
+    ControladorNegocio cn = new ControladorNegocio();
+    float costo;
     /**
      * Creates new form LicenciasFrame
      */
@@ -57,16 +61,15 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
-        btn1 = new utils.Btn();
+        solicitarBtn = new utils.Btn();
         panelRound3 = new utils.PanelRound();
         panelRound2 = new utils.PanelRound();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        threeRB = new javax.swing.JRadioButton();
+        oneRB = new javax.swing.JRadioButton();
+        twoRB = new javax.swing.JRadioButton();
+        costoTxt = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         nombreefw = new javax.swing.JLabel();
         nombreefw1 = new javax.swing.JLabel();
@@ -82,6 +85,7 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
         apellidomdto = new javax.swing.JLabel();
         fechanacdto = new javax.swing.JLabel();
         telefonodto = new javax.swing.JLabel();
+        errorTxt = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -171,12 +175,17 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
         jLabel9.setText("Datos del solicitante");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 280, -1, -1));
 
-        btn1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 3, 36)));
-        btn1.setForeground(new java.awt.Color(65, 3, 36));
-        btn1.setText("Solicitar Licencia");
-        btn1.setColorClick(new java.awt.Color(204, 204, 204));
-        btn1.setColorOver(new java.awt.Color(255, 255, 255));
-        jPanel1.add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 120, 30));
+        solicitarBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 3, 36)));
+        solicitarBtn.setForeground(new java.awt.Color(65, 3, 36));
+        solicitarBtn.setText("Solicitar Licencia");
+        solicitarBtn.setColorClick(new java.awt.Color(204, 204, 204));
+        solicitarBtn.setColorOver(new java.awt.Color(255, 255, 255));
+        solicitarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solicitarBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(solicitarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, 120, 30));
 
         panelRound3.setBackground(new java.awt.Color(255, 255, 255));
         panelRound3.setRoundBottomRight(20);
@@ -229,26 +238,39 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
 
         jPanel1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, -1, 70));
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("3 años");
-        jRadioButton1.setBorder(null);
-        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
+        threeRB.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(threeRB);
+        threeRB.setText("3 años");
+        threeRB.setBorder(null);
+        threeRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                threeRBActionPerformed(evt);
+            }
+        });
+        jPanel1.add(threeRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("1 año");
-        jRadioButton2.setBorder(null);
-        jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
+        oneRB.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(oneRB);
+        oneRB.setText("1 año");
+        oneRB.setBorder(null);
+        oneRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oneRBActionPerformed(evt);
+            }
+        });
+        jPanel1.add(oneRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("2 años");
-        jRadioButton3.setBorder(null);
-        jPanel1.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
-
-        jLabel6.setText("Costo: $");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 470, -1, -1));
-
-        jLabel7.setText("600.00");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, -1, -1));
+        twoRB.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup1.add(twoRB);
+        twoRB.setText("2 años");
+        twoRB.setBorder(null);
+        twoRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                twoRBActionPerformed(evt);
+            }
+        });
+        jPanel1.add(twoRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
+        jPanel1.add(costoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel12.setText("Seleccionar vigencia:");
@@ -303,6 +325,10 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
         telefonodto.setText("jLabel13");
         jPanel1.add(telefonodto, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 420, -1, -1));
 
+        errorTxt.setBackground(new java.awt.Color(255, 255, 255));
+        errorTxt.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(errorTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, -1));
+
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -335,13 +361,57 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void solicitarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitarBtnActionPerformed
+        // TODO add your handling code here:
+        if((!oneRB.isSelected() && !twoRB.isSelected() && !threeRB.isSelected())) {
+            errorTxt.setText("Debes seleccionar una vigencia para continuar");
+        } else {
+            // checar si tiene vigencia activa
+            Boolean tieneLicenciaActiva = cn.consultarLicencia(personaDTO);
+            System.out.println(tieneLicenciaActiva);
+            if(tieneLicenciaActiva) {
+               JOptionPane.showMessageDialog(null, "Esta persona ya tiene una licencia activa", "Licencia Repetida", JOptionPane.WARNING_MESSAGE);
+               dispose();
+               IndexFrame ifr = new IndexFrame();
+               ifr.setVisible(true);
+            } else {
+                // registrarLicencia(persona, vigencia)
+            }
+                
+        }
+    }//GEN-LAST:event_solicitarBtnActionPerformed
+
+    private void oneRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oneRBActionPerformed
+        // TODO add your handling code here:
+        errorTxt.setText("");
+        costo = cn.calcularCostoLicencia(1, personaDTO.isDiscapacidad());
+        costoTxt.setText("Costo: $" + String.valueOf(costo));
+    }//GEN-LAST:event_oneRBActionPerformed
+
+    private void twoRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_twoRBActionPerformed
+        // TODO add your handling code here:
+         errorTxt.setText("");
+         costo = cn.calcularCostoLicencia(2, personaDTO.isDiscapacidad());
+         costoTxt.setText("Costo: $" + String.valueOf(costo));
+    }//GEN-LAST:event_twoRBActionPerformed
+
+    private void threeRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_threeRBActionPerformed
+        // TODO add your handling code here:
+         errorTxt.setText("");
+         costo = cn.calcularCostoLicencia(3, personaDTO.isDiscapacidad());
+         costoTxt.setText("Costo: $" + String.valueOf(costo));
+    }//GEN-LAST:event_threeRBActionPerformed
+
+    
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel apellidomdto;
     private javax.swing.JLabel apellidopdto;
-    private utils.Btn btn1;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel costoTxt;
     private javax.swing.JLabel discapacidaddto;
+    private javax.swing.JLabel errorTxt;
     private javax.swing.JLabel fechanacdto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -351,16 +421,11 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel nombredto;
     private javax.swing.JLabel nombreefw;
@@ -370,10 +435,14 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
     private javax.swing.JLabel nombreefw4;
     private javax.swing.JLabel nombreefw5;
     private javax.swing.JLabel nombreefw6;
+    private javax.swing.JRadioButton oneRB;
     private utils.PanelRound panelRound1;
     private utils.PanelRound panelRound2;
     private utils.PanelRound panelRound3;
     private javax.swing.JLabel rfcdto;
+    private utils.Btn solicitarBtn;
     private javax.swing.JLabel telefonodto;
+    private javax.swing.JRadioButton threeRB;
+    private javax.swing.JRadioButton twoRB;
     // End of variables declaration//GEN-END:variables
 }
