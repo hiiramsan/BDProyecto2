@@ -62,4 +62,35 @@ public class PersonaDAO {
             entityManagerFactory.close();
         }
     }
+    
+    public PersonaDTO obtenerPersona(String rfc) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ConexionPU");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        
+        try {
+            String jpql = "SELECT p FROM Persona p WHERE p.rfc = :rfc";
+            TypedQuery<Persona> query = entityManager.createQuery(jpql, Persona.class);
+            query.setParameter("rfc", rfc);
+            Persona personaBuscada = query.getSingleResult();
+            entityManager.getTransaction().commit();
+            
+            PersonaDTO personaDTO = new PersonaDTO();
+            personaDTO.setRfc(personaBuscada.getRfc());
+            personaDTO.setNombre(personaBuscada.getNombre());
+            personaDTO.setApellidoPaterno(personaBuscada.getApellidoPaterno());
+            personaDTO.setApellidoMaterno(personaBuscada.getApellidoMaterno());
+            personaDTO.setTelefono(personaBuscada.getTelefono());
+            personaDTO.setFechaNacimiento(personaBuscada.getFechaNacimiento());
+            personaDTO.setDiscapacidad(personaBuscada.isDiscapacidad());
+            
+            return personaDTO;
+        } catch(Exception e) {
+            entityManager.getTransaction().rollback();
+            throw e;
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }   
+    }
 }

@@ -4,17 +4,36 @@
  */
 package GUI;
 
+import dtos.PersonaDTO;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  *
  * @author carlo
  */
 public class LicenciasFrame2 extends javax.swing.JFrame {
-
+    private PersonaDTO personaDTO;
     /**
      * Creates new form LicenciasFrame
      */
-    public LicenciasFrame2() {
+    public LicenciasFrame2(PersonaDTO personaDTO) {
         initComponents();
+        this.personaDTO = personaDTO;
+        rfcdto.setText(personaDTO.getRfc());
+        nombredto.setText(personaDTO.getNombre());
+        apellidopdto.setText(personaDTO.getApellidoPaterno());
+        apellidomdto.setText(personaDTO.getApellidoMaterno());
+        telefonodto.setText(personaDTO.getTelefono());
+        Calendar fechaNacimiento = personaDTO.getFechaNacimiento();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaNacimientoString = sdf.format(fechaNacimiento.getTime());
+        fechanacdto.setText(fechaNacimientoString);
+        if(personaDTO.isDiscapacidad()) {
+            discapacidaddto.setText("Y");
+        } else {
+            discapacidaddto.setText("N");
+        }
     }
 
     /**
@@ -56,6 +75,13 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
         nombreefw4 = new javax.swing.JLabel();
         nombreefw5 = new javax.swing.JLabel();
         nombreefw6 = new javax.swing.JLabel();
+        discapacidaddto = new javax.swing.JLabel();
+        rfcdto = new javax.swing.JLabel();
+        nombredto = new javax.swing.JLabel();
+        apellidopdto = new javax.swing.JLabel();
+        apellidomdto = new javax.swing.JLabel();
+        fechanacdto = new javax.swing.JLabel();
+        telefonodto = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -249,6 +275,34 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
         nombreefw6.setText("Nombre:");
         jPanel1.add(nombreefw6, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, -1, -1));
 
+        discapacidaddto.setForeground(new java.awt.Color(148, 13, 73));
+        discapacidaddto.setText("jLabel13");
+        jPanel1.add(discapacidaddto, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 440, -1, -1));
+
+        rfcdto.setForeground(new java.awt.Color(148, 13, 73));
+        rfcdto.setText("jLabel13");
+        jPanel1.add(rfcdto, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 320, -1, -1));
+
+        nombredto.setForeground(new java.awt.Color(148, 13, 73));
+        nombredto.setText("jLabel13");
+        jPanel1.add(nombredto, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 340, -1, -1));
+
+        apellidopdto.setForeground(new java.awt.Color(148, 13, 73));
+        apellidopdto.setText("jLabel13");
+        jPanel1.add(apellidopdto, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 360, -1, -1));
+
+        apellidomdto.setForeground(new java.awt.Color(148, 13, 73));
+        apellidomdto.setText("jLabel13");
+        jPanel1.add(apellidomdto, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 380, -1, -1));
+
+        fechanacdto.setForeground(new java.awt.Color(148, 13, 73));
+        fechanacdto.setText("jLabel13");
+        jPanel1.add(fechanacdto, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 400, -1, -1));
+
+        telefonodto.setForeground(new java.awt.Color(148, 13, 73));
+        telefonodto.setText("jLabel13");
+        jPanel1.add(telefonodto, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 420, -1, -1));
+
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -281,45 +335,14 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LicenciasFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LicenciasFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LicenciasFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LicenciasFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LicenciasFrame2().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel apellidomdto;
+    private javax.swing.JLabel apellidopdto;
     private utils.Btn btn1;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel discapacidaddto;
+    private javax.swing.JLabel fechanacdto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -339,6 +362,7 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel nombredto;
     private javax.swing.JLabel nombreefw;
     private javax.swing.JLabel nombreefw1;
     private javax.swing.JLabel nombreefw2;
@@ -349,5 +373,7 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
     private utils.PanelRound panelRound1;
     private utils.PanelRound panelRound2;
     private utils.PanelRound panelRound3;
+    private javax.swing.JLabel rfcdto;
+    private javax.swing.JLabel telefonodto;
     // End of variables declaration//GEN-END:variables
 }

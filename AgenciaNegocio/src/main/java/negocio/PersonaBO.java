@@ -11,13 +11,23 @@ import dtos.PersonaDTO;
  *
  * @author carlo
  */
-public class RegistroPersonaBO implements IRegistroPersona {
+public class PersonaBO implements IPersona {
     
     ControladorPersistencia cp = new ControladorPersistencia();
     
+    @Override
     public void registrarPersona(PersonaDTO persona) {
         System.out.println("conexion hasta BO correcta");
         cp.registrarPersona(persona);
-        
+    }
+    
+    @Override
+    public PersonaDTO obtenerPersona(String rfc) {
+        return this.cp.obtenerPersona(rfc);
+    }
+    
+    public boolean consultarPersona(String rfc) {
+        Boolean personaExiste = cp.consultarPersona(rfc);
+        return personaExiste; 
     }
 }

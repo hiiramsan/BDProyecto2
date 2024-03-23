@@ -11,5 +11,5 @@ import dtos.PersonaDTO;
  * @author carlo
  */
 public interface ILicencias {
-    public boolean consultarPersona(String rfc); 
+    
 }

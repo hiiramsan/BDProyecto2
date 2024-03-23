@@ -23,4 +23,8 @@ public class ControladorPersistencia {
         Boolean personaExiste = this.personaDAO.consultarPersona(rfc);
         return personaExiste;
     }
+    
+    public PersonaDTO obtenerPersona(String rfc) {
+        return this.personaDAO.obtenerPersona(rfc);
+    }
 }

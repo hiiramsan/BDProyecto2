@@ -5,6 +5,7 @@
 package GUI;
 
 import com.mycompany.agencianegocio.controlador.ControladorNegocio;
+import dtos.PersonaDTO;
 
 /**
  *
@@ -244,6 +245,10 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
         if(personaExiste) {
             //licenciasframe2 se abre y se manda con el objeto con la persona as a param 
             System.out.println("nos movemos a licenciasFrame2");
+            PersonaDTO person = cn.obtenerPersona(rfcTxt.getText());
+            LicenciasFrame2 lf = new LicenciasFrame2(person);
+            lf.setVisible(true);
+            dispose();
         } else {
             System.out.println("NO EXISTE LA PERRA");
         }

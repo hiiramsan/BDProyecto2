@@ -21,6 +21,11 @@ public class PersonaDTO {
 
     // Constructor, getters y setters
 
+    public PersonaDTO() {
+    }
+
+    
+    
     public PersonaDTO(String rfc, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, Calendar fechaNacimiento, boolean discapacidad) {
         this.rfc = rfc;
         this.nombre = nombre;

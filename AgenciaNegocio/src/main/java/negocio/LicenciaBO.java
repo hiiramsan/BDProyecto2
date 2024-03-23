@@ -16,8 +16,5 @@ public class LicenciaBO implements ILicencias {
     
     ControladorPersistencia cp = new ControladorPersistencia();
     
-    public boolean consultarPersona(String rfc) {
-        Boolean personaExiste = cp.consultarPersona(rfc);
-        return personaExiste; 
-    }
+    
 }

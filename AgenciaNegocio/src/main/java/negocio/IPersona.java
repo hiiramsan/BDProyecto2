@@ -10,6 +10,10 @@ import dtos.PersonaDTO;
  *
  * @author carlo
  */
-public interface IRegistroPersona {
+public interface IPersona {
     public void registrarPersona(PersonaDTO persona);
+    
+    public PersonaDTO obtenerPersona(String rfc);
+    
+    public boolean consultarPersona(String rfc);
 }
