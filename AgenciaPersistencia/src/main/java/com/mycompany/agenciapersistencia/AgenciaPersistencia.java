@@ -15,7 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *
+ * Clase que utilizo para pruebas, dont mind
  * @author carlo
  */
 public class AgenciaPersistencia {

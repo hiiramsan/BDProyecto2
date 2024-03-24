@@ -40,6 +40,7 @@ GUI\PlacasFrame2$1.class
 GUI\IndexFrame$6.class
 GUI\LicenciasFrame1$1.class
 GUI\ConsultasFrame1$5.class
+conexion\ConexionDAO.class
 GUI\ConsultasFrame2$3.class
 GUI\ReportesFrame2$1.class
 GUI\IndexFrame.class
@@ -50,6 +51,7 @@ GUI\LicenciaRegistradaFrame$1.class
 GUI\ConsultasFrame1$6.class
 GUI\PlacasFrame2$4.class
 utils\Btn$1.class
+conexion\IConexionDAO.class
 GUI\ReportesFrame2$3.class
 GUI\ReportesFrame2.class
 GUI\ConsultasFrame2$4.class

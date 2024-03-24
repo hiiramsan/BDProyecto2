@@ -4,7 +4,6 @@
  */
 package GUI;
 
-import com.mycompany.agencianegocio.controlador.ControladorNegocio;
 import dtos.LicenciaDTO;
 import dtos.PersonaDTO;
 import java.text.SimpleDateFormat;

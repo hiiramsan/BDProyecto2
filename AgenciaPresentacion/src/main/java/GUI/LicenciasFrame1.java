@@ -4,8 +4,11 @@
  */
 package GUI;
 
-import com.mycompany.agencianegocio.controlador.ControladorNegocio;
+import conexion.ConexionDAO;
+import conexion.IConexionDAO;
 import dtos.PersonaDTO;
+import negocio.persona.IPersona;
+import negocio.persona.PersonaBO;
 
 /**
  *
@@ -239,13 +242,13 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         // TODO add your handling code here:
-        ControladorNegocio cn = new ControladorNegocio();
-        Boolean personaExiste = cn.consultarPersona(rfcTxt.getText());
+        IConexionDAO conexion = new ConexionDAO();
+        IPersona personaBO = new PersonaBO(conexion);
+        Boolean personaExiste = personaBO.consultarPersona(rfcTxt.getText());
         
         if(personaExiste) {
             //licenciasframe2 se abre y se manda con el objeto con la persona as a param 
-            System.out.println("nos movemos a licenciasFrame2");
-            PersonaDTO person = cn.obtenerPersona(rfcTxt.getText());
+            PersonaDTO person = personaBO.obtenerPersona(rfcTxt.getText());
             LicenciasFrame2 lf = new LicenciasFrame2(person);
             lf.setVisible(true);
             dispose();

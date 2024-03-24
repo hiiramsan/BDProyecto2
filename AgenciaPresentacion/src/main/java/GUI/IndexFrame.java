@@ -4,13 +4,17 @@
  */
 package GUI;
 
-import com.mycompany.agencianegocio.controlador.ControladorNegocio;
+
+import conexion.ConexionDAO;
+import conexion.IConexionDAO;
 import dtos.PersonaDTO;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import negocio.persona.IPersona;
+import negocio.persona.PersonaBO;
 
 /**
  *
@@ -18,7 +22,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class IndexFrame extends javax.swing.JFrame {
 
-    ControladorNegocio cn = new ControladorNegocio();
+    
 
     /**
      * Creates new form Index
@@ -508,27 +512,29 @@ public class IndexFrame extends javax.swing.JFrame {
         PersonaDTO persona19 = new PersonaDTO("7878787878787", "Juan", "González", "Romero", "6443098765", fecha19, false);
         PersonaDTO persona20 = new PersonaDTO("8989898989898", "Patricia", "Sánchez", "Gómez", "6443007894", fecha20, false);
         
+        IConexionDAO conexionDAO = new ConexionDAO();
+        IPersona personaBO = new PersonaBO(conexionDAO);
         
-        cn.registrarPersona(persona1);
-        cn.registrarPersona(persona2);
-        cn.registrarPersona(persona3);
-        cn.registrarPersona(persona4);
-        cn.registrarPersona(persona5);
-        cn.registrarPersona(persona6);
-        cn.registrarPersona(persona7);
-        cn.registrarPersona(persona8);
-        cn.registrarPersona(persona9);
-        cn.registrarPersona(persona10);
-        cn.registrarPersona(persona11);
-        cn.registrarPersona(persona12);
-        cn.registrarPersona(persona13);
-        cn.registrarPersona(persona14);
-        cn.registrarPersona(persona15);
-        cn.registrarPersona(persona16);
-        cn.registrarPersona(persona17);
-        cn.registrarPersona(persona18);
-        cn.registrarPersona(persona19);
-        cn.registrarPersona(persona20);
+        personaBO.registrarPersona(persona1);
+        personaBO.registrarPersona(persona2);
+        personaBO.registrarPersona(persona3);
+        personaBO.registrarPersona(persona4);
+        personaBO.registrarPersona(persona5);
+        personaBO.registrarPersona(persona6);
+        personaBO.registrarPersona(persona7);
+        personaBO.registrarPersona(persona8);
+        personaBO.registrarPersona(persona9);
+        personaBO.registrarPersona(persona10);
+        personaBO.registrarPersona(persona11);
+        personaBO.registrarPersona(persona12);
+        personaBO.registrarPersona(persona13);
+        personaBO.registrarPersona(persona14);
+        personaBO.registrarPersona(persona15);
+        personaBO.registrarPersona(persona16);
+        personaBO.registrarPersona(persona17);
+        personaBO.registrarPersona(persona18);
+        personaBO.registrarPersona(persona19);
+        personaBO.registrarPersona(persona20);
         
         // desactivar el boton
         insercionPersonasBtn.setEnabled(false);

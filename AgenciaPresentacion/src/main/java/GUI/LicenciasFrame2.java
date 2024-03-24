@@ -4,12 +4,17 @@
  */
 package GUI;
 
-import com.mycompany.agencianegocio.controlador.ControladorNegocio;
+import conexion.ConexionDAO;
+import conexion.IConexionDAO;
 import dtos.LicenciaDTO;
 import dtos.PersonaDTO;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
+import negocio.licencia.ILicencias;
+import negocio.licencia.LicenciaBO;
+import negocio.persona.IPersona;
+import negocio.persona.PersonaBO;
 
 /**
  *
@@ -17,9 +22,11 @@ import javax.swing.JOptionPane;
  */
 public class LicenciasFrame2 extends javax.swing.JFrame {
     private PersonaDTO personaDTO;
-    ControladorNegocio cn = new ControladorNegocio();
     float costo;
     int vigencia;
+    IConexionDAO conexion = new ConexionDAO();
+    IPersona personaBO = new PersonaBO(conexion);
+    ILicencias licenciaBO = new LicenciaBO(conexion);
     /**
      * Creates new form LicenciasFrame
      */
@@ -369,7 +376,7 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
             errorTxt.setText("Debes seleccionar una vigencia para continuar");
         } else {
             // checar si tiene vigencia activa
-            Boolean tieneLicenciaActiva = cn.consultarLicencia(personaDTO);
+            Boolean tieneLicenciaActiva = licenciaBO.consultarLicencia(personaDTO);
             System.out.println(tieneLicenciaActiva);
             if(tieneLicenciaActiva) {
                JOptionPane.showMessageDialog(null, "Esta persona ya tiene una licencia activa", "Licencia Repetida", JOptionPane.WARNING_MESSAGE);
@@ -377,7 +384,7 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
                IndexFrame ifr = new IndexFrame();
                ifr.setVisible(true);
             } else {
-                LicenciaDTO license = cn.registrarLicencia(personaDTO, vigencia, costo);
+                LicenciaDTO license = licenciaBO.registrarLicencia(personaDTO, vigencia, costo);
                 if(license != null) {
                     LicenciaRegistradaFrame lrf = new LicenciaRegistradaFrame(personaDTO, license);
                     lrf.setVisible(true);
@@ -397,7 +404,7 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
         // TODO add your handling code here:
         errorTxt.setText("");
         vigencia = 1;
-        costo = cn.calcularCostoLicencia(1, personaDTO.isDiscapacidad());
+        costo = licenciaBO.calcularCostoLicencia(1, personaDTO.isDiscapacidad());
         costoTxt.setText("Costo: $" + String.valueOf(costo));
     }//GEN-LAST:event_oneRBActionPerformed
 
@@ -405,7 +412,7 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
         // TODO add your handling code here:
          errorTxt.setText("");
          vigencia = 2;
-         costo = cn.calcularCostoLicencia(2, personaDTO.isDiscapacidad());
+         costo = licenciaBO.calcularCostoLicencia(2, personaDTO.isDiscapacidad());
          costoTxt.setText("Costo: $" + String.valueOf(costo));
     }//GEN-LAST:event_twoRBActionPerformed
 
@@ -413,7 +420,7 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
         // TODO add your handling code here:
          errorTxt.setText("");
          vigencia = 3;
-         costo = cn.calcularCostoLicencia(3, personaDTO.isDiscapacidad());
+         costo = licenciaBO.calcularCostoLicencia(3, personaDTO.isDiscapacidad());
          costoTxt.setText("Costo: $" + String.valueOf(costo));
     }//GEN-LAST:event_threeRBActionPerformed
 
