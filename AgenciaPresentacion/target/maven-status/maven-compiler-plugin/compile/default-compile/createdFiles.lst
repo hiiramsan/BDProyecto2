@@ -5,12 +5,10 @@ GUI\IndexFrame$1.class
 GUI\ReportesFrame1.class
 GUI\LicenciasFrame2.class
 utils\Btn.class
-GUI\AvisoFrame.class
 GUI\LicenciaRegistradaFrame$2.class
 GUI\PlacasFrame1$1.class
 GUI\LicenciaRegistradaFrame.class
 GUI\PlacasFrame2$6.class
-GUI\AvisoFrame$1.class
 GUI\LicenciasFrame2$1.class
 GUI\ConsultasFrame1$3.class
 GUI\PlacasFrame2$3.class
@@ -21,6 +19,7 @@ GUI\PlacasFrame3.class
 GUI\ReportesFrame1$1.class
 GUI\LicenciasFrame1.class
 GUI\IndexFrame$2.class
+GUI\LicenciasFrame2$5.class
 GUI\PlacasFrame1.class
 GUI\ReportesFrame1$3.class
 GUI\ConsultasFrame1$1.class
@@ -28,6 +27,7 @@ GUI\ConsultasFrame2.class
 GUI\PlacasFrame2$5.class
 GUI\ConsultasFrame1$4.class
 GUI\IndexFrame$5.class
+GUI\IndexFrame$8.class
 GUI\LicenciasFrame2$2.class
 GUI\ConsultasFrame2$2.class
 com\mycompany\agenciapresentacion\AgenciaPresentacion.class
@@ -40,12 +40,14 @@ GUI\PlacasFrame2$1.class
 GUI\IndexFrame$6.class
 GUI\LicenciasFrame1$1.class
 GUI\ConsultasFrame1$5.class
+GUI\IndexFrame$9.class
 conexion\ConexionDAO.class
 GUI\ConsultasFrame2$3.class
 GUI\ReportesFrame2$1.class
 GUI\IndexFrame.class
 GUI\ConsultasFrame2$1.class
 GUI\PlacasFrame1$2.class
+GUI\IndexFrame$7.class
 GUI\LicenciasFrame2$3.class
 GUI\LicenciaRegistradaFrame$1.class
 GUI\ConsultasFrame1$6.class

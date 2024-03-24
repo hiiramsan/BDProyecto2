@@ -8,6 +8,7 @@ package GUI;
 import conexion.ConexionDAO;
 import conexion.IConexionDAO;
 import dtos.PersonaDTO;
+import java.awt.Color;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,8 +30,12 @@ public class IndexFrame extends javax.swing.JFrame {
      */
     public IndexFrame() {
         initComponents();
+        licenciasDD.setVisible(false);
+        placasDD.setVisible(false);
     }
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,8 +51,10 @@ public class IndexFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        tramitesNav = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        licenciasDD = new javax.swing.JLabel();
+        placasDD = new javax.swing.JLabel();
         panelRound1 = new utils.PanelRound();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -83,14 +90,52 @@ public class IndexFrame extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("CONSULTAS");
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("TRAMITES");
+        tramitesNav.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tramitesNav.setForeground(new java.awt.Color(255, 255, 255));
+        tramitesNav.setText(" TRAMITES ▼");
+        tramitesNav.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tramitesNav.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tramitesNavMouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("REPORTES");
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        licenciasDD.setForeground(new java.awt.Color(255, 255, 255));
+        licenciasDD.setText("• LICENCIAS");
+        licenciasDD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        licenciasDD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                licenciasDDMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                licenciasDDMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                licenciasDDMouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                licenciasDDMouseReleased(evt);
+            }
+        });
+
+        placasDD.setForeground(new java.awt.Color(255, 255, 255));
+        placasDD.setText("• PLACAS");
+        placasDD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        placasDD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                placasDDMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                placasDDMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -107,8 +152,11 @@ public class IndexFrame extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(25, 25, 25)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(licenciasDD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tramitesNav, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(placasDD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(35, 35, 35)
                         .addComponent(jLabel4)
                         .addGap(39, 39, 39)
@@ -125,10 +173,15 @@ public class IndexFrame extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel6))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(tramitesNav)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(licenciasDD)
+                                .addGap(12, 12, 12)
+                                .addComponent(placasDD))
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -541,6 +594,55 @@ public class IndexFrame extends javax.swing.JFrame {
         insercionPersonasBtn.setText("20 peronas insertadas");
     }//GEN-LAST:event_insercionPersonasBtnActionPerformed
 
+    private void tramitesNavMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tramitesNavMouseClicked
+        // TODO add your handling code here:
+        if (licenciasDD.isVisible()) {
+            licenciasDD.setVisible(false);
+            placasDD.setVisible(false);
+            tramitesNav.setText("TRAMITES ▼");
+        } else {
+            licenciasDD.setVisible(true);
+            placasDD.setVisible(true);
+            tramitesNav.setText("TRAMITES ▲");
+        }
+    }//GEN-LAST:event_tramitesNavMouseClicked
+
+    private void licenciasDDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_licenciasDDMouseEntered
+        // TODO add your handling code here:
+        Color colorGris = Color.GREEN;
+        licenciasDD.setForeground(colorGris);
+    }//GEN-LAST:event_licenciasDDMouseEntered
+
+    private void licenciasDDMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_licenciasDDMouseReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_licenciasDDMouseReleased
+
+    private void licenciasDDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_licenciasDDMouseExited
+        // TODO add your handling code here:
+        Color blanco = Color.WHITE;
+        licenciasDD.setForeground(blanco);
+    }//GEN-LAST:event_licenciasDDMouseExited
+
+    private void placasDDMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_placasDDMouseEntered
+        // TODO add your handling code here:
+        Color colorGris = Color.GREEN;
+        placasDD.setForeground(colorGris);
+    }//GEN-LAST:event_placasDDMouseEntered
+
+    private void placasDDMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_placasDDMouseExited
+        // TODO add your handling code here:
+        Color blanco = Color.WHITE;
+        placasDD.setForeground(blanco);
+    }//GEN-LAST:event_placasDDMouseExited
+
+    private void licenciasDDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_licenciasDDMouseClicked
+        // TODO add your handling code here:
+        LicenciasFrame1 lf1 = new LicenciasFrame1();
+        lf1.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_licenciasDDMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -605,18 +707,20 @@ public class IndexFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private utils.Btn licenciasBtn;
+    private javax.swing.JLabel licenciasDD;
     private utils.PanelRound panelRound1;
     private utils.PanelRound panelRound2;
     private utils.PanelRound panelRound3;
     private utils.PanelRound panelRound4;
     private utils.Btn placasBtn;
+    private javax.swing.JLabel placasDD;
     private utils.Btn reportesBtn;
+    private javax.swing.JLabel tramitesNav;
     // End of variables declaration//GEN-END:variables
 }
