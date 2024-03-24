@@ -37,13 +37,21 @@ public class PersonaDAO {
         emf.close();
     }
 
-    public void registrar(String rfc, String nombre, String apellidoPaterno, String apellidoMaterno, Calendar fechaNacimiento, boolean discapacidad) {
+    public void registrar(PersonaDTO persona) {
         abrirEntityManager();
         
         em.getTransaction().begin();
+        
+        Persona personaARegisrar = new Persona(persona.getRfc(), persona.getNombre(), persona.getApellidoPaterno(),
+                persona.getApellidoMaterno(), persona.getTelefono(),
+                persona.getFechaNacimiento(), persona.isDiscapacidad());
 
-        Persona personaARegisrar = new Persona(rfc, nombre, apellidoPaterno, apellidoMaterno, rfc, fechaNacimiento, discapacidad);
-
+        /*
+        quise correr el proyecto y no me dejaba por una parte de aqui asi que lo cambie, igual segun yo no habia porque cambiarlo
+        ya que se debe manejar con un DTO y no los atributos "sueltos". ademas esta parte es la menos importante porque es 'hardcodeado'
+        ya que no hay registro de Personas
+        */
+        
         em.persist(personaARegisrar);
 
         em.getTransaction().commit();
