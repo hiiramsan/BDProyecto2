@@ -20,21 +20,34 @@ import javax.persistence.TypedQuery;
  * @author carlo
  */
 public class PersonaDAO {
+    
+    EntityManagerFactory emf;
+    EntityManager em;
 
-    public void registrar(PersonaDTO persona) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ConexionPU");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
+    public PersonaDAO() {
+    }
+    
+    public void abrirEntityManager(){
+        emf = Persistence.createEntityManagerFactory("ConexionPU");
+        em = emf.createEntityManager();
+    }
+    
+    public void cerrarEntityManager(){
+        em.close();
+        emf.close();
+    }
 
-        Persona personaARegisrar = new Persona(persona.getRfc(), persona.getNombre(), persona.getApellidoPaterno(),
-                persona.getApellidoMaterno(), persona.getTelefono(),
-                persona.getFechaNacimiento(), persona.isDiscapacidad());
+    public void registrar(String rfc, String nombre, String apellidoPaterno, String apellidoMaterno, Calendar fechaNacimiento, boolean discapacidad) {
+        abrirEntityManager();
+        
+        em.getTransaction().begin();
 
-        entityManager.persist(personaARegisrar);
+        Persona personaARegisrar = new Persona(rfc, nombre, apellidoPaterno, apellidoMaterno, rfc, fechaNacimiento, discapacidad);
 
-        entityManager.getTransaction().commit();
-        entityManager.close();
-        entityManagerFactory.close();
+        em.persist(personaARegisrar);
+
+        em.getTransaction().commit();
+        cerrarEntityManager();
     }
 
     public boolean consultarPersona(String rfc) {
