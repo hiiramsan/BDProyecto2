@@ -32,8 +32,8 @@ public class PersonaDAO implements IPersonaDAO {
 
     @Override
     public void registrar(PersonaDTO persona) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ConexionPU");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityManager entityManager = conexion.crearConexion();
+        
         entityManager.getTransaction().begin();
 
         Persona personaARegisrar = new Persona(persona.getRfc(), persona.getNombre(), persona.getApellidoPaterno(),
@@ -49,13 +49,11 @@ public class PersonaDAO implements IPersonaDAO {
 
         entityManager.getTransaction().commit();
         entityManager.close();
-        entityManagerFactory.close();
     }
 
     @Override
     public boolean consultarPersona(String rfc) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ConexionPU");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityManager entityManager = conexion.crearConexion();
         entityManager.getTransaction().begin();
 
         try {
@@ -72,14 +70,12 @@ public class PersonaDAO implements IPersonaDAO {
             throw e;
         } finally {
             entityManager.close();
-            entityManagerFactory.close();
         }
     }
 
     @Override
     public PersonaDTO obtenerPersona(String rfc) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ConexionPU");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityManager entityManager = conexion.crearConexion();
         entityManager.getTransaction().begin();
 
         try {
@@ -104,14 +100,12 @@ public class PersonaDAO implements IPersonaDAO {
             throw e;
         } finally {
             entityManager.close();
-            entityManagerFactory.close();
         }
     }
 
     @Override
     public Persona buscarPersonaPorRFC(String rfc) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ConexionPU");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityManager entityManager = conexion.crearConexion();
         entityManager.getTransaction().begin();
 
         try {
@@ -125,7 +119,6 @@ public class PersonaDAO implements IPersonaDAO {
             throw e;
         } finally {
             entityManager.close();
-            entityManagerFactory.close();
         }
     }
 }

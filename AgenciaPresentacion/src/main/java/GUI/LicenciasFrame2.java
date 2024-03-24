@@ -111,6 +111,12 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Regresar al menu");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -423,6 +429,13 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
          costo = licenciaBO.calcularCostoLicencia(3, personaDTO.isDiscapacidad());
          costoTxt.setText("Costo: $" + String.valueOf(costo));
     }//GEN-LAST:event_threeRBActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        IndexFrame ifr = new IndexFrame();
+        ifr.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     
    

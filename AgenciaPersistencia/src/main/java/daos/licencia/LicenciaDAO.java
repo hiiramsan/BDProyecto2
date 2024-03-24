@@ -57,8 +57,7 @@ public class LicenciaDAO implements ILicenciaDAO {
 
     @Override
     public LicenciaDTO registrarLicencia(PersonaDTO persona, int vigencia, float costo) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ConexionPU");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityManager entityManager = conexion.crearConexion();
         entityManager.getTransaction().begin();
 
         try {
@@ -88,7 +87,6 @@ public class LicenciaDAO implements ILicenciaDAO {
             throw e;
         } finally {
             entityManager.close();
-            entityManagerFactory.close();
         }
     }
 
