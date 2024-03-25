@@ -6,15 +6,16 @@ package daos.licencia;
 
 import dtos.LicenciaDTO;
 import dtos.PersonaDTO;
+import entidadesJPA.Persona;
 
 /**
  *
  * @author carlo
  */
 public interface ILicenciaDAO {
-    public boolean consultarLicencia(PersonaDTO persona);
+    public boolean consultarLicencia(Persona persona);
     
-    public LicenciaDTO registrarLicencia(PersonaDTO persona, int vigencia, float costo);
+    public LicenciaDTO registrarLicencia(Persona persona, int vigencia, float costo);
     
     
 }

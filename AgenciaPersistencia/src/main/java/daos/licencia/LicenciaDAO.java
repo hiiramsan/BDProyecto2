@@ -36,11 +36,9 @@ public class LicenciaDAO implements ILicenciaDAO {
 
     // metodo que comprueba si una persona tiene una licencia activa (maybe no funciona despues)
     @Override
-    public boolean consultarLicencia(PersonaDTO persona) {
+    public boolean consultarLicencia(Persona persona) {
 
-        Persona personaABuscar = personaDAO.buscarPersonaPorRFC(persona.getRfc());
-
-        List<Tramite> tramites = personaABuscar.getTramites();
+        List<Tramite> tramites = persona.getTramites();
 
         for (Tramite tramite : tramites) {
             if (tramite instanceof Licencia) {
@@ -56,13 +54,13 @@ public class LicenciaDAO implements ILicenciaDAO {
     }
 
     @Override
-    public LicenciaDTO registrarLicencia(PersonaDTO persona, int vigencia, float costo) {
+    public LicenciaDTO registrarLicencia(Persona persona, int vigencia, float costo) {
         EntityManager entityManager = conexion.crearConexion();
         entityManager.getTransaction().begin();
 
         try {
 
-            Persona personaSolicitante = personaDAO.buscarPersonaPorRFC(persona.getRfc());
+            //Persona personaSolicitante = personaDAO.buscarPersonaPorRFC(persona.getRfc());
 
             Calendar fechaHoy = Calendar.getInstance();
 
@@ -70,7 +68,7 @@ public class LicenciaDAO implements ILicenciaDAO {
             fechaVigencia.setTimeInMillis(fechaHoy.getTimeInMillis());
             fechaVigencia.add(Calendar.YEAR, vigencia);
 
-            Licencia licencia = new Licencia(fechaVigencia, costo, EstadoTramite.ACTIVA, fechaHoy, personaSolicitante);
+            Licencia licencia = new Licencia(fechaVigencia, costo, EstadoTramite.ACTIVA, fechaHoy, persona);
             entityManager.persist(licencia);
             entityManager.getTransaction().commit();
 

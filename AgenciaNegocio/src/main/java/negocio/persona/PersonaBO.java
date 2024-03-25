@@ -5,7 +5,6 @@
 package negocio.persona;
 
 import negocio.persona.IPersona;
-import com.mycompany.agenciapersistencia.controlador.ControladorPersistencia;
 import conexion.ConexionDAO;
 import conexion.IConexionDAO;
 import daos.licencia.ILicenciaDAO;
