@@ -1,3 +1,4 @@
+daos\automovil\IAutomovilDAO.class
 com\mycompany\agenciapersistencia\controlador\utils\EstadoTramite.class
 entidadesJPA\Persona.class
 daos\persona\PersonaDAO.class
@@ -8,6 +9,7 @@ conexion\IConexionDAO.class
 daos\persona\IPersonaDAO.class
 daos\licencia\LicenciaDAO.class
 entidadesJPA\Licencia.class
+daos\automovil\AutomovilDAO.class
 conexion\ConexionDAO.class
 daos\licencia\ILicenciaDAO.class
 entidadesJPA\Automovil.class

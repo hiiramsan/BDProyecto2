@@ -8,6 +8,7 @@ package GUI;
 import conexion.ConexionDAO;
 import conexion.IConexionDAO;
 import dtos.PersonaDTO;
+import excepciones.PersonaExistenteException;
 import java.awt.Color;
 import java.util.Calendar;
 import java.util.logging.Level;
@@ -481,14 +482,13 @@ public class IndexFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_reportesBtnActionPerformed
 
     private void insercionPersonasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insercionPersonasBtnActionPerformed
-
-        // logica con negocio y persistencia para insertarlas
+// logica con negocio y persistencia para insertarlas
         Calendar fecha1 = Calendar.getInstance();
         fecha1.set(2004, Calendar.JANUARY, 22);
-        
+
         Calendar fecha2 = Calendar.getInstance();
         fecha2.set(1998, Calendar.MARCH, 15);
-        
+
         Calendar fecha3 = Calendar.getInstance();
         fecha3.set(1990, Calendar.DECEMBER, 5);
 
@@ -532,16 +532,16 @@ public class IndexFrame extends javax.swing.JFrame {
         fecha16.set(1982, Calendar.JANUARY, 17);
 
         Calendar fecha17 = Calendar.getInstance();
-        fecha17.set(1986, Calendar.MAY, 6);
+        fecha17.set(2012, Calendar.MAY, 6);
 
         Calendar fecha18 = Calendar.getInstance();
-        fecha18.set(2001, Calendar.JULY, 23);
+        fecha18.set(2009, Calendar.JULY, 23);
 
         Calendar fecha19 = Calendar.getInstance();
-        fecha19.set(1994, Calendar.APRIL, 12);
+        fecha19.set(2007, Calendar.APRIL, 12);
 
         Calendar fecha20 = Calendar.getInstance();
-        fecha20.set(1980, Calendar.OCTOBER, 31);
+        fecha20.set(2010, Calendar.OCTOBER, 31);
 
         // Crear 20 instancias de PersonaDTO con nombres aleatorios y fechas de nacimiento diferentes
         PersonaDTO persona1 = new PersonaDTO("1234567891234", "Carlos", "Sanchez", "Meneses", "6443018817", fecha1, false);
@@ -564,10 +564,10 @@ public class IndexFrame extends javax.swing.JFrame {
         PersonaDTO persona18 = new PersonaDTO("6767676767676", "Luisa", "Martínez", "Sánchez", "6443043210", fecha18, false);
         PersonaDTO persona19 = new PersonaDTO("7878787878787", "Juan", "González", "Romero", "6443098765", fecha19, false);
         PersonaDTO persona20 = new PersonaDTO("8989898989898", "Patricia", "Sánchez", "Gómez", "6443007894", fecha20, false);
-        
+
         IConexionDAO conexionDAO = new ConexionDAO();
         IPersona personaBO = new PersonaBO(conexionDAO);
-        
+
         personaBO.registrarPersona(persona1);
         personaBO.registrarPersona(persona2);
         personaBO.registrarPersona(persona3);
@@ -588,10 +588,10 @@ public class IndexFrame extends javax.swing.JFrame {
         personaBO.registrarPersona(persona18);
         personaBO.registrarPersona(persona19);
         personaBO.registrarPersona(persona20);
-        
+        insercionPersonasBtn.setText("20 peronas insertadas");
+
         // desactivar el boton
         insercionPersonasBtn.setEnabled(false);
-        insercionPersonasBtn.setText("20 peronas insertadas");
     }//GEN-LAST:event_insercionPersonasBtnActionPerformed
 
     private void tramitesNavMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tramitesNavMouseClicked

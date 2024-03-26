@@ -21,6 +21,7 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
      */
     public LicenciasFrame1() {
         initComponents();
+        textoError.setVisible(false);
     }
 
     /**
@@ -48,6 +49,7 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         rfcTxt = new javax.swing.JTextField();
         buscarBtn = new utils.Btn();
+        textoError = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -197,6 +199,10 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
         });
         jPanel1.add(buscarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 420, 100, 40));
 
+        textoError.setForeground(new java.awt.Color(255, 51, 51));
+        textoError.setText("Persona no encontrada");
+        jPanel1.add(textoError, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 230, -1));
+
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -231,6 +237,7 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
 
     private void rfcTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rfcTxtActionPerformed
         // TODO add your handling code here:
+        textoError.setVisible(false);
     }//GEN-LAST:event_rfcTxtActionPerformed
 
     private void regresarMenuBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresarMenuBtnMouseClicked
@@ -247,55 +254,18 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
         Boolean personaExiste = personaBO.consultarPersona(rfcTxt.getText());
         
         if(personaExiste) {
-            //licenciasframe2 se abre y se manda con el objeto con la persona as a param 
             PersonaDTO person = personaBO.obtenerPersona(rfcTxt.getText());
             LicenciasFrame2 lf = new LicenciasFrame2(person);
             lf.setVisible(true);
             dispose();
         } else {
-            System.out.println("NO EXISTE LA PERRA");
+            textoError.setVisible(true);
         }
         
         
     }//GEN-LAST:event_buscarBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LicenciasFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LicenciasFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LicenciasFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LicenciasFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LicenciasFrame1().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private utils.Btn buscarBtn;
@@ -315,5 +285,6 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
     private utils.PanelRound panelRound2;
     private javax.swing.JLabel regresarMenuBtn;
     private javax.swing.JTextField rfcTxt;
+    private javax.swing.JLabel textoError;
     // End of variables declaration//GEN-END:variables
 }

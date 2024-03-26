@@ -1,8 +1,14 @@
+negocio\persona\PersonaBO.class
+dtos\AutomovilDTO.class
+negocio\automovil\AutomovilBO.class
+excepciones\PersonaExistenteException.class
+conexion\IConexionDAO.class
+excepciones\PersonaNoEncontradaException.class
 negocio\licencia\LicenciaBO.class
 negocio\licencia\ILicencias.class
-negocio\persona\PersonaBO.class
 dtos\PersonaDTO.class
+excepciones\MenorDeEdadException.class
 dtos\LicenciaDTO.class
+negocio\automovil\IAutomovil.class
 conexion\ConexionDAO.class
-conexion\IConexionDAO.class
 negocio\persona\IPersona.class

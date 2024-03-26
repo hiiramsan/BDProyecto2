@@ -58,6 +58,7 @@ public class LicenciaBO implements ILicencias {
 
     }
     
+    @Override
     public boolean consultarLicencia(PersonaDTO persona) {
         Persona personaABuscar = personaDAO.buscarPersonaPorRFC(persona.getRfc());
 

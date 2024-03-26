@@ -22,6 +22,7 @@ GUI\IndexFrame$2.class
 GUI\LicenciasFrame2$5.class
 GUI\PlacasFrame1.class
 GUI\ReportesFrame1$3.class
+GUI\PlacasFrame2$9.class
 GUI\ConsultasFrame1$1.class
 GUI\ConsultasFrame2.class
 GUI\PlacasFrame2$5.class
@@ -33,7 +34,6 @@ GUI\ConsultasFrame2$2.class
 com\mycompany\agenciapresentacion\AgenciaPresentacion.class
 GUI\PlacasFrame1$3.class
 GUI\ConsultasFrame1$2.class
-GUI\LicenciasFrame1$4.class
 GUI\PlacasFrame2$8.class
 GUI\ReportesFrame2$2.class
 GUI\PlacasFrame2$1.class

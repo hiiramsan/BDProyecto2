@@ -8,6 +8,7 @@ import conexion.ConexionDAO;
 import conexion.IConexionDAO;
 import dtos.LicenciaDTO;
 import dtos.PersonaDTO;
+import excepciones.MenorDeEdadException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
@@ -378,31 +379,22 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
 
     private void solicitarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitarBtnActionPerformed
         // TODO add your handling code here:
-        if((!oneRB.isSelected() && !twoRB.isSelected() && !threeRB.isSelected())) {
+        if ((!oneRB.isSelected() && !twoRB.isSelected() && !threeRB.isSelected())) {
             errorTxt.setText("Debes seleccionar una vigencia para continuar");
         } else {
-            // checar si tiene vigencia activa
             Boolean tieneLicenciaActiva = licenciaBO.consultarLicencia(personaDTO);
-            System.out.println(tieneLicenciaActiva);
-            if(tieneLicenciaActiva) {
-               JOptionPane.showMessageDialog(null, "Esta persona ya tiene una licencia activa", "Licencia Repetida", JOptionPane.WARNING_MESSAGE);
-               dispose();
-               IndexFrame ifr = new IndexFrame();
-               ifr.setVisible(true);
+            if (tieneLicenciaActiva) {
+                JOptionPane.showMessageDialog(null, "Esta persona ya tiene una licencia activa", "Licencia Repetida", JOptionPane.WARNING_MESSAGE);
+                dispose();
+                IndexFrame ifr = new IndexFrame();
+                ifr.setVisible(true);
             } else {
                 LicenciaDTO license = licenciaBO.registrarLicencia(personaDTO, vigencia, costo);
-                if(license != null) {
-                    LicenciaRegistradaFrame lrf = new LicenciaRegistradaFrame(personaDTO, license);
-                    lrf.setVisible(true);
-                    dispose();
-                } else {
-                    // no se pudo
-                }
-              
                 
-                
+                LicenciaRegistradaFrame lrf = new LicenciaRegistradaFrame(personaDTO, license);
+                lrf.setVisible(true);
+                dispose();
             }
-                
         }
     }//GEN-LAST:event_solicitarBtnActionPerformed
 

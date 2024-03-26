@@ -19,4 +19,6 @@ public interface IPersonaDAO {
     public PersonaDTO obtenerPersona(String rfc);
     
     public Persona buscarPersonaPorRFC(String rfc);
+    
+    public boolean esMayorDeEdad(String rfc);
 }

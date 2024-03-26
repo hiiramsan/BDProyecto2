@@ -10,6 +10,8 @@ import entidadesJPA.Automovil;
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import entidadesJPA.Placa;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Calendar;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -33,18 +35,13 @@ public class PersonaDAO implements IPersonaDAO {
     @Override
     public void registrar(PersonaDTO persona) {
         EntityManager entityManager = conexion.crearConexion();
-        
+
         entityManager.getTransaction().begin();
 
         Persona personaARegisrar = new Persona(persona.getRfc(), persona.getNombre(), persona.getApellidoPaterno(),
                 persona.getApellidoMaterno(), persona.getTelefono(),
                 persona.getFechaNacimiento(), persona.isDiscapacidad());
 
-        /*
-        quise correr el proyecto y no me dejaba por una parte de aqui asi que lo cambie, igual segun yo no habia porque cambiarlo
-        ya que se debe manejar con un DTO y no los atributos "sueltos". ademas esta parte es la menos importante porque es 'hardcodeado'
-        ya que no hay registro de Personas
-         */
         entityManager.persist(personaARegisrar);
 
         entityManager.getTransaction().commit();
@@ -121,4 +118,25 @@ public class PersonaDAO implements IPersonaDAO {
             entityManager.close();
         }
     }
+
+    @Override
+    public boolean esMayorDeEdad(String rfc) {
+        Persona persona = buscarPersonaPorRFC(rfc);
+        if (persona != null) {
+            Calendar fechaNacimientoCalendar = persona.getFechaNacimiento();
+            LocalDate fechaNacimiento = LocalDate.of(
+                    fechaNacimientoCalendar.get(Calendar.YEAR),
+                    fechaNacimientoCalendar.get(Calendar.MONTH) + 1, 
+                    fechaNacimientoCalendar.get(Calendar.DAY_OF_MONTH)
+            );
+            LocalDate fechaActual = LocalDate.now();
+            Period periodo = Period.between(fechaNacimiento, fechaActual);
+            int edad = periodo.getYears();
+            return edad >= 18;
+
+        } else {
+            return false;
+        }
+    }
+
 }

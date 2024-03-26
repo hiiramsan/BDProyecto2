@@ -4,17 +4,28 @@
  */
 package GUI;
 
+import conexion.ConexionDAO;
+import conexion.IConexionDAO;
+import dtos.AutomovilDTO;
+import dtos.PersonaDTO;
+import java.awt.Color;
+import negocio.automovil.AutomovilBO;
+import negocio.automovil.IAutomovil;
+
 /**
  *
  * @author carlo
  */
 public class PlacasFrame2 extends javax.swing.JFrame {
-
+    IConexionDAO conexion = new ConexionDAO();
+    private PersonaDTO personaDTO;
+    IAutomovil automovilBO = new AutomovilBO(conexion);
     /**
      * Creates new form LicenciasFrame
      */
-    public PlacasFrame2() {
+    public PlacasFrame2(PersonaDTO personaDTO) {
         initComponents();
+        this.personaDTO = personaDTO;
     }
 
     /**
@@ -36,7 +47,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
         numSerieTxt = new javax.swing.JTextField();
-        btn1 = new utils.Btn();
+        avanzarBtn = new utils.Btn();
         panelRound5 = new utils.PanelRound();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -57,6 +68,10 @@ public class PlacasFrame2 extends javax.swing.JFrame {
         colorTxt = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         modeloTxt = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        lineaTxt = new javax.swing.JTextField();
+        errorRBTxt = new javax.swing.JLabel();
+        camposErrorTxt = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -128,13 +143,18 @@ public class PlacasFrame2 extends javax.swing.JFrame {
         });
         jPanel1.add(numSerieTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 180, 30));
 
-        btn1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 3, 36)));
-        btn1.setForeground(new java.awt.Color(65, 3, 36));
-        btn1.setText("Avanzar");
-        btn1.setAlignmentY(0.0F);
-        btn1.setColorClick(new java.awt.Color(204, 204, 204));
-        btn1.setColorOver(new java.awt.Color(153, 153, 153));
-        jPanel1.add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 120, 40));
+        avanzarBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 3, 36)));
+        avanzarBtn.setForeground(new java.awt.Color(65, 3, 36));
+        avanzarBtn.setText("Avanzar");
+        avanzarBtn.setAlignmentY(0.0F);
+        avanzarBtn.setColorClick(new java.awt.Color(204, 204, 204));
+        avanzarBtn.setColorOver(new java.awt.Color(153, 153, 153));
+        avanzarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                avanzarBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(avanzarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 120, 40));
 
         panelRound5.setBackground(new java.awt.Color(148, 13, 73));
         panelRound5.setRoundBottomRight(20);
@@ -270,6 +290,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
 
         jPanel1.add(panelRound9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, -1, -1));
 
+        usadoRB.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(usadoRB);
         usadoRB.setText("Auto Usado");
         usadoRB.setBorder(null);
@@ -281,6 +302,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
         });
         jPanel1.add(usadoRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, -1, -1));
 
+        nuevoRB.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(nuevoRB);
         nuevoRB.setText("Auto Nuevo");
         nuevoRB.setBorder(null);
@@ -298,7 +320,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel11.setText("Marca:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, -1));
 
         marcaTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         marcaTxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -308,7 +330,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
                 marcaTxtActionPerformed(evt);
             }
         });
-        jPanel1.add(marcaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 180, 30));
+        jPanel1.add(marcaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 180, 30));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel13.setText("Color:");
@@ -326,7 +348,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
 
         jLabel20.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel20.setText("Modelo:");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, -1));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
 
         modeloTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         modeloTxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -336,7 +358,27 @@ public class PlacasFrame2 extends javax.swing.JFrame {
                 modeloTxtActionPerformed(evt);
             }
         });
-        jPanel1.add(modeloTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 180, 30));
+        jPanel1.add(modeloTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 180, 30));
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel21.setText("Linea:");
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, -1, -1));
+
+        lineaTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lineaTxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lineaTxt.setName(""); // NOI18N
+        lineaTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lineaTxtActionPerformed(evt);
+            }
+        });
+        jPanel1.add(lineaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 370, 180, 30));
+
+        errorRBTxt.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(errorRBTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, -1, -1));
+
+        camposErrorTxt.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(camposErrorTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 500, -1, -1));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -395,76 +437,77 @@ public class PlacasFrame2 extends javax.swing.JFrame {
 
     private void usadoRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usadoRBActionPerformed
         // TODO add your handling code here:
+        camposErrorTxt.setText("");
         if (usadoRB.isSelected()) {
             marcaTxt.setEnabled(false);
-            modeloTxt.setEnabled(false);
+            lineaTxt.setEnabled(false);
             colorTxt.setEnabled(false);
+            modeloTxt.setEnabled(false);
+            marcaTxt.setForeground(Color.GRAY);
+            colorTxt.setForeground(Color.GRAY);
+            lineaTxt.setForeground(Color.GRAY);
+            modeloTxt.setForeground(Color.GRAY);
+            modeloTxt.setBackground(Color.LIGHT_GRAY);
+            marcaTxt.setBackground(Color.LIGHT_GRAY);
+            colorTxt.setBackground(Color.LIGHT_GRAY);
+            lineaTxt.setBackground(Color.LIGHT_GRAY);
         }
     }//GEN-LAST:event_usadoRBActionPerformed
 
     private void nuevoRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoRBActionPerformed
         // TODO add your handling code here:
+        camposErrorTxt.setText("");
         if (nuevoRB.isSelected()) {
             marcaTxt.setEnabled(true);
-            modeloTxt.setEnabled(true);
+            lineaTxt.setEnabled(true);
             colorTxt.setEnabled(true);
+            modeloTxt.setEnabled(true);
+            marcaTxt.setForeground(Color.BLACK);
+            colorTxt.setForeground(Color.BLACK);
+            lineaTxt.setForeground(Color.BLACK);
+            marcaTxt.setBackground(Color.WHITE);
+            colorTxt.setBackground(Color.WHITE);
+            lineaTxt.setBackground(Color.WHITE);
+            modeloTxt.setForeground(Color.BLACK);
+            modeloTxt.setBackground(Color.WHITE);
         }
     }//GEN-LAST:event_nuevoRBActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PlacasFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PlacasFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PlacasFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PlacasFrame2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void lineaTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lineaTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lineaTxtActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PlacasFrame2().setVisible(true);
+    private void avanzarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avanzarBtnActionPerformed
+        // TODO add your handling code here:
+        if ((!nuevoRB.isSelected() && !usadoRB.isSelected())) {
+            errorRBTxt.setText("Debes seleccionar una para continuar");
+        } else {
+            if (nuevoRB.isSelected()) {
+                if (numSerieTxt.getText().isBlank() || marcaTxt.getText().isBlank() || lineaTxt.getText().isBlank()|| colorTxt.getText().isBlank() || lineaTxt.getText().isBlank()) {
+                    camposErrorTxt.setText("Favor de llenar todos los campos");
+                } else {
+                    // registrar automvil nuevo
+                    int modeloInt = Integer.parseInt(modeloTxt.getText());
+                    AutomovilDTO autoARegistrar = new AutomovilDTO(numSerieTxt.getText(), marcaTxt.getText(),
+                            lineaTxt.getText(), colorTxt.getText(), modeloInt);
+                    System.out.println(modeloInt);
+                    AutomovilDTO autoRegistrado = automovilBO.registrarAutomovilDTO(autoARegistrar, personaDTO);
+                    
+                }
+            } else {
+                // registrar automovil usado
             }
-        });
-    }
+        }
+    }//GEN-LAST:event_avanzarBtnActionPerformed
+
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private utils.Btn btn1;
+    private utils.Btn avanzarBtn;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel camposErrorTxt;
     private javax.swing.JTextField colorTxt;
+    private javax.swing.JLabel errorRBTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -476,6 +519,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -483,6 +527,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField lineaTxt;
     private javax.swing.JTextField marcaTxt;
     private javax.swing.JTextField modeloTxt;
     private javax.swing.JRadioButton nuevoRB;

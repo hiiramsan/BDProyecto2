@@ -41,6 +41,9 @@ public class Automovil implements Serializable {
     @Column(name="color", nullable=false, length=50)
     private String color;
     
+    @Column(name="modelo", nullable=false)
+    private int modelo;
+    
     @ManyToOne
     @JoinColumn(name="persona_id", nullable=false)
     private Persona persona;
@@ -52,13 +55,26 @@ public class Automovil implements Serializable {
     public Automovil() {
     }
 
-    public Automovil(String numSerie, String marca, String linea, String color, Persona persona) {
+    public Automovil(String numSerie, String marca, String linea, String color, int modelo, Persona persona) {
         this.numSerie = numSerie;
         this.marca = marca;
         this.linea = linea;
         this.color = color;
+        this.modelo = modelo;
         this.persona = persona;
     }
+
+    
+    
+    public int getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(int modelo) {
+        this.modelo = modelo;
+    }
+
+    
 
     public Long getId() {
         return id;
@@ -107,7 +123,4 @@ public class Automovil implements Serializable {
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
-    
-    
-    
 }

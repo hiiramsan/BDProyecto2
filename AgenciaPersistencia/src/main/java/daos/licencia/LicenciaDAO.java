@@ -26,12 +26,10 @@ import com.mycompany.agenciapersistencia.controlador.utils.EstadoTramite;
  */
 public class LicenciaDAO implements ILicenciaDAO {
     private final IConexionDAO conexion;
-    private PersonaDAO personaDAO;
+    
 
     public LicenciaDAO(IConexionDAO conexion) {  
         this.conexion = conexion;
-        // dont know if this works
-        this.personaDAO = new PersonaDAO(conexion);
     }
 
     // metodo que comprueba si una persona tiene una licencia activa (maybe no funciona despues)
@@ -59,8 +57,6 @@ public class LicenciaDAO implements ILicenciaDAO {
         entityManager.getTransaction().begin();
 
         try {
-
-            //Persona personaSolicitante = personaDAO.buscarPersonaPorRFC(persona.getRfc());
 
             Calendar fechaHoy = Calendar.getInstance();
 

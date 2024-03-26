@@ -4,6 +4,12 @@
  */
 package GUI;
 
+import conexion.ConexionDAO;
+import conexion.IConexionDAO;
+import dtos.PersonaDTO;
+import negocio.persona.IPersona;
+import negocio.persona.PersonaBO;
+
 /**
  *
  * @author carlo
@@ -11,10 +17,11 @@ package GUI;
 public class PlacasFrame1 extends javax.swing.JFrame {
 
     /**
-     * Creates new form LicenciasFrame
+     * Creates new form 
      */
     public PlacasFrame1() {
         initComponents();
+        textoError.setVisible(false);
     }
 
     /**
@@ -34,8 +41,8 @@ public class PlacasFrame1 extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        btn1 = new utils.Btn();
+        rfcTxt = new javax.swing.JTextField();
+        buscarBtn = new utils.Btn();
         panelRound5 = new utils.PanelRound();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -47,6 +54,7 @@ public class PlacasFrame1 extends javax.swing.JFrame {
         panelRound9 = new utils.PanelRound();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        textoError = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -108,22 +116,27 @@ public class PlacasFrame1 extends javax.swing.JFrame {
         jLabel9.setText("Registro Federal de Contribuyentes (RFC):");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTextField1.setName(""); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        rfcTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rfcTxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        rfcTxt.setName(""); // NOI18N
+        rfcTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                rfcTxtActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 390, 40));
+        jPanel1.add(rfcTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 390, 40));
 
-        btn1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 3, 36)));
-        btn1.setForeground(new java.awt.Color(65, 3, 36));
-        btn1.setText("Buscar");
-        btn1.setColorClick(new java.awt.Color(204, 204, 204));
-        btn1.setColorOver(new java.awt.Color(153, 153, 153));
-        jPanel1.add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 420, 100, 40));
+        buscarBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 3, 36)));
+        buscarBtn.setForeground(new java.awt.Color(65, 3, 36));
+        buscarBtn.setText("Buscar");
+        buscarBtn.setColorClick(new java.awt.Color(204, 204, 204));
+        buscarBtn.setColorOver(new java.awt.Color(153, 153, 153));
+        buscarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(buscarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 420, 100, 40));
 
         panelRound5.setBackground(new java.awt.Color(148, 13, 73));
         panelRound5.setRoundBottomRight(20);
@@ -257,6 +270,10 @@ public class PlacasFrame1 extends javax.swing.JFrame {
 
         jPanel1.add(panelRound9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, -1, -1));
 
+        textoError.setForeground(new java.awt.Color(255, 51, 51));
+        textoError.setText("Persona no encontrada");
+        jPanel1.add(textoError, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 230, -1));
+
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -289,9 +306,9 @@ public class PlacasFrame1 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void rfcTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rfcTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_rfcTxtActionPerformed
 
     private void regresarMenuBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresarMenuBtnMouseClicked
         // TODO add your handling code here:
@@ -300,50 +317,25 @@ public class PlacasFrame1 extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_regresarMenuBtnMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PlacasFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PlacasFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PlacasFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PlacasFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
+        // TODO add your handling code here:
+        IConexionDAO conexion = new ConexionDAO();
+        IPersona personaBO = new PersonaBO(conexion);
+        Boolean personaExiste = personaBO.consultarPersona(rfcTxt.getText());
+        
+        if(personaExiste) {
+            PersonaDTO person = personaBO.obtenerPersona(rfcTxt.getText());
+            PlacasFrame2 pf2 = new PlacasFrame2(person);
+            pf2.setVisible(true);
+            dispose();
+        } else {
+            textoError.setVisible(true);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_buscarBtnActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PlacasFrame1().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private utils.Btn btn1;
+    private utils.Btn buscarBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -358,12 +350,13 @@ public class PlacasFrame1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     private utils.PanelRound panelRound5;
     private utils.PanelRound panelRound6;
     private utils.PanelRound panelRound7;
     private utils.PanelRound panelRound8;
     private utils.PanelRound panelRound9;
     private javax.swing.JLabel regresarMenuBtn;
+    private javax.swing.JTextField rfcTxt;
+    private javax.swing.JLabel textoError;
     // End of variables declaration//GEN-END:variables
 }
