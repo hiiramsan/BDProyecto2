@@ -72,9 +72,9 @@ public class AutomovilDAO implements IAutomovilDAO {
         entityManager.getTransaction().begin();
 
         try {
-            String jpql = "SELECT a FROM Automovil a WHERE a.numSerie = :num_serie AND a.persona.rfc = :rfc";
+            String jpql = "SELECT a FROM Automovil a WHERE a.numSerie = :numSerie AND a.persona.rfc = :rfc";
             TypedQuery<Automovil> query = entityManager.createQuery(jpql, Automovil.class);
-            query.setParameter("num_serie", numeroSerie);
+            query.setParameter("numSerie", numeroSerie);
             query.setParameter("rfc", rfc);
             Automovil automovilBuscado = query.getSingleResult();
             entityManager.getTransaction().commit();
@@ -89,7 +89,7 @@ public class AutomovilDAO implements IAutomovilDAO {
             return automovilDTO;
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
-            throw e;
+            return null;
         } finally {
             entityManager.close();
         }

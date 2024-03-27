@@ -10,9 +10,12 @@ import dtos.AutomovilDTO;
 import dtos.PersonaDTO;
 import excepciones.AutomovilExistenteException;
 import excepciones.AutomovilInexistenteException;
+import excepciones.NoPropietarioException;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import negocio.automovil.AutomovilBO;
 import negocio.automovil.IAutomovil;
 
@@ -21,9 +24,11 @@ import negocio.automovil.IAutomovil;
  * @author carlo
  */
 public class PlacasFrame2 extends javax.swing.JFrame {
+
     IConexionDAO conexion = new ConexionDAO();
     private PersonaDTO personaDTO;
     IAutomovil automovilBO = new AutomovilBO(conexion);
+
     /**
      * Creates new form LicenciasFrame
      */
@@ -168,6 +173,17 @@ public class PlacasFrame2 extends javax.swing.JFrame {
         panelRound5.setBackground(new java.awt.Color(148, 13, 73));
         panelRound5.setRoundBottomRight(20);
         panelRound5.setRoundTopRight(20);
+        panelRound5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelRound5MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                panelRound5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                panelRound5MouseExited(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -446,7 +462,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
 
     private void usadoRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usadoRBActionPerformed
         // TODO add your handling code here:
-        
+
         errorRBTxt.setText("");
         if (usadoRB.isSelected()) {
             marcaTxt.setEnabled(false);
@@ -493,29 +509,38 @@ public class PlacasFrame2 extends javax.swing.JFrame {
             errorRBTxt.setText("Debes seleccionar una para continuar");
         } else {
             if (nuevoRB.isSelected()) {
-                if (numSerieTxt.getText().isBlank() || marcaTxt.getText().isBlank() || lineaTxt.getText().isBlank()|| colorTxt.getText().isBlank() || lineaTxt.getText().isBlank()) {
+                if (numSerieTxt.getText().isBlank() || marcaTxt.getText().isBlank() || lineaTxt.getText().isBlank() || colorTxt.getText().isBlank() || lineaTxt.getText().isBlank()) {
                     camposErrorTxt.setText("Favor de llenar todos los campos");
                 } else {
                     // registrar automvil nuevo
                     int modeloInt = Integer.parseInt(modeloTxt.getText());
-                    
+
                     AutomovilDTO autoARegistrar = new AutomovilDTO(numSerieTxt.getText(), marcaTxt.getText(),
                             lineaTxt.getText(), colorTxt.getText(), modeloInt);
-                    
+
                     try {
                         AutomovilDTO autoRegistrado = automovilBO.registrarAutomovilNuevo(autoARegistrar, personaDTO);
+
+                        PlacasFrame3 pf3 = new PlacasFrame3(personaDTO, autoRegistrado);
+                        pf3.setVisible(true);
+                        dispose();
                     } catch (AutomovilExistenteException ex) {
                         // manejar el error
-                        
+                        JOptionPane.showMessageDialog(null, "El auto ya se encuentra registrado", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                    
+
                 }
             } else {
                 try {
                     // registrar automovil usado
                     AutomovilDTO autoUsado = automovilBO.recuperarAutomovilUsado(numSerieTxt.getText(), personaDTO.getRfc());
-                } catch (AutomovilInexistenteException ex) {
-                    // manejar error
+
+                    PlacasFrame3 pf3 = new PlacasFrame3(personaDTO, autoUsado);
+                    pf3.setVisible(true);
+                    dispose();
+                } catch (AutomovilInexistenteException | NoPropietarioException ex) {
+                    // manejar 
+                    JOptionPane.showMessageDialog(null, "El automóvil no existe o no corresponde al propietario.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -526,7 +551,27 @@ public class PlacasFrame2 extends javax.swing.JFrame {
         camposErrorTxt.setText("");
     }//GEN-LAST:event_avanzarBtnFocusLost
 
- 
+    private void panelRound5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound5MouseClicked
+        // TODO add your handling code here:
+        PlacasFrame1 pf1 = new PlacasFrame1();
+        pf1.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_panelRound5MouseClicked
+
+    private void panelRound5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound5MouseEntered
+        // TODO add your handling code here:
+        Color colorHover = new Color(65, 3, 36);
+        panelRound5.setBackground(colorHover);
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_panelRound5MouseEntered
+
+    private void panelRound5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound5MouseExited
+        // TODO add your handling code here:\
+         Color colorNormal = new Color(148, 13, 73);
+        panelRound5.setBackground(colorNormal);
+        setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_panelRound5MouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private utils.Btn avanzarBtn;

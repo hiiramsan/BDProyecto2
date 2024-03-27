@@ -10,6 +10,8 @@ import dtos.LicenciaDTO;
 import dtos.PersonaDTO;
 import excepciones.LicenciaActivaException;
 import excepciones.MenorDeEdadException;
+import java.awt.Color;
+import java.awt.Cursor;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.logging.Level;
@@ -150,6 +152,17 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
         panelRound1.setBackground(new java.awt.Color(148, 13, 73));
         panelRound1.setRoundBottomRight(20);
         panelRound1.setRoundTopRight(20);
+        panelRound1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelRound1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                panelRound1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                panelRound1MouseExited(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -240,12 +253,12 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
         panelRound2.setLayout(panelRound2Layout);
         panelRound2Layout.setHorizontalGroup(
             panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound2Layout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
-                .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound2Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel11)
                     .addComponent(jLabel10))
-                .addGap(39, 39, 39))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         panelRound2Layout.setVerticalGroup(
             panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,7 +270,7 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jPanel1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, -1, 70));
+        jPanel1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 150, 70));
 
         threeRB.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(threeRB);
@@ -432,6 +445,27 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
         ifr.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void panelRound1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound1MouseClicked
+        // TODO add your handling code here:
+        LicenciasFrame1 lf1 = new LicenciasFrame1();
+        lf1.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_panelRound1MouseClicked
+
+    private void panelRound1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound1MouseEntered
+        // TODO add your handling code here:
+        Color colorHover = new Color(65, 3, 36);
+        panelRound1.setBackground(colorHover);
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_panelRound1MouseEntered
+
+    private void panelRound1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound1MouseExited
+        // TODO add your handling code here:
+        Color colorNormal = new Color(148, 13, 73);
+        panelRound1.setBackground(colorNormal);
+        setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_panelRound1MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

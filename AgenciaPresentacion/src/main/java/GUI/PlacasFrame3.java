@@ -4,17 +4,26 @@
  */
 package GUI;
 
+import dtos.AutomovilDTO;
+import dtos.PersonaDTO;
+import java.awt.Color;
+import java.awt.Cursor;
+
 /**
  *
  * @author carlo
  */
 public class PlacasFrame3 extends javax.swing.JFrame {
-
+    private PersonaDTO personaDTO;
+    private AutomovilDTO automovilDTO;
+    
     /**
      * Creates new form LicenciasFrame
      */
-    public PlacasFrame3() {
+    public PlacasFrame3(PersonaDTO personaDTO, AutomovilDTO automovilDTO) {
         initComponents();
+        this.personaDTO = personaDTO;
+        this.automovilDTO = automovilDTO;
     }
 
     /**
@@ -121,6 +130,17 @@ public class PlacasFrame3 extends javax.swing.JFrame {
         panelRound5.setBackground(new java.awt.Color(148, 13, 73));
         panelRound5.setRoundBottomRight(20);
         panelRound5.setRoundTopRight(20);
+        panelRound5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelRound5MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                panelRound5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                panelRound5MouseExited(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -172,6 +192,17 @@ public class PlacasFrame3 extends javax.swing.JFrame {
         panelRound7.setBackground(new java.awt.Color(148, 13, 73));
         panelRound7.setRoundBottomRight(20);
         panelRound7.setRoundTopRight(20);
+        panelRound7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelRound7MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                panelRound7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                panelRound7MouseExited(evt);
+            }
+        });
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
@@ -312,71 +343,48 @@ public class PlacasFrame3 extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_regresarMenuBtnMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PlacasFrame3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PlacasFrame3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PlacasFrame3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PlacasFrame3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void panelRound5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound5MouseClicked
+        // TODO add your handling code here:
+        PlacasFrame1 pf1 = new PlacasFrame1();
+        pf1.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_panelRound5MouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PlacasFrame3().setVisible(true);
-            }
-        });
-    }
+    private void panelRound5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound5MouseEntered
+        // TODO add your handling code here:
+        Color colorHover = new Color(65, 3, 36);
+        panelRound5.setBackground(colorHover);
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_panelRound5MouseEntered
+
+    private void panelRound5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound5MouseExited
+        // TODO add your handling code here:
+        Color colorNormal = new Color(148, 13, 73);
+        panelRound5.setBackground(colorNormal);
+        setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_panelRound5MouseExited
+
+    private void panelRound7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound7MouseClicked
+        // TODO add your handling code here:
+        PlacasFrame2 pf2 = new PlacasFrame2(personaDTO);
+        pf2.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_panelRound7MouseClicked
+
+    private void panelRound7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound7MouseEntered
+        // TODO add your handling code here:
+        Color colorHover = new Color(65, 3, 36);
+        panelRound7.setBackground(colorHover);
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_panelRound7MouseEntered
+
+    private void panelRound7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound7MouseExited
+        // TODO add your handling code here:
+        Color colorNormal = new Color(148, 13, 73);
+        panelRound7.setBackground(colorNormal);
+        setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_panelRound7MouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private utils.Btn btn1;

@@ -12,6 +12,7 @@ excepciones\MenorDeEdadException.class
 dtos\LicenciaDTO.class
 negocio\automovil\IAutomovil.class
 excepciones\AutomovilExistenteException.class
+excepciones\NoPropietarioException.class
 conexion\ConexionDAO.class
 excepciones\LicenciaActivaException.class
 negocio\persona\IPersona.class

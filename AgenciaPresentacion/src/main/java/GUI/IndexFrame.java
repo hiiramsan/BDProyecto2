@@ -130,6 +130,9 @@ public class IndexFrame extends javax.swing.JFrame {
         placasDD.setText("• PLACAS");
         placasDD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         placasDD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                placasDDMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 placasDDMouseEntered(evt);
             }
@@ -646,6 +649,13 @@ public class IndexFrame extends javax.swing.JFrame {
         lf1.setVisible(true);
         dispose();
     }//GEN-LAST:event_licenciasDDMouseClicked
+
+    private void placasDDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_placasDDMouseClicked
+        // TODO add your handling code here:
+        PlacasFrame1 pf1 = new PlacasFrame1();
+        pf1.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_placasDDMouseClicked
 
     /**
      * @param args the command line arguments

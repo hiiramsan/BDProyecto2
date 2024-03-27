@@ -9,6 +9,7 @@ import dtos.AutomovilDTO;
 import dtos.PersonaDTO;
 import excepciones.AutomovilExistenteException;
 import excepciones.AutomovilInexistenteException;
+import excepciones.NoPropietarioException;
 
 /**
  *
@@ -17,5 +18,5 @@ import excepciones.AutomovilInexistenteException;
 public interface IAutomovil {
     public AutomovilDTO registrarAutomovilNuevo(AutomovilDTO automovil, PersonaDTO persona) throws AutomovilExistenteException;
     
-    public AutomovilDTO recuperarAutomovilUsado(String numSerie, String rfc) throws AutomovilInexistenteException;
+    public AutomovilDTO recuperarAutomovilUsado(String numSerie, String rfc) throws AutomovilInexistenteException, NoPropietarioException;
 }

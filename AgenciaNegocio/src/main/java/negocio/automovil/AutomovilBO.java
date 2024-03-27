@@ -15,6 +15,7 @@ import dtos.PersonaDTO;
 import entidadesJPA.Persona;
 import excepciones.AutomovilExistenteException;
 import excepciones.AutomovilInexistenteException;
+import excepciones.NoPropietarioException;
 import java.util.logging.Logger;
 
 /**
@@ -49,17 +50,16 @@ public class AutomovilBO implements IAutomovil {
             return this.automovilDAO.registrarAutomovil(numeroSerie, marca, linea, color, modelo, personaAutomovil);
         }
     }
-    
+
     @Override
-    public AutomovilDTO recuperarAutomovilUsado(String numSerie, String rfc) throws AutomovilInexistenteException {
-        Boolean autoYaExiste = automovilDAO.existeAutomovil(numSerie);
-        
-        if(autoYaExiste) {
-            return this.automovilDAO.obtenerAutomovil(numSerie, rfc);
+    public AutomovilDTO recuperarAutomovilUsado(String numSerie, String rfc) throws AutomovilInexistenteException, NoPropietarioException {
+        AutomovilDTO automovilDTO = this.automovilDAO.obtenerAutomovil(numSerie, rfc);
+
+        if (automovilDTO != null) {
+            return automovilDTO;
         } else {
-            throw new AutomovilInexistenteException("El auto no existe");
-        }       
-        
+            throw new NoPropietarioException("El automóvil no existe o no corresponde al propietario.");
+        }
     }
 
 }
