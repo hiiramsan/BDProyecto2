@@ -4,11 +4,14 @@ negocio\automovil\AutomovilBO.class
 excepciones\PersonaExistenteException.class
 conexion\IConexionDAO.class
 excepciones\PersonaNoEncontradaException.class
+excepciones\AutomovilInexistenteException.class
 negocio\licencia\LicenciaBO.class
 negocio\licencia\ILicencias.class
 dtos\PersonaDTO.class
 excepciones\MenorDeEdadException.class
 dtos\LicenciaDTO.class
 negocio\automovil\IAutomovil.class
+excepciones\AutomovilExistenteException.class
 conexion\ConexionDAO.class
+excepciones\LicenciaActivaException.class
 negocio\persona\IPersona.class

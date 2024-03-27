@@ -8,7 +8,11 @@ import conexion.ConexionDAO;
 import conexion.IConexionDAO;
 import dtos.AutomovilDTO;
 import dtos.PersonaDTO;
+import excepciones.AutomovilExistenteException;
+import excepciones.AutomovilInexistenteException;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.automovil.AutomovilBO;
 import negocio.automovil.IAutomovil;
 
@@ -149,6 +153,11 @@ public class PlacasFrame2 extends javax.swing.JFrame {
         avanzarBtn.setAlignmentY(0.0F);
         avanzarBtn.setColorClick(new java.awt.Color(204, 204, 204));
         avanzarBtn.setColorOver(new java.awt.Color(153, 153, 153));
+        avanzarBtn.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                avanzarBtnFocusLost(evt);
+            }
+        });
         avanzarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avanzarBtnActionPerformed(evt);
@@ -437,7 +446,8 @@ public class PlacasFrame2 extends javax.swing.JFrame {
 
     private void usadoRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usadoRBActionPerformed
         // TODO add your handling code here:
-        camposErrorTxt.setText("");
+        
+        errorRBTxt.setText("");
         if (usadoRB.isSelected()) {
             marcaTxt.setEnabled(false);
             lineaTxt.setEnabled(false);
@@ -456,7 +466,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
 
     private void nuevoRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoRBActionPerformed
         // TODO add your handling code here:
-        camposErrorTxt.setText("");
+        errorRBTxt.setText("");
         if (nuevoRB.isSelected()) {
             marcaTxt.setEnabled(true);
             lineaTxt.setEnabled(true);
@@ -488,17 +498,33 @@ public class PlacasFrame2 extends javax.swing.JFrame {
                 } else {
                     // registrar automvil nuevo
                     int modeloInt = Integer.parseInt(modeloTxt.getText());
+                    
                     AutomovilDTO autoARegistrar = new AutomovilDTO(numSerieTxt.getText(), marcaTxt.getText(),
                             lineaTxt.getText(), colorTxt.getText(), modeloInt);
-                    System.out.println(modeloInt);
-                    AutomovilDTO autoRegistrado = automovilBO.registrarAutomovilDTO(autoARegistrar, personaDTO);
+                    
+                    try {
+                        AutomovilDTO autoRegistrado = automovilBO.registrarAutomovilNuevo(autoARegistrar, personaDTO);
+                    } catch (AutomovilExistenteException ex) {
+                        // manejar el error
+                        
+                    }
                     
                 }
             } else {
-                // registrar automovil usado
+                try {
+                    // registrar automovil usado
+                    AutomovilDTO autoUsado = automovilBO.recuperarAutomovilUsado(numSerieTxt.getText(), personaDTO.getRfc());
+                } catch (AutomovilInexistenteException ex) {
+                    // manejar error
+                }
             }
         }
     }//GEN-LAST:event_avanzarBtnActionPerformed
+
+    private void avanzarBtnFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_avanzarBtnFocusLost
+        // TODO add your handling code here:
+        camposErrorTxt.setText("");
+    }//GEN-LAST:event_avanzarBtnFocusLost
 
  
 

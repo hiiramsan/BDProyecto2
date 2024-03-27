@@ -7,11 +7,15 @@ package negocio.automovil;
 import conexion.IConexionDAO;
 import dtos.AutomovilDTO;
 import dtos.PersonaDTO;
+import excepciones.AutomovilExistenteException;
+import excepciones.AutomovilInexistenteException;
 
 /**
  *
  * @author carlo
  */
 public interface IAutomovil {
-    public AutomovilDTO registrarAutomovilDTO(AutomovilDTO automovil, PersonaDTO persona);
+    public AutomovilDTO registrarAutomovilNuevo(AutomovilDTO automovil, PersonaDTO persona) throws AutomovilExistenteException;
+    
+    public AutomovilDTO recuperarAutomovilUsado(String numSerie, String rfc) throws AutomovilInexistenteException;
 }

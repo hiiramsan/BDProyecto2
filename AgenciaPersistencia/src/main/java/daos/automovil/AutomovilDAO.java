@@ -9,6 +9,7 @@ import dtos.AutomovilDTO;
 import entidadesJPA.Automovil;
 import entidadesJPA.Persona;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -41,6 +42,57 @@ public class AutomovilDAO implements IAutomovilDAO {
         } finally {
             entityManager.close();
         }
-
     }
+
+    @Override
+    public boolean existeAutomovil(String numeroSerie) {
+        EntityManager entityManager = conexion.crearConexion();
+        entityManager.getTransaction().begin();
+
+        try {
+            String jpql = "SELECT COUNT(a) FROM Automovil a WHERE a.numSerie = :numSerie";
+            TypedQuery<Long> query = entityManager.createQuery(jpql, Long.class);
+            query.setParameter("numSerie", numeroSerie);
+            Long count = query.getSingleResult();
+
+            entityManager.getTransaction().commit();
+
+            return count > 0;
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            throw e;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    @Override
+    public AutomovilDTO obtenerAutomovil(String numeroSerie, String rfc) {
+        EntityManager entityManager = conexion.crearConexion();
+        entityManager.getTransaction().begin();
+
+        try {
+            String jpql = "SELECT a FROM Automovil a WHERE a.numSerie = :num_serie AND a.persona.rfc = :rfc";
+            TypedQuery<Automovil> query = entityManager.createQuery(jpql, Automovil.class);
+            query.setParameter("num_serie", numeroSerie);
+            query.setParameter("rfc", rfc);
+            Automovil automovilBuscado = query.getSingleResult();
+            entityManager.getTransaction().commit();
+            AutomovilDTO automovilDTO = new AutomovilDTO();
+
+            automovilDTO.setNumeroSerie(automovilBuscado.getNumSerie());
+            automovilDTO.setMarca(automovilBuscado.getMarca());
+            automovilDTO.setModelo(automovilBuscado.getModelo());
+            automovilDTO.setColor(automovilBuscado.getColor());
+            automovilDTO.setLinea(automovilBuscado.getLinea());
+
+            return automovilDTO;
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            throw e;
+        } finally {
+            entityManager.close();
+        }
+    }
+
 }

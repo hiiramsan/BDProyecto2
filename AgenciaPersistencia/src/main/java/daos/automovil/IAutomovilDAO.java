@@ -13,4 +13,8 @@ import entidadesJPA.Persona;
  */
 public interface IAutomovilDAO {
     public AutomovilDTO registrarAutomovil(String numeroSerie, String marca, String linea, String color, int modelo, Persona persona);
+    
+    public boolean existeAutomovil(String numeroSerie);
+    
+    public AutomovilDTO obtenerAutomovil(String numeroSerie, String rfc);
 }
