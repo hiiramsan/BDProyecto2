@@ -568,27 +568,31 @@ public class IndexFrame extends javax.swing.JFrame {
         IConexionDAO conexionDAO = new ConexionDAO();
         IPersona personaBO = new PersonaBO(conexionDAO);
 
-        personaBO.registrarPersona(persona1);
-        personaBO.registrarPersona(persona2);
-        personaBO.registrarPersona(persona3);
-        personaBO.registrarPersona(persona4);
-        personaBO.registrarPersona(persona5);
-        personaBO.registrarPersona(persona6);
-        personaBO.registrarPersona(persona7);
-        personaBO.registrarPersona(persona8);
-        personaBO.registrarPersona(persona9);
-        personaBO.registrarPersona(persona10);
-        personaBO.registrarPersona(persona11);
-        personaBO.registrarPersona(persona12);
-        personaBO.registrarPersona(persona13);
-        personaBO.registrarPersona(persona14);
-        personaBO.registrarPersona(persona15);
-        personaBO.registrarPersona(persona16);
-        personaBO.registrarPersona(persona17);
-        personaBO.registrarPersona(persona18);
-        personaBO.registrarPersona(persona19);
-        personaBO.registrarPersona(persona20);
-        insercionPersonasBtn.setText("20 peronas insertadas");
+        try {
+            personaBO.registrarPersona(persona1);
+            personaBO.registrarPersona(persona2);
+            personaBO.registrarPersona(persona3);
+            personaBO.registrarPersona(persona4);
+            personaBO.registrarPersona(persona5);
+            personaBO.registrarPersona(persona6);
+            personaBO.registrarPersona(persona7);
+            personaBO.registrarPersona(persona8);
+            personaBO.registrarPersona(persona9);
+            personaBO.registrarPersona(persona10);
+            personaBO.registrarPersona(persona11);
+            personaBO.registrarPersona(persona12);
+            personaBO.registrarPersona(persona13);
+            personaBO.registrarPersona(persona14);
+            personaBO.registrarPersona(persona15);
+            personaBO.registrarPersona(persona16);
+            personaBO.registrarPersona(persona17);
+            personaBO.registrarPersona(persona18);
+            personaBO.registrarPersona(persona19);
+            personaBO.registrarPersona(persona20);
+            insercionPersonasBtn.setText("20 peronas insertadas");
+        } catch (PersonaExistenteException e) {
+            insercionPersonasBtn.setText("Ya se registraron");
+        }
 
         // desactivar el boton
         insercionPersonasBtn.setEnabled(false);

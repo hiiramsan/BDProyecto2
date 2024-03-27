@@ -12,6 +12,7 @@ import daos.licencia.LicenciaDAO;
 import daos.persona.IPersonaDAO;
 import daos.persona.PersonaDAO;
 import dtos.PersonaDTO;
+import excepciones.PersonaExistenteException;
 import java.util.logging.Logger;
 
 /**
@@ -32,8 +33,13 @@ public class PersonaBO implements IPersona {
     
     
     @Override
-    public void registrarPersona(PersonaDTO persona) {
-        this.personaDAO.registrar(persona);
+    public void registrarPersona(PersonaDTO persona) throws PersonaExistenteException {
+        Boolean personaExiste = personaDAO.consultarPersona(persona.getRfc());
+        if(personaExiste) {
+            throw new PersonaExistenteException("La persona ya se encuentra en el sistema");
+        } else {
+            this.personaDAO.registrar(persona);
+        }
     }
     
     @Override

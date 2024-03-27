@@ -5,13 +5,14 @@
 package negocio.persona;
 
 import dtos.PersonaDTO;
+import excepciones.PersonaExistenteException;
 
 /**
  *
  * @author carlo
  */
 public interface IPersona {
-    public void registrarPersona(PersonaDTO persona);
+    public void registrarPersona(PersonaDTO persona) throws PersonaExistenteException;
     
     public PersonaDTO obtenerPersona(String rfc);
     

@@ -14,6 +14,8 @@ import daos.persona.PersonaDAO;
 import dtos.LicenciaDTO;
 import dtos.PersonaDTO;
 import entidadesJPA.Persona;
+import excepciones.LicenciaActivaException;
+import excepciones.MenorDeEdadException;
 import java.util.logging.Logger;
 
 /**
@@ -57,7 +59,7 @@ public class LicenciaBO implements ILicencias {
         return esDiscapacitado ? costoDiscapacitado : costoNormal;
 
     }
-    
+
     @Override
     public boolean consultarLicencia(PersonaDTO persona) {
         Persona personaABuscar = personaDAO.buscarPersonaPorRFC(persona.getRfc());
@@ -67,12 +69,18 @@ public class LicenciaBO implements ILicencias {
     }
 
     @Override
-    public LicenciaDTO registrarLicencia(PersonaDTO persona, int vigencia, float costo) {
+    public LicenciaDTO registrarLicencia(PersonaDTO persona, int vigencia, float costo) throws MenorDeEdadException, LicenciaActivaException {
         Persona personaABuscar = personaDAO.buscarPersonaPorRFC(persona.getRfc());
-        
-        return this.licenciaDAO.registrarLicencia(personaABuscar, vigencia, costo);
-    }
+        Boolean esMayorDeEdad = personaDAO.esMayorDeEdad(persona.getRfc());
+        Boolean tieneLicenciaActiva = licenciaDAO.consultarLicencia(personaABuscar);
 
-    
+        if (!tieneLicenciaActiva && esMayorDeEdad) {
+            return this.licenciaDAO.registrarLicencia(personaABuscar, vigencia, costo);
+        } else if (tieneLicenciaActiva) {
+            throw new LicenciaActivaException("La persona ya tiene una licencia activa");
+        } else {
+            throw new MenorDeEdadException("La persona es menor de edad");
+        }
+    }
 
 }
