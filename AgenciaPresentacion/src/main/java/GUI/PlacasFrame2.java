@@ -134,7 +134,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(64, 60, 60));
-        jLabel8.setText("Módulo de Licencias");
+        jLabel8.setText("Módulo de Placas");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 390, 10));
 
@@ -521,7 +521,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
                     try {
                         AutomovilDTO autoRegistrado = automovilBO.registrarAutomovilNuevo(autoARegistrar, personaDTO);
 
-                        PlacasFrame3 pf3 = new PlacasFrame3(personaDTO, autoRegistrado);
+                        PlacasFrame3 pf3 = new PlacasFrame3(personaDTO, autoRegistrado, true);
                         pf3.setVisible(true);
                         dispose();
                     } catch (AutomovilExistenteException ex) {
@@ -535,7 +535,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
                     // registrar automovil usado
                     AutomovilDTO autoUsado = automovilBO.recuperarAutomovilUsado(numSerieTxt.getText(), personaDTO.getRfc());
 
-                    PlacasFrame3 pf3 = new PlacasFrame3(personaDTO, autoUsado);
+                    PlacasFrame3 pf3 = new PlacasFrame3(personaDTO, autoUsado, false);
                     pf3.setVisible(true);
                     dispose();
                 } catch (AutomovilInexistenteException | NoPropietarioException ex) {

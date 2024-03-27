@@ -5,6 +5,7 @@
 package daos.automovil;
 
 import dtos.AutomovilDTO;
+import entidadesJPA.Automovil;
 import entidadesJPA.Persona;
 
 /**
@@ -12,9 +13,12 @@ import entidadesJPA.Persona;
  * @author carlo
  */
 public interface IAutomovilDAO {
+
     public AutomovilDTO registrarAutomovil(String numeroSerie, String marca, String linea, String color, int modelo, Persona persona);
-    
+
     public boolean existeAutomovil(String numeroSerie);
-    
+
     public AutomovilDTO obtenerAutomovil(String numeroSerie, String rfc);
+
+    public Automovil obtenerAutomovilPorNumeroSerie(String numSerie);
 }

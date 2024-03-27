@@ -4,11 +4,13 @@
  */
 package dtos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author carlo
  */
-public class AutomovilDTO {
+public class AutomovilDTO implements Serializable {
 
     private String numeroSerie;
     private String marca;

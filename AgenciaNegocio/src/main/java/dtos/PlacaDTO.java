@@ -5,6 +5,7 @@
 package dtos;
 
 import com.mycompany.agenciapersistencia.controlador.utils.EstadoTramite;
+import entidadesJPA.Automovil;
 import java.io.Serializable;
 import java.util.Calendar;
 
@@ -12,22 +13,37 @@ import java.util.Calendar;
  *
  * @author carlo
  */
-public class LicenciaDTO implements Serializable {
-
-    private Calendar fechaExpedicion;
-    private Calendar fechaVigencia;
-    private float costo;
+public class PlacaDTO implements Serializable {
+    private String claveNumerica;
     private EstadoTramite estado;
+    private Calendar fechaExpedicion;
+    private Automovil automovil;
+    private float costo;
 
-    public LicenciaDTO() {
+    public PlacaDTO() {
     }
 
-    
-    
-    public LicenciaDTO(Calendar fechaExpedicion, Calendar fechaVigencia, float costo, EstadoTramite estado) {
+    public PlacaDTO(String claveNumerica, EstadoTramite estado, Calendar fechaExpedicion, Automovil automovil, float costo) {
+        this.claveNumerica = claveNumerica;
+        this.estado = estado;
         this.fechaExpedicion = fechaExpedicion;
-        this.fechaVigencia = fechaVigencia;
+        this.automovil = automovil;
         this.costo = costo;
+    }
+    
+    public String getClaveNumerica() {
+        return claveNumerica;
+    }
+
+    public void setClaveNumerica(String claveNumerica) {
+        this.claveNumerica = claveNumerica;
+    }
+
+    public EstadoTramite getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoTramite estado) {
         this.estado = estado;
     }
 
@@ -39,12 +55,12 @@ public class LicenciaDTO implements Serializable {
         this.fechaExpedicion = fechaExpedicion;
     }
 
-    public Calendar getFechaVigencia() {
-        return fechaVigencia;
+    public Automovil getAutomovil() {
+        return automovil;
     }
 
-    public void setFechaVigencia(Calendar fechaVigencia) {
-        this.fechaVigencia = fechaVigencia;
+    public void setAutomovil(Automovil automovil) {
+        this.automovil = automovil;
     }
 
     public float getCosto() {
@@ -54,19 +70,4 @@ public class LicenciaDTO implements Serializable {
     public void setCosto(float costo) {
         this.costo = costo;
     }
-
-    public EstadoTramite getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadoTramite estado) {
-        this.estado = estado;
-    }
-
-    @Override
-    public String toString() {
-        return "LicenciaDTO{" + "fechaExpedicion=" + fechaExpedicion + ", fechaVigencia=" + fechaVigencia + ", costo=" + costo + ", estado=" + estado + '}';
-    }
-    
-    
 }

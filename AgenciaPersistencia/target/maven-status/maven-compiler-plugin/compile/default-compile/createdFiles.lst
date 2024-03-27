@@ -8,8 +8,10 @@ com\mycompany\agenciapersistencia\AgenciaPersistencia.class
 conexion\IConexionDAO.class
 daos\persona\IPersonaDAO.class
 daos\licencia\LicenciaDAO.class
+daos\placa\PlacaDAO.class
 entidadesJPA\Licencia.class
 daos\automovil\AutomovilDAO.class
 conexion\ConexionDAO.class
 daos\licencia\ILicenciaDAO.class
 entidadesJPA\Automovil.class
+daos\placa\IPlacaDAO.class

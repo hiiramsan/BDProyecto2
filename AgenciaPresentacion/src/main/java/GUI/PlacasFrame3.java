@@ -4,26 +4,40 @@
  */
 package GUI;
 
+import conexion.ConexionDAO;
+import conexion.IConexionDAO;
 import dtos.AutomovilDTO;
 import dtos.PersonaDTO;
+import dtos.PlacaDTO;
 import java.awt.Color;
 import java.awt.Cursor;
+import negocio.automovil.AutomovilBO;
+import negocio.automovil.IAutomovil;
+import negocio.placa.IPlaca;
+import negocio.placa.PlacaBO;
 
 /**
  *
  * @author carlo
  */
 public class PlacasFrame3 extends javax.swing.JFrame {
+    private float costo;
     private PersonaDTO personaDTO;
     private AutomovilDTO automovilDTO;
+    IConexionDAO conexion = new ConexionDAO();
+    IPlaca placaBO = new PlacaBO(conexion);
     
     /**
-     * Creates new form LicenciasFrame
+     * Creates new form 
      */
-    public PlacasFrame3(PersonaDTO personaDTO, AutomovilDTO automovilDTO) {
+    public PlacasFrame3(PersonaDTO personaDTO, AutomovilDTO automovilDTO, boolean esNuevo) {
         initComponents();
         this.personaDTO = personaDTO;
         this.automovilDTO = automovilDTO;
+        numSerieTxt.setText(automovilDTO.getNumeroSerie());
+        rfcTxt.setText(personaDTO.getRfc());
+        costo = placaBO.calcularCostoPlaca(esNuevo);
+        costoTxt.setText(String.valueOf(costo));
     }
 
     /**
@@ -43,7 +57,7 @@ public class PlacasFrame3 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        btn1 = new utils.Btn();
+        solicitarPlacaBtn = new utils.Btn();
         panelRound5 = new utils.PanelRound();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -61,7 +75,7 @@ public class PlacasFrame3 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         costoTxt = new javax.swing.JLabel();
         numSerieTxt = new javax.swing.JLabel();
-        rfcTxt1 = new javax.swing.JLabel();
+        rfcTxt = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -115,17 +129,22 @@ public class PlacasFrame3 extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(64, 60, 60));
-        jLabel8.setText("Módulo de Licencias");
+        jLabel8.setText("Módulo de Placas");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 390, 10));
 
-        btn1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 3, 36)));
-        btn1.setForeground(new java.awt.Color(65, 3, 36));
-        btn1.setText("Solicitar placas");
-        btn1.setAlignmentY(0.0F);
-        btn1.setColorClick(new java.awt.Color(204, 204, 204));
-        btn1.setColorOver(new java.awt.Color(153, 153, 153));
-        jPanel1.add(btn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 120, 40));
+        solicitarPlacaBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 3, 36)));
+        solicitarPlacaBtn.setForeground(new java.awt.Color(65, 3, 36));
+        solicitarPlacaBtn.setText("Solicitar placas");
+        solicitarPlacaBtn.setAlignmentY(0.0F);
+        solicitarPlacaBtn.setColorClick(new java.awt.Color(204, 204, 204));
+        solicitarPlacaBtn.setColorOver(new java.awt.Color(153, 153, 153));
+        solicitarPlacaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solicitarPlacaBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(solicitarPlacaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 460, 120, 40));
 
         panelRound5.setBackground(new java.awt.Color(148, 13, 73));
         panelRound5.setRoundBottomRight(20);
@@ -299,10 +318,14 @@ public class PlacasFrame3 extends javax.swing.JFrame {
         jLabel2.setText("Costo:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
 
-        costoTxt.setText("$1,500.00");
+        costoTxt.setForeground(new java.awt.Color(148, 13, 73));
         jPanel1.add(costoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, -1, -1));
+
+        numSerieTxt.setForeground(new java.awt.Color(148, 13, 73));
         jPanel1.add(numSerieTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, -1, -1));
-        jPanel1.add(rfcTxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, -1, -1));
+
+        rfcTxt.setForeground(new java.awt.Color(148, 13, 73));
+        jPanel1.add(rfcTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, -1, -1));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -385,9 +408,17 @@ public class PlacasFrame3 extends javax.swing.JFrame {
         setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_panelRound7MouseExited
 
+    private void solicitarPlacaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitarPlacaBtnActionPerformed
+        // TODO add your handling code here:
+        PlacaDTO placa = placaBO.registrarPlacaAutoNuevo(automovilDTO, costo, personaDTO);
+        // si todo bien
+        PlacaRegistradaFrame prf = new PlacaRegistradaFrame(personaDTO, automovilDTO, placa);
+        prf.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_solicitarPlacaBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private utils.Btn btn1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel costoTxt;
     private javax.swing.JLabel jLabel1;
@@ -414,6 +445,7 @@ public class PlacasFrame3 extends javax.swing.JFrame {
     private utils.PanelRound panelRound8;
     private utils.PanelRound panelRound9;
     private javax.swing.JLabel regresarMenuBtn;
-    private javax.swing.JLabel rfcTxt1;
+    private javax.swing.JLabel rfcTxt;
+    private utils.Btn solicitarPlacaBtn;
     // End of variables declaration//GEN-END:variables
 }

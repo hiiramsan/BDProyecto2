@@ -30,7 +30,7 @@ public class LicenciaBO implements ILicencias {
     private static final Logger LOG = Logger.getLogger(LicenciaBO.class.getName());
 
     // this class could be called ConsultaLicenciasBO but dont know if i should put every method together no se si me entiendes
-    public LicenciaBO(IConexionDAO conexion) {
+    public LicenciaBO(IConexionDAO conexionDAO) {
         this.conexionDAO = conexionDAO;
     }
 

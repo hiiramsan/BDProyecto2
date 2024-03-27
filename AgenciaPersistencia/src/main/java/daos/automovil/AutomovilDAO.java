@@ -95,4 +95,24 @@ public class AutomovilDAO implements IAutomovilDAO {
         }
     }
 
+    public Automovil obtenerAutomovilPorNumeroSerie(String numSerie) {
+        EntityManager entityManager = conexion.crearConexion();
+        entityManager.getTransaction().begin();
+        try {
+
+            String jpql = "SELECT a FROM Automovil a WHERE a.numSerie = :numSerie";
+            TypedQuery<Automovil> query = entityManager.createQuery(jpql, Automovil.class);
+            query.setParameter("numSerie", numSerie);
+            Automovil automovil = query.getSingleResult();
+
+            entityManager.getTransaction().commit();
+            return automovil;
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            return null;
+        } finally {
+            entityManager.close();
+        }
+    }
+
 }

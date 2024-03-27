@@ -4,13 +4,14 @@
  */
 package dtos;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
  *
  * @author carlo
  */
-public class PersonaDTO {
+public class PersonaDTO implements Serializable {
     private String rfc;
     private String nombre;
     private String apellidoPaterno;
