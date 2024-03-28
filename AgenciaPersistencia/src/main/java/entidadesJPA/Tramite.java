@@ -13,6 +13,8 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,7 +44,8 @@ public class Tramite implements Serializable {
     @Column(name="costo", nullable=false)
     private float costo;
     
-    @Column(name="estado", length=50, nullable=false)
+    @Enumerated(EnumType.STRING)
+    @Column(name="estado", nullable=false)
     private EstadoTramite estado;
     
     @Column(name = "fecha_expedicion")

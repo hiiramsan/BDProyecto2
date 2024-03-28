@@ -9,8 +9,12 @@ import conexion.IConexionDAO;
 import dtos.AutomovilDTO;
 import dtos.PersonaDTO;
 import dtos.PlacaDTO;
+import excepciones.LicenciaInactivaException;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import negocio.automovil.AutomovilBO;
 import negocio.automovil.IAutomovil;
 import negocio.placa.IPlaca;
@@ -21,14 +25,15 @@ import negocio.placa.PlacaBO;
  * @author carlo
  */
 public class PlacasFrame3 extends javax.swing.JFrame {
+
     private float costo;
     private PersonaDTO personaDTO;
     private AutomovilDTO automovilDTO;
     IConexionDAO conexion = new ConexionDAO();
     IPlaca placaBO = new PlacaBO(conexion);
-    
+
     /**
-     * Creates new form 
+     * Creates new form
      */
     public PlacasFrame3(PersonaDTO personaDTO, AutomovilDTO automovilDTO, boolean esNuevo) {
         initComponents();
@@ -410,11 +415,19 @@ public class PlacasFrame3 extends javax.swing.JFrame {
 
     private void solicitarPlacaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitarPlacaBtnActionPerformed
         // TODO add your handling code here:
-        PlacaDTO placa = placaBO.registrarPlacaAutoNuevo(automovilDTO, costo, personaDTO);
-        // si todo bien
-        PlacaRegistradaFrame prf = new PlacaRegistradaFrame(personaDTO, automovilDTO, placa);
-        prf.setVisible(true);
-        dispose();
+        PlacaDTO placa;
+        try {
+            placa = placaBO.registrarPlacaAutoNuevo(automovilDTO, costo, personaDTO);
+
+            // si todo bien
+            PlacaRegistradaFrame prf = new PlacaRegistradaFrame(personaDTO, automovilDTO, placa);
+            prf.setVisible(true);
+            dispose();
+
+        } catch (LicenciaInactivaException ex) {
+            JOptionPane.showMessageDialog(null, "La persona no tiene una licencia activa", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_solicitarPlacaBtnActionPerformed
 
 

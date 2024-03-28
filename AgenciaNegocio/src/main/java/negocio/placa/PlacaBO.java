@@ -9,6 +9,8 @@ import conexion.ConexionDAO;
 import conexion.IConexionDAO;
 import daos.automovil.AutomovilDAO;
 import daos.automovil.IAutomovilDAO;
+import daos.licencia.ILicenciaDAO;
+import daos.licencia.LicenciaDAO;
 import daos.persona.IPersonaDAO;
 import daos.persona.PersonaDAO;
 import daos.placa.IPlacaDAO;
@@ -19,6 +21,7 @@ import dtos.PlacaDTO;
 import entidadesJPA.Automovil;
 import entidadesJPA.Persona;
 import entidadesJPA.Placa;
+import excepciones.LicenciaInactivaException;
 import java.util.Calendar;
 import java.util.Random;
 import javax.persistence.EntityManager;
@@ -33,7 +36,8 @@ public class PlacaBO implements IPlaca {
     IPlacaDAO placaDAO = new PlacaDAO(conexionDAO);
     IPersonaDAO personaDAO = new PersonaDAO(conexionDAO);
     IAutomovilDAO automovilDAO = new AutomovilDAO(conexionDAO);
-
+    ILicenciaDAO licenciaDAO = new LicenciaDAO(conexionDAO);
+    
     private static final Random RANDOM = new Random();
     private static final String LETRAS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final int NUM_LETRAS = LETRAS.length();
@@ -72,10 +76,7 @@ public class PlacaBO implements IPlaca {
 
     
     @Override
-    public PlacaDTO registrarPlacaAutoNuevo(AutomovilDTO automovil, float costo, PersonaDTO persona) {
-        // validar si tiene licencia activa
-        
-        
+    public PlacaDTO registrarPlacaAutoNuevo(AutomovilDTO automovil, float costo, PersonaDTO persona) throws LicenciaInactivaException { 
         // genera placa
         String claveNumerica = generarPlaca();
         
@@ -83,7 +84,15 @@ public class PlacaBO implements IPlaca {
         Persona personaPlaca  = personaDAO.buscarPersonaPorRFC(persona.getRfc());
         Automovil automovilPlaca = automovilDAO.obtenerAutomovilPorNumeroSerie(automovil.getNumeroSerie());
         
-        return this.placaDAO.registrarPlacaAutoNuevo(automovilPlaca, costo, claveNumerica, personaPlaca);
+        Boolean licenciaActiva = licenciaDAO.tieneLicenciaActiva(personaPlaca);
+        
+        if(licenciaActiva) {
+            return this.placaDAO.registrarPlacaAutoNuevo(automovilPlaca, costo, claveNumerica, personaPlaca);
+        } else {
+            
+            throw new LicenciaInactivaException("La persona no tiene una licencia activa");
+        }
+        
         
     }
    

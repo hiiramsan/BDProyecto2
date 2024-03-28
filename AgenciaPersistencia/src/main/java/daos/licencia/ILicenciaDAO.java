@@ -17,5 +17,5 @@ public interface ILicenciaDAO {
     
     public LicenciaDTO registrarLicencia(Persona persona, int vigencia, float costo);
     
-    
+    public boolean tieneLicenciaActiva(Persona persona);
 }

@@ -3,6 +3,7 @@ C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\jav
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\java\negocio\automovil\AutomovilBO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\java\negocio\automovil\IAutomovil.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\java\dtos\AutomovilDTO.java
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\java\excepciones\LicenciaInactivaException.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\java\negocio\persona\IPersona.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\java\negocio\placa\PlacaBO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\java\dtos\LicenciaDTO.java

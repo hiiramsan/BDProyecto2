@@ -7,6 +7,7 @@ package negocio.placa;
 import dtos.AutomovilDTO;
 import dtos.PersonaDTO;
 import dtos.PlacaDTO;
+import excepciones.LicenciaInactivaException;
 /**
  *
  * @author carlo
@@ -16,5 +17,5 @@ public interface IPlaca {
     
     public String generarPlaca();
  
-   public PlacaDTO registrarPlacaAutoNuevo(AutomovilDTO automovil, float costo, PersonaDTO persona);
+   public PlacaDTO registrarPlacaAutoNuevo(AutomovilDTO automovil, float costo, PersonaDTO persona) throws LicenciaInactivaException;
 }

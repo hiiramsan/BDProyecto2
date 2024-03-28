@@ -19,16 +19,21 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import com.mycompany.agenciapersistencia.controlador.utils.EstadoTramite;
+import javax.persistence.TemporalType;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 /**
  *
  * @author carlo
  */
 public class LicenciaDAO implements ILicenciaDAO {
-    private final IConexionDAO conexion;
-    
 
-    public LicenciaDAO(IConexionDAO conexion) {  
+    private final IConexionDAO conexion;
+
+    public LicenciaDAO(IConexionDAO conexion) {
         this.conexion = conexion;
     }
 
@@ -79,6 +84,32 @@ public class LicenciaDAO implements ILicenciaDAO {
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
             throw e;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    @Override
+    public boolean tieneLicenciaActiva(Persona persona) {
+        EntityManager entityManager = conexion.crearConexion();
+        entityManager.getTransaction().begin();
+
+        try {
+            String jpql = "SELECT l FROM Licencia l WHERE l.persona.rfc = :rfc "
+                    + "AND l.estado = :estado AND l.vigencia >= :fechaActual";
+            TypedQuery<Licencia> query = entityManager.createQuery(jpql, Licencia.class);
+            query.setParameter("rfc", persona.getRfc()); 
+            query.setParameter("estado", EstadoTramite.ACTIVA);
+            query.setParameter("fechaActual", Calendar.getInstance(), TemporalType.DATE);
+
+            Licencia licencia = query.getSingleResult();
+
+            entityManager.getTransaction().commit();
+            return licencia != null;
+        } catch (Exception e) {
+            // Imprimir información del error
+            e.printStackTrace();
+            return false;
         } finally {
             entityManager.close();
         }

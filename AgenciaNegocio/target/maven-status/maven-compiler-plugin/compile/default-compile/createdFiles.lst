@@ -5,6 +5,7 @@ negocio\placa\IPlaca.class
 excepciones\PersonaExistenteException.class
 negocio\placa\PlacaBO.class
 conexion\IConexionDAO.class
+excepciones\LicenciaInactivaException.class
 excepciones\PersonaNoEncontradaException.class
 dtos\PlacaDTO.class
 excepciones\AutomovilInexistenteException.class
