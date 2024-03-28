@@ -204,7 +204,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="24" green="3" red="41" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Avanzar"/>
+            <Property name="text" type="java.lang.String" value="Registrar"/>
             <Property name="alignmentY" type="float" value="0.0"/>
             <Property name="colorClick" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>

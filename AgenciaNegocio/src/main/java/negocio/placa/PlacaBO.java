@@ -116,7 +116,7 @@ public class PlacaBO implements IPlaca {
         String claveNumerica = generarPlaca();
         
         // desactivar placa anterior
-        this.placaDAO.desactivasPlacas(automovilPlaca);
+        this.placaDAO.desactivarPlaca(automovilPlaca);
         
         //  validar licencia
         Boolean licenciaActiva = licenciaDAO.tieneLicenciaActiva(personaPlaca);

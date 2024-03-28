@@ -22,35 +22,34 @@ import javax.persistence.Table;
  * @author carlo
  */
 @Entity
-@Table(name="automoviles")
+@Table(name = "automoviles")
 public class Automovil implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name="num_serie", nullable=false, length=17)
+    @Column(name = "num_serie", nullable = false, length = 17)
     private String numSerie;
-    
-    @Column(name="marca", nullable=false, length=50)
+
+    @Column(name = "marca", nullable = false, length = 50)
     private String marca;
-    
-    @Column(name="linea", nullable=false, length=50)
+
+    @Column(name = "linea", nullable = false, length = 50)
     private String linea;
-    
-    @Column(name="color", nullable=false, length=50)
+
+    @Column(name = "color", nullable = false, length = 50)
     private String color;
-    
-    @Column(name="modelo", nullable=false)
+
+    @Column(name = "modelo", nullable = false)
     private int modelo;
-    
+
     @ManyToOne
-    @JoinColumn(name="persona_id", nullable=false)
+    @JoinColumn(name = "persona_id", nullable = false)
     private Persona persona;
     
-    @OneToMany(mappedBy = "automovil", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "automovil")
     private List<Placa> placas;
-    
 
     public Automovil() {
     }
@@ -64,8 +63,6 @@ public class Automovil implements Serializable {
         this.persona = persona;
     }
 
-    
-    
     public int getModelo() {
         return modelo;
     }
@@ -73,8 +70,6 @@ public class Automovil implements Serializable {
     public void setModelo(int modelo) {
         this.modelo = modelo;
     }
-
-    
 
     public Long getId() {
         return id;
@@ -131,6 +126,5 @@ public class Automovil implements Serializable {
     public void setPlacas(List<Placa> placas) {
         this.placas = placas;
     }
-    
-    
+
 }

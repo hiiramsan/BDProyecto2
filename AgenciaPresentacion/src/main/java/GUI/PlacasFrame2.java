@@ -157,7 +157,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
 
         avanzarBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 3, 36)));
         avanzarBtn.setForeground(new java.awt.Color(65, 3, 36));
-        avanzarBtn.setText("Avanzar");
+        avanzarBtn.setText("Registrar");
         avanzarBtn.setAlignmentY(0.0F);
         avanzarBtn.setColorClick(new java.awt.Color(204, 204, 204));
         avanzarBtn.setColorOver(new java.awt.Color(153, 153, 153));

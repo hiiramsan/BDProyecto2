@@ -13,6 +13,8 @@ import entidadesJPA.Placa;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -56,29 +58,35 @@ public class PlacaDAO implements IPlacaDAO {
         }
     }
 
-    @Override
-    public void desactivasPlacas(Automovil automovil) {
+    public Placa obtenerPlacaActiva(Automovil automovil) {
+        EntityManager entityManager = conexion.crearConexion();
+        try {
+            String jpql = "SELECT p FROM Placa p WHERE p.automovil = :automovil AND p.estado = :estado";
+            TypedQuery<Placa> query = entityManager.createQuery(jpql, Placa.class);
+            query.setParameter("automovil", automovil);
+            query.setParameter("estado", EstadoTramite.ACTIVA);
+            return query.getSingleResult();
+        } catch (NoResultException e) {
+            return null; // No se encontró ninguna placa activa asociada al automóvil proporcionado
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    public void desactivarPlaca(Automovil automovil) {
         EntityManager entityManager = conexion.crearConexion();
         entityManager.getTransaction().begin();
-
-        List<Placa> placas = automovil.getPlacas();
-
         try {
-
-            for (Placa placa : placas) {
-                if (placa.getEstado() == EstadoTramite.ACTIVA) {
-                    placa.setEstado(EstadoTramite.VENCIDA);
-                    if (placa.getFechaRecepcion() == null) {
-                        placa.setFechaRecepcion(Calendar.getInstance());
-                        entityManager.merge(placa);
-                    }
-                    
-                }
+            Placa placa = obtenerPlacaActiva(automovil);
+            if (placa != null) {
+                placa.setEstado(EstadoTramite.VENCIDA);
+                placa.setFechaRecepcion(Calendar.getInstance());
+                entityManager.merge(placa);
+                entityManager.getTransaction().commit();
+            } else {
+                // Manejar el caso en que no se encuentre ninguna placa activa asociada al automóvil proporcionado
+                System.out.println("No se encontró ninguna placa activa asociada al automóvil proporcionado.");
             }
-
-            entityManager.merge(automovil);
-
-            entityManager.getTransaction().commit();
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
             e.printStackTrace();
@@ -86,4 +94,5 @@ public class PlacaDAO implements IPlacaDAO {
             entityManager.close();
         }
     }
+
 }
