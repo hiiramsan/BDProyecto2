@@ -11,6 +11,7 @@ import entidadesJPA.Automovil;
 import entidadesJPA.Persona;
 import entidadesJPA.Placa;
 import java.util.Calendar;
+import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
@@ -18,12 +19,13 @@ import javax.persistence.EntityManager;
  * @author carlo
  */
 public class PlacaDAO implements IPlacaDAO {
+
     private final IConexionDAO conexion;
-    
-    public PlacaDAO(IConexionDAO conexion) {  
+
+    public PlacaDAO(IConexionDAO conexion) {
         this.conexion = conexion;
     }
-    
+
     @Override
     public PlacaDTO registrarPlaca(Automovil automovil, float costo, String claveNumerica, Persona persona) {
         EntityManager entityManager = conexion.crearConexion();
@@ -33,7 +35,6 @@ public class PlacaDAO implements IPlacaDAO {
 
             Calendar fechaExpedicion = Calendar.getInstance();
 
-            
             Placa placa = new Placa(claveNumerica, automovil, costo, EstadoTramite.ACTIVA, fechaExpedicion, persona);
             entityManager.persist(placa);
             entityManager.getTransaction().commit();
@@ -48,7 +49,39 @@ public class PlacaDAO implements IPlacaDAO {
             return placaDTO;
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
+
             throw e;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    @Override
+    public void desactivasPlacas(Automovil automovil) {
+        EntityManager entityManager = conexion.crearConexion();
+        entityManager.getTransaction().begin();
+
+        List<Placa> placas = automovil.getPlacas();
+
+        try {
+
+            for (Placa placa : placas) {
+                if (placa.getEstado() == EstadoTramite.ACTIVA) {
+                    placa.setEstado(EstadoTramite.VENCIDA);
+                    if (placa.getFechaRecepcion() == null) {
+                        placa.setFechaRecepcion(Calendar.getInstance());
+                        entityManager.merge(placa);
+                    }
+                    
+                }
+            }
+
+            entityManager.merge(automovil);
+
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            entityManager.getTransaction().rollback();
+            e.printStackTrace();
         } finally {
             entityManager.close();
         }

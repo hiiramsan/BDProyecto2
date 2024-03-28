@@ -431,7 +431,15 @@ public class PlacasFrame3 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "La persona no tiene una licencia activa", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            
+            try {
+                placa = placaBO.registrarPlacaAutoUsado(automovilDTO, costo, personaDTO);
+                
+                PlacaRegistradaFrame prf = new PlacaRegistradaFrame(personaDTO, automovilDTO, placa);
+                prf.setVisible(true);
+                dispose();
+            } catch (LicenciaInactivaException ex) {
+                JOptionPane.showMessageDialog(null, "La persona no tiene una licencia activa", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
 

@@ -21,4 +21,6 @@ public interface IPlaca {
    public PlacaDTO registrarPlacaAutoNuevo(AutomovilDTO automovil, float costo, PersonaDTO persona) throws LicenciaInactivaException;
    
    public AutomovilDTO obtenerAutoPorPlacas(String claveNumerica, String rfc) throws AutomovilInexistenteException;
+   
+   public PlacaDTO registrarPlacaAutoUsado(AutomovilDTO automovil, float costo, PersonaDTO persona) throws LicenciaInactivaException;
 }

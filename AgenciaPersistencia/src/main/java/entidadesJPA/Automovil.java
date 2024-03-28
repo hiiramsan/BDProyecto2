@@ -48,7 +48,7 @@ public class Automovil implements Serializable {
     @JoinColumn(name="persona_id", nullable=false)
     private Persona persona;
     
-    @OneToMany(mappedBy = "automovil", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "automovil", cascade = CascadeType.MERGE)
     private List<Placa> placas;
     
 
@@ -123,4 +123,14 @@ public class Automovil implements Serializable {
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
+
+    public List<Placa> getPlacas() {
+        return placas;
+    }
+
+    public void setPlacas(List<Placa> placas) {
+        this.placas = placas;
+    }
+    
+    
 }
