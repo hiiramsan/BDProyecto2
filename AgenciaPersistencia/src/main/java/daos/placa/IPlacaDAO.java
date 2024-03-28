@@ -16,5 +16,5 @@ import javax.persistence.EntityManager;
  * @author carlo
  */
 public interface IPlacaDAO {
-    public PlacaDTO registrarPlacaAutoNuevo(Automovil automovil, float costo, String claveNumerica, Persona persona);
+    public PlacaDTO registrarPlaca(Automovil automovil, float costo, String claveNumerica, Persona persona);
 }

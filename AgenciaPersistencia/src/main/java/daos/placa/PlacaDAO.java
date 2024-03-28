@@ -25,7 +25,7 @@ public class PlacaDAO implements IPlacaDAO {
     }
     
     @Override
-    public PlacaDTO registrarPlacaAutoNuevo(Automovil automovil, float costo, String claveNumerica, Persona persona) {
+    public PlacaDTO registrarPlaca(Automovil automovil, float costo, String claveNumerica, Persona persona) {
         EntityManager entityManager = conexion.crearConexion();
         entityManager.getTransaction().begin();
 

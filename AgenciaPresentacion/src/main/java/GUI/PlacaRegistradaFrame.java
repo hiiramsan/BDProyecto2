@@ -11,6 +11,7 @@ import dtos.PersonaDTO;
 import dtos.PlacaDTO;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.text.SimpleDateFormat;
 import negocio.automovil.AutomovilBO;
 import negocio.automovil.IAutomovil;
 import negocio.placa.IPlaca;
@@ -34,6 +35,13 @@ public class PlacaRegistradaFrame extends javax.swing.JFrame {
         this.automovilDTO = automovilDTO;
         this.placaDTO = placaDTO;
         placaTxt.setText(placaDTO.getClaveNumerica());
+        rfcTxt.setText(personaDTO.getRfc());
+        numSerieTxt.setText(automovilDTO.getNumeroSerie());
+        claveTxt.setText(placaDTO.getClaveNumerica());
+        costoTxt.setText(String.valueOf(placaDTO.getCosto()));
+         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+         
+        fechaTxt.setText(sdf.format(placaDTO.getFechaExpedicion().getTime()));
     }
 
     /**
@@ -134,7 +142,8 @@ public class PlacaRegistradaFrame extends javax.swing.JFrame {
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 460, -1, -1));
 
         costoTxt.setForeground(new java.awt.Color(148, 13, 73));
-        jPanel1.add(costoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 550, -1, -1));
+        costoTxt.setText("ewnijew");
+        jPanel1.add(costoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 550, 60, 20));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel11.setText("Automovil");
@@ -148,7 +157,8 @@ public class PlacaRegistradaFrame extends javax.swing.JFrame {
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, -1, -1));
 
         rfcTxt.setForeground(new java.awt.Color(148, 13, 73));
-        jPanel1.add(rfcTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 490, -1, -1));
+        rfcTxt.setText("njewifnew");
+        jPanel1.add(rfcTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 490, 100, 20));
 
         nombreefw6.setText("Clave:");
         jPanel1.add(nombreefw6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 490, -1, -1));
@@ -157,13 +167,16 @@ public class PlacaRegistradaFrame extends javax.swing.JFrame {
         jPanel1.add(nombreefw7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, -1));
 
         numSerieTxt.setForeground(new java.awt.Color(148, 13, 73));
-        jPanel1.add(numSerieTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 540, -1, -1));
+        numSerieTxt.setText("fwenoenofkw");
+        jPanel1.add(numSerieTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, 90, 20));
 
         claveTxt.setForeground(new java.awt.Color(148, 13, 73));
-        jPanel1.add(claveTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 490, -1, -1));
+        claveTxt.setText("fenwfnioew");
+        jPanel1.add(claveTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 490, 60, 20));
 
         fechaTxt.setForeground(new java.awt.Color(148, 13, 73));
-        jPanel1.add(fechaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 520, -1, -1));
+        fechaTxt.setText("nefwfneiife");
+        jPanel1.add(fechaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 520, 90, 20));
 
         panelRound1.setBackground(new java.awt.Color(204, 204, 255));
         panelRound1.setRoundBottomLeft(30);
@@ -222,6 +235,7 @@ public class PlacaRegistradaFrame extends javax.swing.JFrame {
         avanzarBtn.setAlignmentY(0.0F);
         avanzarBtn.setColorClick(new java.awt.Color(204, 204, 204));
         avanzarBtn.setColorOver(new java.awt.Color(153, 153, 153));
+        avanzarBtn.setFocusable(false);
         avanzarBtn.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 avanzarBtnFocusLost(evt);

@@ -18,6 +18,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import negocio.automovil.AutomovilBO;
 import negocio.automovil.IAutomovil;
+import negocio.placa.IPlaca;
+import negocio.placa.PlacaBO;
 
 /**
  *
@@ -28,6 +30,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
     IConexionDAO conexion = new ConexionDAO();
     private PersonaDTO personaDTO;
     IAutomovil automovilBO = new AutomovilBO(conexion);
+    IPlaca placaBO = new PlacaBO(conexion);
 
     /**
      * Creates new form LicenciasFrame
@@ -54,7 +57,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel9 = new javax.swing.JLabel();
+        tuntantan = new javax.swing.JLabel();
         numSerieTxt = new javax.swing.JTextField();
         avanzarBtn = new utils.Btn();
         panelRound5 = new utils.PanelRound();
@@ -138,9 +141,9 @@ public class PlacasFrame2 extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 390, 10));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel9.setText("Numero de serie:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
+        tuntantan.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tuntantan.setText("Numero de serie:");
+        jPanel1.add(tuntantan, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
 
         numSerieTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         numSerieTxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -477,6 +480,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
             marcaTxt.setBackground(Color.LIGHT_GRAY);
             colorTxt.setBackground(Color.LIGHT_GRAY);
             lineaTxt.setBackground(Color.LIGHT_GRAY);
+            tuntantan.setText("Numero de placas anteriores: ");
         }
     }//GEN-LAST:event_usadoRBActionPerformed
 
@@ -496,6 +500,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
             lineaTxt.setBackground(Color.WHITE);
             modeloTxt.setForeground(Color.BLACK);
             modeloTxt.setBackground(Color.WHITE);
+            tuntantan.setText("Numero de serie:");
         }
     }//GEN-LAST:event_nuevoRBActionPerformed
 
@@ -526,21 +531,20 @@ public class PlacasFrame2 extends javax.swing.JFrame {
                         dispose();
                     } catch (AutomovilExistenteException ex) {
                         // manejar el error
-                        JOptionPane.showMessageDialog(null, "El auto ya se encuentra registrado", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Numero de serie ya registrado", "Error", JOptionPane.ERROR_MESSAGE);
                     }
 
                 }
             } else {
                 try {
-                    // registrar automovil usado
-                    AutomovilDTO autoUsado = automovilBO.recuperarAutomovilUsado(numSerieTxt.getText(), personaDTO.getRfc());
-
-                    PlacasFrame3 pf3 = new PlacasFrame3(personaDTO, autoUsado, false);
+                    
+                    AutomovilDTO autoUsadoARecuperar = placaBO.obtenerAutoPorPlacas(numSerieTxt.getText(), personaDTO.getRfc());
+                    
+                    PlacasFrame3 pf3 = new PlacasFrame3(personaDTO, autoUsadoARecuperar, false);
                     pf3.setVisible(true);
                     dispose();
-                } catch (AutomovilInexistenteException | NoPropietarioException ex) {
-                    // manejar 
-                    JOptionPane.showMessageDialog(null, "El automóvil no existe o no corresponde al propietario.", "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (AutomovilInexistenteException ex) {
+                    JOptionPane.showMessageDialog(null, "Las placas no coinciden con un automovil registrado o no es propietatio. ", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -593,7 +597,6 @@ public class PlacasFrame2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
@@ -609,6 +612,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
     private utils.PanelRound panelRound8;
     private utils.PanelRound panelRound9;
     private javax.swing.JLabel regresarMenuBtn;
+    private javax.swing.JLabel tuntantan;
     private javax.swing.JRadioButton usadoRB;
     // End of variables declaration//GEN-END:variables
 }

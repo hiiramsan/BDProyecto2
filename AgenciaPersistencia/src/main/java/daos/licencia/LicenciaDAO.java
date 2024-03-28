@@ -107,8 +107,6 @@ public class LicenciaDAO implements ILicenciaDAO {
             entityManager.getTransaction().commit();
             return licencia != null;
         } catch (Exception e) {
-            // Imprimir información del error
-            e.printStackTrace();
             return false;
         } finally {
             entityManager.close();

@@ -21,4 +21,6 @@ public interface IAutomovilDAO {
     public AutomovilDTO obtenerAutomovil(String numeroSerie, String rfc);
 
     public Automovil obtenerAutomovilPorNumeroSerie(String numSerie);
+    
+    public AutomovilDTO obtenerAutoPorPlacas(String claveNumerica, String rfc);
 }

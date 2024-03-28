@@ -7,6 +7,7 @@ package negocio.placa;
 import dtos.AutomovilDTO;
 import dtos.PersonaDTO;
 import dtos.PlacaDTO;
+import excepciones.AutomovilInexistenteException;
 import excepciones.LicenciaInactivaException;
 /**
  *
@@ -15,7 +16,9 @@ import excepciones.LicenciaInactivaException;
 public interface IPlaca {
     public float calcularCostoPlaca(boolean esNuevo);
     
-    public String generarPlaca();
+   public String generarPlaca();
  
    public PlacaDTO registrarPlacaAutoNuevo(AutomovilDTO automovil, float costo, PersonaDTO persona) throws LicenciaInactivaException;
+   
+   public AutomovilDTO obtenerAutoPorPlacas(String claveNumerica, String rfc) throws AutomovilInexistenteException;
 }

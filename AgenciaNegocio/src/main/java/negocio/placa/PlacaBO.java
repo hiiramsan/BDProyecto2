@@ -21,6 +21,7 @@ import dtos.PlacaDTO;
 import entidadesJPA.Automovil;
 import entidadesJPA.Persona;
 import entidadesJPA.Placa;
+import excepciones.AutomovilInexistenteException;
 import excepciones.LicenciaInactivaException;
 import java.util.Calendar;
 import java.util.Random;
@@ -87,16 +88,26 @@ public class PlacaBO implements IPlaca {
         Boolean licenciaActiva = licenciaDAO.tieneLicenciaActiva(personaPlaca);
         
         if(licenciaActiva) {
-            return this.placaDAO.registrarPlacaAutoNuevo(automovilPlaca, costo, claveNumerica, personaPlaca);
+            return this.placaDAO.registrarPlaca(automovilPlaca, costo, claveNumerica, personaPlaca);
         } else {
-            
             throw new LicenciaInactivaException("La persona no tiene una licencia activa");
-        }
-        
-        
+        } 
     }
    
-
+    @Override
+    public AutomovilDTO obtenerAutoPorPlacas(String claveNumerica, String rfc) throws AutomovilInexistenteException {
+        AutomovilDTO autoRecuperar = this.automovilDAO.obtenerAutoPorPlacas(claveNumerica, rfc);
+        
+        if(autoRecuperar != null) {
+            return autoRecuperar;
+        } else {
+            throw new AutomovilInexistenteException("Automovil no encontrado con esas placas");
+        }
+        
+    }
+    
+    
+    
     
 
 }

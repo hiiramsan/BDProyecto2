@@ -8,6 +8,7 @@ import conexion.IConexionDAO;
 import dtos.AutomovilDTO;
 import entidadesJPA.Automovil;
 import entidadesJPA.Persona;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -95,6 +96,7 @@ public class AutomovilDAO implements IAutomovilDAO {
         }
     }
 
+    @Override
     public Automovil obtenerAutomovilPorNumeroSerie(String numSerie) {
         EntityManager entityManager = conexion.crearConexion();
         entityManager.getTransaction().begin();
@@ -113,6 +115,35 @@ public class AutomovilDAO implements IAutomovilDAO {
         } finally {
             entityManager.close();
         }
+    }
+    
+    @Override
+    public AutomovilDTO obtenerAutoPorPlacas(String claveNumerica, String rfc) {
+        EntityManager entityManager = conexion.crearConexion();
+        entityManager.getTransaction().begin();
+        
+        try {
+            String jpql = "SELECT a FROM Automovil a JOIN a.placas p WHERE p.numeroAlfanumerico = :numeroAlfanumerico AND a.persona.rfc = :rfc";
+            TypedQuery<Automovil> query = entityManager.createQuery(jpql, Automovil.class);
+            query.setParameter("numeroAlfanumerico", claveNumerica);
+            query.setParameter("rfc", rfc);
+            List<Automovil> resultados = query.getResultList();
+            if (!resultados.isEmpty()) {
+                Automovil automovil = resultados.get(0);
+                AutomovilDTO autoEncontrado = new AutomovilDTO();
+                autoEncontrado.setNumeroSerie(automovil.getNumSerie());
+                autoEncontrado.setMarca(automovil.getMarca());
+                autoEncontrado.setModelo(automovil.getModelo());
+                autoEncontrado.setLinea(automovil.getLinea());
+                autoEncontrado.setColor(automovil.getColor());
+                return autoEncontrado;
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }finally {
+            entityManager.close();
+        }
+        return null; // 
     }
 
 }
