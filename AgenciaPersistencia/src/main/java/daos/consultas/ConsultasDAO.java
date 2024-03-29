@@ -6,7 +6,10 @@ package daos.consultas;
 
 import conexion.IConexionDAO;
 import daos.persona.PersonaDAO;
+import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
+import entidadesJPA.Placa;
+import entidadesJPA.Tramite;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
@@ -66,5 +69,51 @@ public class ConsultasDAO implements IConsultasDAO {
         } finally {
             entityManager.close();
         }
+    }
+
+    @Override
+    public List<Licencia> obtenerLicenciasPorRFC(String rfc) {
+        EntityManager entityManager = conexion.crearConexion();
+        entityManager.getTransaction().begin();
+        try {
+            String jpql = "SELECT l FROM Licencia l WHERE l.persona.rfc = :rfc";
+            TypedQuery<Licencia> query = entityManager.createQuery(jpql, Licencia.class);
+            query.setParameter("rfc", rfc);
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
+
+    }
+
+    @Override
+    public List<Placa> obtenerPlacasPorRFC(String rfc) {
+        EntityManager entityManager = conexion.crearConexion();
+        entityManager.getTransaction().begin();
+
+        try {
+            String jpql = "SELECT p FROM Placa p WHERE p.persona.rfc = :rfc";
+            TypedQuery<Placa> query = entityManager.createQuery(jpql, Placa.class);
+            query.setParameter("rfc", rfc);
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
+
+    }
+
+    @Override
+    public List<Tramite> obtenerTramitesPorRFC(String rfc) {
+        EntityManager entityManager = conexion.crearConexion();
+        entityManager.getTransaction().begin();
+        try {
+            String jpql = "SELECT t FROM Tramite t WHERE t.persona.rfc = :rfc";
+            TypedQuery<Tramite> query = entityManager.createQuery(jpql, Tramite.class);
+            query.setParameter("rfc", rfc);
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
+
     }
 }

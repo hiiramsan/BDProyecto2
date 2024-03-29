@@ -5,6 +5,7 @@
 package negocio.consultas;
 
 import entidadesJPA.Persona;
+import entidadesJPA.Tramite;
 import java.util.Date;
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface IConsulta {
     public List<Persona> buscarPersonaPorRFC(String rfc);
     public List<Persona> buscarPersonaPorNombreSimilar(String nombre);
     public List<Persona> buscarPersonaPorFechaNacimiento(Date fechaNacimiento);
+    public List<?> consultarTramites(String rfc, String consulta);
+    public List<Tramite> obtenerTramites(String rfc);
 }

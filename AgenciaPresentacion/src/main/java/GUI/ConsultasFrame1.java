@@ -7,13 +7,16 @@ package GUI;
 import conexion.ConexionDAO;
 import conexion.IConexionDAO;
 import entidadesJPA.Persona;
+import entidadesJPA.Tramite;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.table.DefaultTableModel;
 import negocio.consultas.ConsultaBO;
 import negocio.consultas.IConsulta;
 
@@ -25,15 +28,40 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
 
     IConexionDAO conexionDAO = new ConexionDAO();
     IConsulta consultaBO = new ConsultaBO(conexionDAO);
+    String consulta;
 
     /**
      * Creates new form
      */
-
     public ConsultasFrame1() {
         initComponents();
         inputTxt.setVisible(false);
         jfecha.setVisible(false);
+        tituloTablas.setVisible(false);
+        tablePersonas.setVisible(false);
+        tablitaSP.setVisible(false);
+    }
+
+    public void cargarDatosTabla(List<Persona> personas, JTable tablaPersonas) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[]{"RFC", "Nombre", "Birth", "Telefono"});
+
+        if (personas.isEmpty()) {
+            tituloTablas.setText("No se encontro ninguna persona");
+        } else {
+            tituloTablas.setText("Selecciona 1 de " + personas.size() + " personas encontradas para continuar");
+        }
+
+        for (Persona persona : personas) {
+            Date fecha = persona.getFechaNacimiento().getTime();
+            String fechaString = (fecha != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fecha) : "NoDate";
+            model.addRow(new Object[]{persona.getRfc(), persona.getNombre(), fechaString, persona.getTelefono()});
+        }
+
+        tablaPersonas.setModel(model);
+        tituloTablas.setVisible(true);
+        tablitaSP.setVisible(true);
+        tablePersonas.setVisible(true);
     }
 
     /**
@@ -74,6 +102,13 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
         consultaCB = new javax.swing.JComboBox<>();
         errorTxt = new javax.swing.JLabel();
         errorTxt2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        tituloTablas = new javax.swing.JLabel();
+        tablitaSP = new javax.swing.JScrollPane();
+        tablePersonas = new javax.swing.JTable();
+        visualizarBtn = new utils.Btn();
+        textoError2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -300,6 +335,60 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
         errorTxt2.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(errorTxt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 570, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(64, 60, 60));
+        jLabel5.setText("Personas");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 240, -1, -1));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 330, 10));
+
+        tituloTablas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        tituloTablas.setText("Personas encontradas (Seleccionar una):");
+        jPanel1.add(tituloTablas, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 290, -1, -1));
+
+        tablePersonas.setBackground(new java.awt.Color(255, 204, 102));
+        tablePersonas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "RFC", "Nombre", "Fecha Nac"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tablitaSP.setViewportView(tablePersonas);
+
+        jPanel1.add(tablitaSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, 410, 190));
+
+        visualizarBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 3, 36)));
+        visualizarBtn.setForeground(new java.awt.Color(65, 3, 36));
+        visualizarBtn.setText("Visualizar");
+        visualizarBtn.setColorClick(new java.awt.Color(204, 204, 204));
+        visualizarBtn.setColorOver(new java.awt.Color(153, 153, 153));
+        visualizarBtn.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                visualizarBtnFocusLost(evt);
+            }
+        });
+        visualizarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visualizarBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(visualizarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 530, 100, 40));
+
+        textoError2.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(textoError2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 550, -1, -1));
+
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -346,7 +435,7 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         // TODO add your handling code here:
         Date fecha = jfecha.getDate();
-      //  String fechaString = (fecha != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fecha) : "NoDate";
+        //  String fechaString = (fecha != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fecha) : "NoDate";
 
         List<Persona> personasObtenidas;
 
@@ -357,31 +446,19 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
                 errorTxt2.setText("Campo vacio");
             } else {
                 // ya a buscar jajajaj
-                String consulta = consultaCB.getSelectedItem().toString();
+                
                 if (nombreRB.isSelected()) {
                     // buscar CONSULTA por NOMBRE
                     personasObtenidas = consultaBO.buscarPersonaPorNombreSimilar(inputTxt.getText());
-                    for (Persona persona : personasObtenidas) {
-                        System.out.println("nombre: " + persona.getNombre());
-                        System.out.println("RFC: " + persona.getRfc());
-                        System.out.println("Fecha Nacimiento: " + persona.getFechaNacimiento().getTime());
-                    }
+                    cargarDatosTabla(personasObtenidas, tablePersonas);
                 } else if (rfcRB.isSelected()) {
                     // buscar CONSULTA por RFC
                     personasObtenidas = consultaBO.buscarPersonaPorRFC(inputTxt.getText());
-                    for (Persona persona : personasObtenidas) {
-                        System.out.println("nombre: " + persona.getNombre());
-                        System.out.println("RFC: " + persona.getRfc());
-                        System.out.println("Fecha Nacimiento: " + persona.getFechaNacimiento().getTime());   
-                    }
+                    cargarDatosTabla(personasObtenidas, tablePersonas);
                 } else {
                     // buscar CONSULTA por fecha naca
                     personasObtenidas = consultaBO.buscarPersonaPorFechaNacimiento(fecha);
-                    for (Persona persona : personasObtenidas) {
-                        System.out.println("nombre: " + persona.getNombre());
-                        System.out.println("RFC: " + persona.getRfc());
-                        System.out.println("Fecha Nacimiento: " + persona.getFechaNacimiento().getTime());
-                    }
+                    cargarDatosTabla(personasObtenidas, tablePersonas);
                 }
             }
 
@@ -422,6 +499,26 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
         errorTxt2.setText("");
     }//GEN-LAST:event_buscarBtnFocusLost
 
+    private void visualizarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarBtnActionPerformed
+        int filaSeleccionada = tablePersonas.getSelectedRow();
+        consulta = consultaCB.getSelectedItem().toString();
+        if (filaSeleccionada == -1) {
+            textoError2.setText("Ninguna persona seleccionada");
+            textoError2.setVisible(true);
+        } else {
+            String rfcSelected = tablePersonas.getValueAt(filaSeleccionada, 0).toString();
+            System.out.println(rfcSelected);
+            ConsultasFrame2 cf2 = new ConsultasFrame2(rfcSelected, consulta);
+            cf2.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_visualizarBtnActionPerformed
+
+    private void visualizarBtnFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_visualizarBtnFocusLost
+        // TODO add your handling code here:
+        textoError2.setVisible(false);
+    }//GEN-LAST:event_visualizarBtnFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private utils.Btn buscarBtn;
@@ -440,6 +537,7 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -447,6 +545,7 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private com.toedter.calendar.JDateChooser jfecha;
     private javax.swing.JRadioButton nombreRB;
     private utils.PanelRound panelRound5;
@@ -454,5 +553,10 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
     private utils.PanelRound panelRound7;
     private javax.swing.JLabel regresarMenuBtn;
     private javax.swing.JRadioButton rfcRB;
+    private javax.swing.JTable tablePersonas;
+    private javax.swing.JScrollPane tablitaSP;
+    private javax.swing.JLabel textoError2;
+    private javax.swing.JLabel tituloTablas;
+    private utils.Btn visualizarBtn;
     // End of variables declaration//GEN-END:variables
 }

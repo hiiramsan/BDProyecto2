@@ -9,6 +9,7 @@ import conexion.IConexionDAO;
 import daos.consultas.ConsultasDAO;
 import daos.consultas.IConsultasDAO;
 import entidadesJPA.Persona;
+import entidadesJPA.Tramite;
 import java.util.Date;
 import java.util.List;
 
@@ -38,4 +39,23 @@ public class ConsultaBO implements IConsulta {
     public List<Persona> buscarPersonaPorFechaNacimiento(Date fechaNacimiento) {
         return this.consultaDAO.buscarPersonaPorFechaNacimiento(fechaNacimiento);
     }
+    
+    @Override
+   public List<?> consultarTramites(String rfc, String consulta) {
+        switch (consulta) {
+            case "Todos":
+                return consultaDAO.obtenerTramitesPorRFC(rfc);
+            case "Licencias":
+                return consultaDAO.obtenerLicenciasPorRFC(rfc);
+            case "Placas":
+                return consultaDAO.obtenerPlacasPorRFC(rfc);
+            default:
+                throw new IllegalArgumentException("Consulta no valida");
+        }
+    }
+   
+    @Override
+   public List<Tramite> obtenerTramites(String rfc) {
+       return this.consultaDAO.obtenerTramitesPorRFC(rfc);
+   }
 }
