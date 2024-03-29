@@ -92,6 +92,11 @@ public class IndexFrame extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("CONSULTAS");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         tramitesNav.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         tramitesNav.setForeground(new java.awt.Color(255, 255, 255));
@@ -656,6 +661,13 @@ public class IndexFrame extends javax.swing.JFrame {
         pf1.setVisible(true);
         dispose();
     }//GEN-LAST:event_placasDDMouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        ConsultasFrame1 cf = new ConsultasFrame1();
+        cf.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments

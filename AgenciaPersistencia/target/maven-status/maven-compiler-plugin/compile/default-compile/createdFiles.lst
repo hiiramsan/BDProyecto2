@@ -1,11 +1,13 @@
 daos\automovil\IAutomovilDAO.class
 com\mycompany\agenciapersistencia\controlador\utils\EstadoTramite.class
 entidadesJPA\Persona.class
+daos\consultas\IConsultasDAO.class
 daos\persona\PersonaDAO.class
 entidadesJPA\Tramite.class
 entidadesJPA\Placa.class
 com\mycompany\agenciapersistencia\AgenciaPersistencia.class
 conexion\IConexionDAO.class
+daos\consultas\ConsultasDAO.class
 daos\persona\IPersonaDAO.class
 daos\licencia\LicenciaDAO.class
 daos\placa\PlacaDAO.class

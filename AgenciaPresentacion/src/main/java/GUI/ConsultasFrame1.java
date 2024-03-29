@@ -4,12 +4,18 @@
  */
 package GUI;
 
+import conexion.ConexionDAO;
+import conexion.IConexionDAO;
+import entidadesJPA.Persona;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import negocio.consultas.ConsultaBO;
+import negocio.consultas.IConsulta;
 
 /**
  *
@@ -17,9 +23,13 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class ConsultasFrame1 extends javax.swing.JFrame {
 
+    IConexionDAO conexionDAO = new ConexionDAO();
+    IConsulta consultaBO = new ConsultaBO(conexionDAO);
+
     /**
-     * Creates new form LicenciasFrame
+     * Creates new form
      */
+
     public ConsultasFrame1() {
         initComponents();
         inputTxt.setVisible(false);
@@ -35,7 +45,6 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -54,8 +63,6 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
         panelRound7 = new utils.PanelRound();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        placasRB = new javax.swing.JRadioButton();
-        licenciasRB = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
@@ -64,6 +71,9 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
         nombreRB = new javax.swing.JRadioButton();
         buscarPorTxt = new javax.swing.JLabel();
         jfecha = new com.toedter.calendar.JDateChooser();
+        consultaCB = new javax.swing.JComboBox<>();
+        errorTxt = new javax.swing.JLabel();
+        errorTxt2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -123,7 +133,7 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel9.setText("Buscar persona por:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
 
         inputTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         inputTxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -133,13 +143,18 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
                 inputTxtActionPerformed(evt);
             }
         });
-        jPanel1.add(inputTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 380, 40));
+        jPanel1.add(inputTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 380, 40));
 
         buscarBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 3, 36)));
         buscarBtn.setForeground(new java.awt.Color(65, 3, 36));
         buscarBtn.setText("Buscar");
         buscarBtn.setColorClick(new java.awt.Color(204, 204, 204));
         buscarBtn.setColorOver(new java.awt.Color(153, 153, 153));
+        buscarBtn.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                buscarBtnFocusLost(evt);
+            }
+        });
         buscarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarBtnActionPerformed(evt);
@@ -230,21 +245,11 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
 
         jPanel1.add(panelRound7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 150, 70));
 
-        placasRB.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(placasRB);
-        placasRB.setText("Placas");
-        jPanel1.add(placasRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, -1, -1));
-
-        licenciasRB.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup1.add(licenciasRB);
-        licenciasRB.setText("Licencias");
-        jPanel1.add(licenciasRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, -1, -1));
-
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(64, 60, 60));
         jLabel4.setText("Búsqueda de Persona");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 390, 10));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, -1));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 390, 10));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel10.setText("Seleccionar tipo de consulta:");
@@ -258,7 +263,7 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
                 fechaNacRBActionPerformed(evt);
             }
         });
-        jPanel1.add(fechaNacRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, -1, -1));
+        jPanel1.add(fechaNacRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 440, -1, -1));
 
         rfcRB.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup2.add(rfcRB);
@@ -268,7 +273,7 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
                 rfcRBActionPerformed(evt);
             }
         });
-        jPanel1.add(rfcRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
+        jPanel1.add(rfcRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, -1, -1));
 
         nombreRB.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup2.add(nombreRB);
@@ -278,13 +283,22 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
                 nombreRBActionPerformed(evt);
             }
         });
-        jPanel1.add(nombreRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, -1, -1));
+        jPanel1.add(nombreRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, -1, -1));
 
         buscarPorTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel1.add(buscarPorTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, -1, -1));
+        jPanel1.add(buscarPorTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, -1, -1));
 
         jfecha.setDateFormatString("y-MM-dd");
-        jPanel1.add(jfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 180, 40));
+        jPanel1.add(jfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 180, 30));
+
+        consultaCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Licencias", "Placas" }));
+        jPanel1.add(consultaCB, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 312, 120, 30));
+
+        errorTxt.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(errorTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, -1, -1));
+
+        errorTxt2.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(errorTxt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 570, -1, -1));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -332,8 +346,47 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         // TODO add your handling code here:
         Date fecha = jfecha.getDate();
-        String fechaString = (fecha != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fecha) : "NoDate";
-        System.out.println(fechaString);
+      //  String fechaString = (fecha != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fecha) : "NoDate";
+
+        List<Persona> personasObtenidas;
+
+        if ((!nombreRB.isSelected() && !rfcRB.isSelected() && !fechaNacRB.isSelected())) {
+            errorTxt.setText("Debes seleccionar una para continuar");
+        } else {
+            if (inputTxt.getText().isBlank() && !fechaNacRB.isSelected()) {
+                errorTxt2.setText("Campo vacio");
+            } else {
+                // ya a buscar jajajaj
+                String consulta = consultaCB.getSelectedItem().toString();
+                if (nombreRB.isSelected()) {
+                    // buscar CONSULTA por NOMBRE
+                    personasObtenidas = consultaBO.buscarPersonaPorNombreSimilar(inputTxt.getText());
+                    for (Persona persona : personasObtenidas) {
+                        System.out.println("nombre: " + persona.getNombre());
+                        System.out.println("RFC: " + persona.getRfc());
+                        System.out.println("Fecha Nacimiento: " + persona.getFechaNacimiento().getTime());
+                    }
+                } else if (rfcRB.isSelected()) {
+                    // buscar CONSULTA por RFC
+                    personasObtenidas = consultaBO.buscarPersonaPorRFC(inputTxt.getText());
+                    for (Persona persona : personasObtenidas) {
+                        System.out.println("nombre: " + persona.getNombre());
+                        System.out.println("RFC: " + persona.getRfc());
+                        System.out.println("Fecha Nacimiento: " + persona.getFechaNacimiento().getTime());   
+                    }
+                } else {
+                    // buscar CONSULTA por fecha naca
+                    personasObtenidas = consultaBO.buscarPersonaPorFechaNacimiento(fecha);
+                    for (Persona persona : personasObtenidas) {
+                        System.out.println("nombre: " + persona.getNombre());
+                        System.out.println("RFC: " + persona.getRfc());
+                        System.out.println("Fecha Nacimiento: " + persona.getFechaNacimiento().getTime());
+                    }
+                }
+            }
+
+        }
+
     }//GEN-LAST:event_buscarBtnActionPerformed
 
     private void rfcRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rfcRBActionPerformed
@@ -363,64 +416,20 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_fechaNacRBActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultasFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultasFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultasFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultasFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void buscarBtnFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_buscarBtnFocusLost
+        // TODO add your handling code here:
+        errorTxt.setText("");
+        errorTxt2.setText("");
+    }//GEN-LAST:event_buscarBtnFocusLost
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                
-                
-                new ConsultasFrame1().setVisible(true);
-                
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private utils.Btn buscarBtn;
     private javax.swing.JLabel buscarPorTxt;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> consultaCB;
+    private javax.swing.JLabel errorTxt;
+    private javax.swing.JLabel errorTxt2;
     private javax.swing.JRadioButton fechaNacRB;
     private javax.swing.JTextField inputTxt;
     private javax.swing.JLabel jLabel1;
@@ -439,12 +448,10 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private com.toedter.calendar.JDateChooser jfecha;
-    private javax.swing.JRadioButton licenciasRB;
     private javax.swing.JRadioButton nombreRB;
     private utils.PanelRound panelRound5;
     private utils.PanelRound panelRound6;
     private utils.PanelRound panelRound7;
-    private javax.swing.JRadioButton placasRB;
     private javax.swing.JLabel regresarMenuBtn;
     private javax.swing.JRadioButton rfcRB;
     // End of variables declaration//GEN-END:variables

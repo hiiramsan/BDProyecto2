@@ -1,10 +1,12 @@
 negocio\persona\PersonaBO.class
 dtos\AutomovilDTO.class
 negocio\automovil\AutomovilBO.class
+negocio\consultas\IConsulta.class
 negocio\placa\IPlaca.class
 excepciones\PersonaExistenteException.class
 negocio\placa\PlacaBO.class
 conexion\IConexionDAO.class
+negocio\consultas\ConsultaBO.class
 excepciones\LicenciaInactivaException.class
 excepciones\PersonaNoEncontradaException.class
 dtos\PlacaDTO.class

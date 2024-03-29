@@ -258,7 +258,7 @@ public class ConsultasFrame2 extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 327, -1, 320));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, -1, 320));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 

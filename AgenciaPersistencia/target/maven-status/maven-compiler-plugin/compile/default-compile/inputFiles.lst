@@ -6,6 +6,7 @@ C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\mai
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\persona\IPersonaDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\licencia\LicenciaDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\placa\PlacaDAO.java
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\consultas\IConsultasDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\automovil\AutomovilDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\conexion\IConexionDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\persona\PersonaDAO.java
@@ -13,5 +14,6 @@ C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\mai
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\com\mycompany\agenciapersistencia\AgenciaPersistencia.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\licencia\ILicenciaDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\entidadesJPA\Licencia.java
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\consultas\ConsultasDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\conexion\ConexionDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\entidadesJPA\Placa.java
