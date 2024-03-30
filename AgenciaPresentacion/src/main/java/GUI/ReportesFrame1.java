@@ -136,7 +136,7 @@ public class ReportesFrame1 extends javax.swing.JFrame {
                 buscarBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 520, 100, 40));
+        jPanel1.add(buscarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 540, 100, 40));
 
         panelRound5.setBackground(new java.awt.Color(148, 13, 73));
         panelRound5.setRoundBottomRight(20);

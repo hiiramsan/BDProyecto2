@@ -51,6 +51,7 @@ conexion\ConexionDAO.class
 GUI\ReportesFrame2$1.class
 GUI\ConsultasFrame1$8.class
 GUI\IndexFrame.class
+utils\Reportes.class
 GUI\ConsultasFrame2$1.class
 GUI\PlacasFrame2$11.class
 GUI\PlacasFrame1$2.class

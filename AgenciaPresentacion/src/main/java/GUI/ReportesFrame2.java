@@ -4,24 +4,35 @@
  */
 package GUI;
 
+import com.itextpdf.text.Chunk;
 import entidadesJPA.Placa;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JTable;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 
 /**
  *
  * @author carlo
  */
 public class ReportesFrame2 extends javax.swing.JFrame {
+
     List<Placa> lista;
+
     /**
      * Creates freim
      */
@@ -39,7 +50,7 @@ public class ReportesFrame2 extends javax.swing.JFrame {
         modeloTabla.addColumn("Persona");
 
         for (Placa placa : placas) {
-            
+
             Object[] fila = new Object[4];
             Calendar fechaExpedicionCalendar = placa.getFechaExpedicion();
             Date fechaExpedicion = (fechaExpedicionCalendar != null) ? fechaExpedicionCalendar.getTime() : null;
@@ -53,7 +64,7 @@ public class ReportesFrame2 extends javax.swing.JFrame {
 
         tabla.setModel(modeloTabla);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -150,7 +161,7 @@ public class ReportesFrame2 extends javax.swing.JFrame {
                 exportarBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(exportarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 460, 130, 40));
+        jPanel1.add(exportarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 500, 130, 40));
 
         panelRound5.setBackground(new java.awt.Color(148, 13, 73));
         panelRound5.setRoundBottomRight(20);
@@ -255,7 +266,7 @@ public class ReportesFrame2 extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, 230));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 570, 210));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -299,10 +310,72 @@ public class ReportesFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_regresarMenuBtnMouseClicked
 
     private void exportarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportarBtnActionPerformed
+        Document doc = new Document();
+
+        try {
+            String ruta = System.getProperty("user.home");
+            PdfWriter.getInstance(doc, new FileOutputStream("ReporteTramites.pdf"));
+
+            Font tituloFont = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD);
+            Paragraph titulo = new Paragraph("Reporte de Trámites", tituloFont);
+            titulo.setAlignment(Element.ALIGN_CENTER);
+
+            Date fechaActual = new Date();
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Paragraph fecha = new Paragraph("Fecha de generación: " + formatoFecha.format(fechaActual));
+            fecha.setAlignment(Element.ALIGN_RIGHT);
+
+            PdfPTable tabla = new PdfPTable(4);
+            tabla.addCell("Fecha");
+            tabla.addCell("Costo");
+            tabla.addCell("Tramite");
+            tabla.addCell("Persona");
+
+            for (Placa placa : lista) {
+                Calendar fechaExpedicionCalendar = placa.getFechaExpedicion();
+                Date fechaExpedicion = (fechaExpedicionCalendar != null) ? fechaExpedicionCalendar.getTime() : null;
+                String fechaExpedicionString = (fechaExpedicion != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaExpedicion) : "NoDate";
+
+                tabla.addCell(fechaExpedicionString);
+                tabla.addCell(String.valueOf(placa.getCosto()));
+                tabla.addCell("Expedición de Placas");
+                tabla.addCell(placa.getPersona().getNombre());
+            }
+
+            Phrase piePagina = new Phrase("AGENCIA FISCAL - Página 1");
+            PdfPCell celda = new PdfPCell(piePagina);
+            celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+            celda.setBorder(Rectangle.NO_BORDER);
+            celda.setColspan(4);
+            tabla.addCell(celda);
+
+            doc.open();
+            doc.add(titulo);
+            doc.add(Chunk.NEWLINE);
+            doc.add(fecha);
+            doc.add(Chunk.TABBING);
+            doc.add(Chunk.TABBING);
+            doc.add(tabla);
+            doc.close();
+
+            System.out.println("reporte generado");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("error");
+        }
 
     }//GEN-LAST:event_exportarBtnActionPerformed
 
-   
+    private String obtenerFechaFormateada(Calendar fechaCalendar) {
+        if (fechaCalendar != null) {
+            Date fecha = fechaCalendar.getTime();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            return sdf.format(fecha);
+        } else {
+            return "NoDate";
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel buscarPorTxt;
