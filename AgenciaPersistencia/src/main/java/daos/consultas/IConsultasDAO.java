@@ -22,4 +22,7 @@ public interface IConsultasDAO {
     public List<Licencia> obtenerLicenciasPorRFC(String rfc);
     public List<Placa> obtenerPlacasPorRFC(String rfc);
     public List<Tramite> obtenerTramitesPorRFC(String rfc);
+    public List<Object[]> obtenerReporteTramites();
+    public List<Placa> obtenerPlacasPorFechaYNombre(Date fechaInicio, Date fechaFin, String nombre);
+    public List<Licencia> obtenerLicenciasPorFechaYNombre(Date fechaInicio, Date fechaFin, String nombre);
 }

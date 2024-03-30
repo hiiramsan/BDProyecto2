@@ -4,12 +4,18 @@
  */
 package GUI;
 
+import conexion.ConexionDAO;
+import conexion.IConexionDAO;
+import entidadesJPA.Placa;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import negocio.consultas.ConsultaBO;
+import negocio.consultas.IConsulta;
 
 /**
  *
@@ -17,6 +23,9 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class ReportesFrame1 extends javax.swing.JFrame {
 
+    IConexionDAO conexionDAO = new ConexionDAO();
+    IConsulta consultaBO = new ConsultaBO(conexionDAO);
+    
     /**
      * Creates new form LicenciasFrame
      */
@@ -55,11 +64,11 @@ public class ReportesFrame1 extends javax.swing.JFrame {
         operacionComboBox = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        fechaFin = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        fechaIni = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nombreTxt = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -127,7 +136,7 @@ public class ReportesFrame1 extends javax.swing.JFrame {
                 buscarBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 540, 100, 40));
+        jPanel1.add(buscarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 520, 100, 40));
 
         panelRound5.setBackground(new java.awt.Color(148, 13, 73));
         panelRound5.setRoundBottomRight(20);
@@ -232,18 +241,18 @@ public class ReportesFrame1 extends javax.swing.JFrame {
 
         jLabel2.setText("Fecha Fin");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 410, -1, -1));
-        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 100, -1));
+        jPanel1.add(fechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 100, -1));
 
         jLabel4.setText("Fecha Inicio");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
-        jPanel1.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 100, -1));
+        jPanel1.add(fechaIni, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 100, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel12.setText("Periodo:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 230, 30));
+        nombreTxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(nombreTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 230, 30));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -287,117 +296,28 @@ public class ReportesFrame1 extends javax.swing.JFrame {
     }//GEN-LAST:event_regresarMenuBtnMouseClicked
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-
+        Date fechaInicio = fechaIni.getDate();
+        Date fechaFinal = fechaFin.getDate();
+        String tramite = operacionComboBox.getSelectedItem().toString();
+        String nombre = nombreTxt.getText();
+        
+        List<Placa> lista = consultaBO.obtenerPlacasPorFechaYNombre(fechaInicio, fechaFinal, nombre);
+        ReportesFrame2 rf2 = new ReportesFrame2(lista);
+        rf2.setVisible(true);
+        dispose();
+        
     }//GEN-LAST:event_buscarBtnActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReportesFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReportesFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReportesFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReportesFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                
-                
-                new ReportesFrame1().setVisible(true);
-                
-            }
-        });
-    }
+   
+     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private utils.Btn buscarBtn;
     private javax.swing.JLabel buscarPorTxt;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser fechaFin;
+    private com.toedter.calendar.JDateChooser fechaIni;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -414,7 +334,7 @@ public class ReportesFrame1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nombreTxt;
     private javax.swing.JComboBox<String> operacionComboBox;
     private utils.PanelRound panelRound5;
     private utils.PanelRound panelRound6;

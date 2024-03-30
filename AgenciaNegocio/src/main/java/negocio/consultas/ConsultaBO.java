@@ -9,6 +9,7 @@ import conexion.IConexionDAO;
 import daos.consultas.ConsultasDAO;
 import daos.consultas.IConsultasDAO;
 import entidadesJPA.Persona;
+import entidadesJPA.Placa;
 import entidadesJPA.Tramite;
 import java.util.Date;
 import java.util.List;
@@ -58,4 +59,8 @@ public class ConsultaBO implements IConsulta {
    public List<Tramite> obtenerTramites(String rfc) {
        return this.consultaDAO.obtenerTramitesPorRFC(rfc);
    }
+   
+    public List<Placa> obtenerPlacasPorFechaYNombre(Date fechaInicio, Date fechaFin, String nombre){
+        return this.consultaDAO.obtenerPlacasPorFechaYNombre(fechaInicio, fechaFin, nombre);
+    }
 }

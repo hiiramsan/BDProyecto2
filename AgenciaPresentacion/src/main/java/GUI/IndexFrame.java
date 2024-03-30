@@ -112,6 +112,11 @@ public class IndexFrame extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("REPORTES");
         jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         licenciasDD.setForeground(new java.awt.Color(255, 255, 255));
         licenciasDD.setText("• LICENCIAS");
@@ -668,6 +673,13 @@ public class IndexFrame extends javax.swing.JFrame {
         cf.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        ReportesFrame1 rf = new ReportesFrame1();
+        rf.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jLabel6MouseClicked
 
     /**
      * @param args the command line arguments

@@ -53,67 +53,69 @@ public class ConsultasFrame2 extends javax.swing.JFrame {
         }
     }
 
-    /*
-    Date fecha = persona.getFechaNacimiento().getTime();
-            String fechaString = (fecha != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fecha) : "NoDate";
-            model.addRow(new Object[]{persona.getRfc(), persona.getNombre(), fechaString, persona.getTelefono()});
-     */
+    
     public void cargarDatosTabla(List<?> listaTramites, JTable tabla, String tipoConsulta) {
-        DefaultTableModel modeloTabla = new DefaultTableModel();
+    DefaultTableModel modeloTabla = new DefaultTableModel();
 
-        switch (tipoConsulta) {
-            case "Placas":
-                modeloTabla.addColumn("Costo");
-                modeloTabla.addColumn("Estado");
-                modeloTabla.addColumn("Expedición");
-                modeloTabla.addColumn("Recepcion");
-                modeloTabla.addColumn("Placa");
-                break;
-            case "Licencias":
-                modeloTabla.addColumn("Costo");
-                modeloTabla.addColumn("Estado");
-                modeloTabla.addColumn("Expedición");
-                modeloTabla.addColumn("Vigencia");
-                break;
-            default:
-                throw new IllegalArgumentException("COnsulta no valida: " + tipoConsulta);
-        }
-
-        for (Object tramite : listaTramites) {
-            Object[] fila = new Object[modeloTabla.getColumnCount()];
-
-            if (tramite instanceof Licencia) {
-                Licencia licencia = (Licencia) tramite;
-                fila[0] = licencia.getCosto();
-                fila[1] = licencia.getEstado();
-
-                Calendar fechaExpedicionCalendar = licencia.getFechaExpedicion();
-                Date fechaExpedicion = (fechaExpedicionCalendar != null) ? fechaExpedicionCalendar.getTime() : null;
-                fila[2] = (fechaExpedicion != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaExpedicion) : "NoDate";
-
-                Calendar fechaVigenciaCalendar = licencia.getVigencia();
-                Date fechaVigencia = (fechaVigenciaCalendar != null) ? fechaVigenciaCalendar.getTime() : null;
-                fila[3] = (fechaVigencia != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaVigencia) : "NoDate";
-            } else if (tramite instanceof Placa) {
-                Placa placa = (Placa) tramite;
-                fila[0] = placa.getCosto();
-                fila[1] = placa.getEstado();
-
-                Calendar fechaExpedicionCalendar = placa.getFechaExpedicion();
-                Date fechaExpedicion = (fechaExpedicionCalendar != null) ? fechaExpedicionCalendar.getTime() : null;
-                fila[2] = (fechaExpedicion != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaExpedicion) : "NoDate";
-
-                Calendar fechaRecepcionCalendar = placa.getFechaRecepcion();
-                Date fechaRecepcion = (fechaRecepcionCalendar != null) ? fechaRecepcionCalendar.getTime() : null;
-                fila[3] = (fechaRecepcion != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaRecepcion) : "Sin recepcion aun";
-                fila[4] = placa.getNumeroAlfanumerico();
-            }
-
-            modeloTabla.addRow(fila);
-        }
-
-        tabla.setModel(modeloTabla);
+    switch (tipoConsulta) {
+        case "Placas":
+            modeloTabla.addColumn("Tipo de Consulta");
+            modeloTabla.addColumn("Costo");
+            modeloTabla.addColumn("Estado");
+            modeloTabla.addColumn("Expedición");
+            modeloTabla.addColumn("Recepcion");
+            modeloTabla.addColumn("Placa");
+            break;
+        case "Licencias":
+            modeloTabla.addColumn("Tipo de Consulta");
+            modeloTabla.addColumn("Costo");
+            modeloTabla.addColumn("Estado");
+            modeloTabla.addColumn("Expedición");
+            modeloTabla.addColumn("Vigencia");
+            break;
+        default:
+            throw new IllegalArgumentException("Consulta no válida: " + tipoConsulta);
     }
+
+    for (Object tramite : listaTramites) {
+        Object[] fila = new Object[modeloTabla.getColumnCount()];
+
+        // Agregar el tipo de consulta a la fila
+        fila[0] = tipoConsulta;
+
+        if (tramite instanceof Licencia) {
+            Licencia licencia = (Licencia) tramite;
+            fila[1] = licencia.getCosto();
+            fila[2] = licencia.getEstado();
+
+            Calendar fechaExpedicionCalendar = licencia.getFechaExpedicion();
+            Date fechaExpedicion = (fechaExpedicionCalendar != null) ? fechaExpedicionCalendar.getTime() : null;
+            fila[3] = (fechaExpedicion != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaExpedicion) : "NoDate";
+
+            Calendar fechaVigenciaCalendar = licencia.getVigencia();
+            Date fechaVigencia = (fechaVigenciaCalendar != null) ? fechaVigenciaCalendar.getTime() : null;
+            fila[4] = (fechaVigencia != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaVigencia) : "NoDate";
+        } else if (tramite instanceof Placa) {
+            Placa placa = (Placa) tramite;
+            fila[1] = placa.getCosto();
+            fila[2] = placa.getEstado();
+
+            Calendar fechaExpedicionCalendar = placa.getFechaExpedicion();
+            Date fechaExpedicion = (fechaExpedicionCalendar != null) ? fechaExpedicionCalendar.getTime() : null;
+            fila[3] = (fechaExpedicion != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaExpedicion) : "NoDate";
+
+            Calendar fechaRecepcionCalendar = placa.getFechaRecepcion();
+            Date fechaRecepcion = (fechaRecepcionCalendar != null) ? fechaRecepcionCalendar.getTime() : null;
+            fila[4] = (fechaRecepcion != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaRecepcion) : "Sin recepcion aun";
+            fila[5] = placa.getNumeroAlfanumerico();
+        }
+
+        modeloTabla.addRow(fila);
+    }
+
+    tabla.setModel(modeloTabla);
+}
+
 
     public void cargarDatosTablaTramites(List<Tramite> tramites, JTable tabla) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
@@ -121,12 +123,14 @@ public class ConsultasFrame2 extends javax.swing.JFrame {
         modeloTabla.addColumn("Costo");
         modeloTabla.addColumn("Estado");
         modeloTabla.addColumn("Fecha Expedición");
-
+        modeloTabla.addColumn("Persona");
+        
         for (Tramite tramite : tramites) {
-            Object[] fila = new Object[4];
+            Object[] fila = new Object[5];
             fila[0] = tramite.getId();
             fila[1] = tramite.getCosto();
             fila[2] = tramite.getEstado();
+            fila[3] = tramite.getPersona().getNombre();
 
             Calendar fechaExpedicionCalendar = tramite.getFechaExpedicion();
             Date fechaExpedicion = (fechaExpedicionCalendar != null) ? fechaExpedicionCalendar.getTime() : null;
@@ -326,7 +330,7 @@ public class ConsultasFrame2 extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tablaTramites);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 650, 290));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 650, 220));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 

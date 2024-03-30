@@ -14,6 +14,7 @@ GUI\LicenciasFrame2$1.class
 GUI\ConsultasFrame1$3.class
 GUI\PlacasFrame2$3.class
 GUI\PlacaRegistradaFrame$1.class
+GUI\IndexFrame$11.class
 GUI\IndexFrame$4.class
 GUI\LicenciasFrame1$3.class
 GUI\PlacasFrame2$2.class
@@ -23,7 +24,6 @@ GUI\LicenciasFrame1.class
 GUI\IndexFrame$2.class
 GUI\LicenciasFrame2$5.class
 GUI\PlacasFrame1.class
-GUI\ReportesFrame1$3.class
 GUI\PlacasFrame2$9.class
 GUI\ConsultasFrame1$1.class
 GUI\ConsultasFrame2.class
@@ -63,7 +63,6 @@ GUI\PlacaRegistradaFrame$3.class
 utils\Btn$1.class
 conexion\IConexionDAO.class
 GUI\ConsultasFrame1$10.class
-GUI\ReportesFrame2$3.class
 GUI\ReportesFrame2.class
 GUI\IndexFrame$10.class
 GUI\LicenciasFrame1$2.class

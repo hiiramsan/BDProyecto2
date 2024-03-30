@@ -5,6 +5,7 @@
 package negocio.consultas;
 
 import entidadesJPA.Persona;
+import entidadesJPA.Placa;
 import entidadesJPA.Tramite;
 import java.util.Date;
 import java.util.List;
@@ -19,4 +20,5 @@ public interface IConsulta {
     public List<Persona> buscarPersonaPorFechaNacimiento(Date fechaNacimiento);
     public List<?> consultarTramites(String rfc, String consulta);
     public List<Tramite> obtenerTramites(String rfc);
+    public List<Placa> obtenerPlacasPorFechaYNombre(Date fechaInicio, Date fechaFin, String nombre);
 }

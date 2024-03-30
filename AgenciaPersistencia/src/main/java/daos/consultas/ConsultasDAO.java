@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
+import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 
 /**
@@ -45,6 +46,7 @@ public class ConsultasDAO implements IConsultasDAO {
         }
     }
 
+    @Override
     public List<Persona> buscarPersonaPorNombreSimilar(String nombre) {
         EntityManager entityManager = conexion.crearConexion();
         entityManager.getTransaction().begin();
@@ -58,6 +60,7 @@ public class ConsultasDAO implements IConsultasDAO {
         }
     }
 
+    @Override
     public List<Persona> buscarPersonaPorFechaNacimiento(Date fechaNacimiento) {
         EntityManager entityManager = conexion.crearConexion();
         entityManager.getTransaction().begin();
@@ -115,5 +118,54 @@ public class ConsultasDAO implements IConsultasDAO {
             entityManager.close();
         }
 
+    }
+
+    @Override
+    public List<Object[]> obtenerReporteTramites() {
+        EntityManager entityManager = conexion.crearConexion();
+        entityManager.getTransaction().begin();
+
+        try {
+            String jpql = "SELECT t.fecha, t.tipoTramite, p.nombre, t.costo FROM Tramite t JOIN t.persona p";
+            TypedQuery<Object[]> query = entityManager.createQuery(jpql, Object[].class);
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
+
+    }
+    
+    @Override
+   public List<Placa> obtenerPlacasPorFechaYNombre(Date fechaInicio, Date fechaFin, String nombre) {
+        EntityManager entityManager = conexion.crearConexion();
+        entityManager.getTransaction().begin();
+
+        try {
+            String jpql = "SELECT p FROM Placa p WHERE p.fechaExpedicion BETWEEN :fechaInicio AND :fechaFin AND p.persona.nombre LIKE :nombre";
+            TypedQuery<Placa> query = entityManager.createQuery(jpql, Placa.class);
+            query.setParameter("fechaInicio", fechaInicio, TemporalType.DATE);
+            query.setParameter("fechaFin", fechaFin, TemporalType.DATE);
+            query.setParameter("nombre", "%" + nombre + "%");
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
+    }
+   
+    @Override
+   public List<Licencia> obtenerLicenciasPorFechaYNombre(Date fechaInicio, Date fechaFin, String nombre) {
+        EntityManager entityManager = conexion.crearConexion();
+        entityManager.getTransaction().begin();
+
+        try {
+            String jpql = "SELECT l FROM Licencia l WHERE l.fechaExpedicion BETWEEN :fechaInicio AND :fechaFin AND l.persona.nombre LIKE :nombre";
+            TypedQuery<Licencia> query = entityManager.createQuery(jpql, Licencia.class);
+            query.setParameter("fechaInicio", fechaInicio, TemporalType.DATE);
+            query.setParameter("fechaFin", fechaFin, TemporalType.DATE);
+            query.setParameter("nombre", "%" + nombre + "%");
+            return query.getResultList();
+        } finally {
+            entityManager.close();
+        }
     }
 }
