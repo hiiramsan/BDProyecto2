@@ -124,19 +124,22 @@ public class ConsultasFrame2 extends javax.swing.JFrame {
         modeloTabla.addColumn("Estado");
         modeloTabla.addColumn("Fecha Expedición");
         modeloTabla.addColumn("Persona");
+        //modeloTabla.addColumn("Tramite");
+        
         
         for (Tramite tramite : tramites) {
             Object[] fila = new Object[5];
             fila[0] = tramite.getId();
             fila[1] = tramite.getCosto();
             fila[2] = tramite.getEstado();
-            fila[3] = tramite.getPersona().getNombre();
+            
 
             Calendar fechaExpedicionCalendar = tramite.getFechaExpedicion();
             Date fechaExpedicion = (fechaExpedicionCalendar != null) ? fechaExpedicionCalendar.getTime() : null;
             fila[3] = (fechaExpedicion != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaExpedicion) : "NoDate";
-
-            modeloTabla.addRow(fila);
+            fila[4] = tramite.getPersona().getNombre() + " " + tramite.getPersona().getApellidoPaterno();
+            
+            
         }
 
         tabla.setModel(modeloTabla);
@@ -166,12 +169,15 @@ public class ConsultasFrame2 extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaTramites = new javax.swing.JTable();
+        salirBtn = new utils.Btn();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMinimumSize(new java.awt.Dimension(950, 670));
+        jPanel1.setPreferredSize(new java.awt.Dimension(950, 670));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(12, 35, 30));
@@ -332,13 +338,25 @@ public class ConsultasFrame2 extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 650, 220));
 
+        salirBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 3, 36)));
+        salirBtn.setForeground(new java.awt.Color(65, 3, 36));
+        salirBtn.setText("Salir");
+        salirBtn.setColorClick(new java.awt.Color(204, 204, 204));
+        salirBtn.setColorOver(new java.awt.Color(153, 153, 153));
+        salirBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(salirBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 580, 100, 40));
+
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 962, Short.MAX_VALUE)
+            .addGap(0, 963, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,6 +389,13 @@ public class ConsultasFrame2 extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_regresarMenuBtnMouseClicked
 
+    private void salirBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirBtnActionPerformed
+        IndexFrame ifr = new IndexFrame();
+        ifr.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_salirBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel buscarPorTxt;
@@ -393,6 +418,7 @@ public class ConsultasFrame2 extends javax.swing.JFrame {
     private utils.PanelRound panelRound6;
     private utils.PanelRound panelRound7;
     private javax.swing.JLabel regresarMenuBtn;
+    private utils.Btn salirBtn;
     private javax.swing.JTable tablaTramites;
     // End of variables declaration//GEN-END:variables
 }

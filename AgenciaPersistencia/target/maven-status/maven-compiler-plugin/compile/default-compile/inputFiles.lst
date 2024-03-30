@@ -1,9 +1,11 @@
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\com\mycompany\agenciapersistencia\controlador\utils\EstadoTramite.java
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\reporte\ReporteDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\placa\IPlacaDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\entidadesJPA\Tramite.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\entidadesJPA\Persona.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\automovil\IAutomovilDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\persona\IPersonaDAO.java
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\reporte\IReporteDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\licencia\LicenciaDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\placa\PlacaDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\consultas\IConsultasDAO.java

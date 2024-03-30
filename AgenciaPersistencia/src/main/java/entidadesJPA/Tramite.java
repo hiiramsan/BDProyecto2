@@ -112,9 +112,4 @@ public class Tramite implements Serializable {
     public String toString() {
         return "Tramite{" + "id=" + id + ", costo=" + costo + ", estado=" + estado + ", fechaExpedicion=" + fechaExpedicion + ", persona=" + persona + '}';
     }
-
-  
-     
-     
-    
 }

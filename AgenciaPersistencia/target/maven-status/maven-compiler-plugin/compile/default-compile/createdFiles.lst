@@ -12,6 +12,8 @@ daos\persona\IPersonaDAO.class
 daos\licencia\LicenciaDAO.class
 daos\placa\PlacaDAO.class
 entidadesJPA\Licencia.class
+daos\reporte\ReporteDAO.class
+daos\reporte\IReporteDAO.class
 daos\automovil\AutomovilDAO.class
 conexion\ConexionDAO.class
 daos\licencia\ILicenciaDAO.class

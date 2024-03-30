@@ -23,6 +23,8 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import entidadesJPA.Licencia;
+import entidadesJPA.Tramite;
 import java.io.FileOutputStream;
 
 /**
@@ -30,18 +32,20 @@ import java.io.FileOutputStream;
  * @author carlo
  */
 public class ReportesFrame2 extends javax.swing.JFrame {
-
-    List<Placa> lista;
+    private List<Placa> placas;
+    private List<Licencia> licencias;
+    private List<Tramite> tramites;
 
     /**
      * Creates freim
+     * @param placas
      */
-    public ReportesFrame2(List<Placa> lista) {
+    public ReportesFrame2(List<Placa> placas) {
+        this.placas = placas;
         initComponents();
-        this.lista = lista;
-        cargarReporteTramitesEnTabla(jTable1, lista);
+        cargarReporteTramitesEnTabla(jTable1, placas);
     }
-
+    
     public void cargarReporteTramitesEnTabla(JTable tabla, List<Placa> placas) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         modeloTabla.addColumn("Fecha");
@@ -331,7 +335,7 @@ public class ReportesFrame2 extends javax.swing.JFrame {
             tabla.addCell("Tramite");
             tabla.addCell("Persona");
 
-            for (Placa placa : lista) {
+            for (Placa placa : placas) {
                 Calendar fechaExpedicionCalendar = placa.getFechaExpedicion();
                 Date fechaExpedicion = (fechaExpedicionCalendar != null) ? fechaExpedicionCalendar.getTime() : null;
                 String fechaExpedicionString = (fechaExpedicion != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaExpedicion) : "NoDate";
