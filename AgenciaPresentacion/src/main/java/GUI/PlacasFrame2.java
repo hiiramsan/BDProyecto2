@@ -20,6 +20,8 @@ import negocio.automovil.AutomovilBO;
 import negocio.automovil.IAutomovil;
 import negocio.placa.IPlaca;
 import negocio.placa.PlacaBO;
+import utils.Validadores;
+
 
 /**
  *
@@ -31,6 +33,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
     private PersonaDTO personaDTO;
     IAutomovil automovilBO = new AutomovilBO(conexion);
     IPlaca placaBO = new PlacaBO(conexion);
+    Validadores val = new Validadores();
 
     /**
      * Creates new form LicenciasFrame
@@ -151,6 +154,11 @@ public class PlacasFrame2 extends javax.swing.JFrame {
         numSerieTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 numSerieTxtActionPerformed(evt);
+            }
+        });
+        numSerieTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                numSerieTxtKeyTyped(evt);
             }
         });
         jPanel1.add(numSerieTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 180, 30));
@@ -386,6 +394,11 @@ public class PlacasFrame2 extends javax.swing.JFrame {
                 modeloTxtActionPerformed(evt);
             }
         });
+        modeloTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                modeloTxtKeyTyped(evt);
+            }
+        });
         jPanel1.add(modeloTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 180, 30));
 
         jLabel21.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -509,19 +522,27 @@ public class PlacasFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_lineaTxtActionPerformed
 
     private void avanzarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avanzarBtnActionPerformed
-        // TODO add your handling code here:
         if ((!nuevoRB.isSelected() && !usadoRB.isSelected())) {
             errorRBTxt.setText("Debes seleccionar una para continuar");
         } else {
             if (nuevoRB.isSelected()) {
-                if (numSerieTxt.getText().isBlank() || marcaTxt.getText().isBlank() || lineaTxt.getText().isBlank() || colorTxt.getText().isBlank() || lineaTxt.getText().isBlank()) {
+                if (numSerieTxt.getText().isBlank() || marcaTxt.getText().isBlank()
+                        || lineaTxt.getText().isBlank() || colorTxt.getText().isBlank()
+                        || modeloTxt.getText().isBlank()) {
                     camposErrorTxt.setText("Favor de llenar todos los campos");
                 } else {
-                    // registrar automvil nuevo
+                    if (!val.esNumerica(modeloTxt.getText()) || !val.validarNumSerie(numSerieTxt.getText()) ) {
+                       camposErrorTxt.setText("El modelo y numero de serie debe de ser un numero");
+                       return; 
+                    }
+
                     int modeloInt = Integer.parseInt(modeloTxt.getText());
 
-                    AutomovilDTO autoARegistrar = new AutomovilDTO(numSerieTxt.getText(), marcaTxt.getText(),
-                            lineaTxt.getText(), colorTxt.getText(), modeloInt);
+                    AutomovilDTO autoARegistrar = new AutomovilDTO(numSerieTxt.getText(),
+                            marcaTxt.getText(),
+                            lineaTxt.getText(),
+                            colorTxt.getText(),
+                            modeloInt);
 
                     try {
                         AutomovilDTO autoRegistrado = automovilBO.registrarAutomovilNuevo(autoARegistrar, personaDTO);
@@ -533,13 +554,10 @@ public class PlacasFrame2 extends javax.swing.JFrame {
                         // manejar el error
                         JOptionPane.showMessageDialog(null, "Numero de serie ya registrado", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-
                 }
             } else {
                 try {
-                    
                     AutomovilDTO autoUsadoARecuperar = placaBO.obtenerAutoPorPlacas(numSerieTxt.getText(), personaDTO.getRfc());
-                    
                     PlacasFrame3 pf3 = new PlacasFrame3(personaDTO, autoUsadoARecuperar, false);
                     pf3.setVisible(true);
                     dispose();
@@ -548,6 +566,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
                 }
             }
         }
+
     }//GEN-LAST:event_avanzarBtnActionPerformed
 
     private void avanzarBtnFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_avanzarBtnFocusLost
@@ -571,10 +590,26 @@ public class PlacasFrame2 extends javax.swing.JFrame {
 
     private void panelRound5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound5MouseExited
         // TODO add your handling code here:\
-         Color colorNormal = new Color(148, 13, 73);
+        Color colorNormal = new Color(148, 13, 73);
         panelRound5.setBackground(colorNormal);
         setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_panelRound5MouseExited
+
+    private void modeloTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_modeloTxtKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_modeloTxtKeyTyped
+
+    private void numSerieTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numSerieTxtKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_numSerieTxtKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

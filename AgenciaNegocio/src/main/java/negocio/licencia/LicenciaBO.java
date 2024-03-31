@@ -29,7 +29,6 @@ public class LicenciaBO implements ILicencias {
     IPersonaDAO personaDAO = new PersonaDAO(conexionDAO);
     private static final Logger LOG = Logger.getLogger(LicenciaBO.class.getName());
 
-    // this class could be called ConsultaLicenciasBO but dont know if i should put every method together no se si me entiendes
     public LicenciaBO(IConexionDAO conexionDAO) {
         this.conexionDAO = conexionDAO;
     }
@@ -63,7 +62,7 @@ public class LicenciaBO implements ILicencias {
     @Override
     public boolean consultarLicencia(PersonaDTO persona) {
         Persona personaABuscar = personaDAO.buscarPersonaPorRFC(persona.getRfc());
-
+        
         return this.licenciaDAO.consultarLicencia(personaABuscar);
 
     }

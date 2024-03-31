@@ -9,15 +9,20 @@ import conexion.IConexionDAO;
 import dtos.PersonaDTO;
 import negocio.persona.IPersona;
 import negocio.persona.PersonaBO;
+import utils.Validadores;
+
 
 /**
  *
  * @author carlo
  */
 public class PlacasFrame1 extends javax.swing.JFrame {
+    Validadores val = new Validadores();
+    IConexionDAO conexion = new ConexionDAO();
+    IPersona personaBO = new PersonaBO(conexion);
 
     /**
-     * Creates new form 
+     * Creates new form
      */
     public PlacasFrame1() {
         initComponents();
@@ -122,6 +127,11 @@ public class PlacasFrame1 extends javax.swing.JFrame {
         rfcTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rfcTxtActionPerformed(evt);
+            }
+        });
+        rfcTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                rfcTxtKeyTyped(evt);
             }
         });
         jPanel1.add(rfcTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 390, 40));
@@ -319,19 +329,37 @@ public class PlacasFrame1 extends javax.swing.JFrame {
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         // TODO add your handling code here:
-        IConexionDAO conexion = new ConexionDAO();
-        IPersona personaBO = new PersonaBO(conexion);
-        Boolean personaExiste = personaBO.consultarPersona(rfcTxt.getText());
-        
-        if(personaExiste) {
-            PersonaDTO person = personaBO.obtenerPersona(rfcTxt.getText());
-            PlacasFrame2 pf2 = new PlacasFrame2(person);
-            pf2.setVisible(true);
-            dispose();
+
+        if (!val.estaVacio(rfcTxt.getText())) {
+            if (val.validarRFC(rfcTxt.getText())) {
+                Boolean personaExiste = personaBO.consultarPersona(rfcTxt.getText());
+
+                if (personaExiste) {
+                    PersonaDTO person = personaBO.obtenerPersona(rfcTxt.getText());
+                    PlacasFrame2 pf2 = new PlacasFrame2(person);
+                    pf2.setVisible(true);
+                    dispose();
+                } else {
+                    textoError.setText("Persona no encontrada");
+                    textoError.setVisible(true);
+                }
+            } else {
+                textoError.setText("Formato de RFC incorrecto");
+                textoError.setVisible(true);
+            }
         } else {
+            textoError.setText("Escribe algo. Dont be shy");
             textoError.setVisible(true);
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
+
+    private void rfcTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rfcTxtKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_rfcTxtKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

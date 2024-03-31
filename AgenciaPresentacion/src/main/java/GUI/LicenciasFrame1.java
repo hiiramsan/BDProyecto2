@@ -9,12 +9,17 @@ import conexion.IConexionDAO;
 import dtos.PersonaDTO;
 import negocio.persona.IPersona;
 import negocio.persona.PersonaBO;
+import utils.Validadores;
+
 
 /**
  *
  * @author carlo
  */
 public class LicenciasFrame1 extends javax.swing.JFrame {
+    Validadores val = new Validadores();
+    IConexionDAO conexion = new ConexionDAO();
+    IPersona personaBO = new PersonaBO(conexion);
 
     /**
      * Creates new form LicenciasFrame
@@ -185,6 +190,11 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
                 rfcTxtActionPerformed(evt);
             }
         });
+        rfcTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                rfcTxtKeyTyped(evt);
+            }
+        });
         jPanel1.add(rfcTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 390, 40));
 
         buscarBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(65, 3, 36)));
@@ -192,6 +202,11 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
         buscarBtn.setText("Buscar");
         buscarBtn.setColorClick(new java.awt.Color(204, 204, 204));
         buscarBtn.setColorOver(new java.awt.Color(255, 255, 255));
+        buscarBtn.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                buscarBtnFocusLost(evt);
+            }
+        });
         buscarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarBtnActionPerformed(evt);
@@ -237,7 +252,7 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
 
     private void rfcTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rfcTxtActionPerformed
         // TODO add your handling code here:
-        textoError.setVisible(false);
+
     }//GEN-LAST:event_rfcTxtActionPerformed
 
     private void regresarMenuBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_regresarMenuBtnMouseClicked
@@ -248,24 +263,46 @@ public class LicenciasFrame1 extends javax.swing.JFrame {
     }//GEN-LAST:event_regresarMenuBtnMouseClicked
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        // TODO add your handling code here:
-        IConexionDAO conexion = new ConexionDAO();
-        IPersona personaBO = new PersonaBO(conexion);
-        Boolean personaExiste = personaBO.consultarPersona(rfcTxt.getText());
-        
-        if(personaExiste) {
-            PersonaDTO person = personaBO.obtenerPersona(rfcTxt.getText());
-            LicenciasFrame2 lf = new LicenciasFrame2(person);
-            lf.setVisible(true);
-            dispose();
+        if (!val.estaVacio(rfcTxt.getText())) {
+            if (val.validarRFC(rfcTxt.getText())) {
+                Boolean personaExiste = personaBO.consultarPersona(rfcTxt.getText());
+
+                if (personaExiste) {
+                    PersonaDTO person = personaBO.obtenerPersona(rfcTxt.getText());
+                    LicenciasFrame2 lf = new LicenciasFrame2(person);
+                    lf.setVisible(true);
+                    dispose();
+                } else {
+                    textoError.setText("Persona no encontrada");
+                    textoError.setVisible(true);
+                }
+            } else {
+                textoError.setText("Formato de RFC incorrecto");
+                textoError.setVisible(true);
+            }
         } else {
+            textoError.setText("Escribe algo. Dont be shy");
             textoError.setVisible(true);
         }
-        
-        
+
+
     }//GEN-LAST:event_buscarBtnActionPerformed
 
-   
+    private void rfcTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rfcTxtKeyTyped
+        // TODO add your handling code here:
+
+        // accept only numbers lol
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_rfcTxtKeyTyped
+
+    private void buscarBtnFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_buscarBtnFocusLost
+        // TODO add your handling code here:
+        textoError.setVisible(false);
+    }//GEN-LAST:event_buscarBtnFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private utils.Btn buscarBtn;

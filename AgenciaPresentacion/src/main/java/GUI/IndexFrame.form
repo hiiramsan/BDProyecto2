@@ -228,7 +228,7 @@
         <Container class="utils.PanelRound" name="panelRound1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="d7" green="d7" red="e3" type="rgb"/>
+              <Color blue="ff" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="roundBottomLeft" type="int" value="15"/>
             <Property name="roundBottomRight" type="int" value="15"/>
@@ -340,7 +340,7 @@
         <Container class="utils.PanelRound" name="panelRound2">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="d7" green="d7" red="e3" type="rgb"/>
+              <Color blue="ff" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="roundBottomLeft" type="int" value="15"/>
             <Property name="roundBottomRight" type="int" value="15"/>
@@ -436,7 +436,7 @@
         <Container class="utils.PanelRound" name="panelRound3">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="d7" green="d7" red="e3" type="rgb"/>
+              <Color blue="ff" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="roundBottomLeft" type="int" value="15"/>
             <Property name="roundBottomRight" type="int" value="15"/>
@@ -445,7 +445,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="650" y="350" width="-1" height="-1"/>
+              <AbsoluteConstraints x="650" y="350" width="250" height="-1"/>
             </Constraint>
           </Constraints>
 
@@ -458,7 +458,7 @@
                           <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="92" max="32767" attributes="0"/>
+                      <EmptySpace pref="72" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
@@ -532,7 +532,7 @@
         <Container class="utils.PanelRound" name="panelRound4">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="d7" green="d7" red="e3" type="rgb"/>
+              <Color blue="ff" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="roundBottomLeft" type="int" value="15"/>
             <Property name="roundBottomRight" type="int" value="15"/>

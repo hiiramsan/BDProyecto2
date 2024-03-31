@@ -204,7 +204,7 @@ public class IndexFrame extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 290));
 
-        panelRound1.setBackground(new java.awt.Color(227, 215, 215));
+        panelRound1.setBackground(new java.awt.Color(204, 204, 255));
         panelRound1.setRoundBottomLeft(15);
         panelRound1.setRoundBottomRight(15);
         panelRound1.setRoundTopLeft(15);
@@ -266,7 +266,7 @@ public class IndexFrame extends javax.swing.JFrame {
         jLabel12.setText("Servicios");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
 
-        panelRound2.setBackground(new java.awt.Color(227, 215, 215));
+        panelRound2.setBackground(new java.awt.Color(204, 204, 255));
         panelRound2.setRoundBottomLeft(15);
         panelRound2.setRoundBottomRight(15);
         panelRound2.setRoundTopLeft(15);
@@ -323,7 +323,7 @@ public class IndexFrame extends javax.swing.JFrame {
 
         jPanel1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 270, -1));
 
-        panelRound3.setBackground(new java.awt.Color(227, 215, 215));
+        panelRound3.setBackground(new java.awt.Color(204, 204, 255));
         panelRound3.setRoundBottomLeft(15);
         panelRound3.setRoundBottomRight(15);
         panelRound3.setRoundTopLeft(15);
@@ -360,7 +360,7 @@ public class IndexFrame extends javax.swing.JFrame {
                 .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
                     .addComponent(jLabel14))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(consultasBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -378,9 +378,9 @@ public class IndexFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.add(panelRound3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 350, -1, -1));
+        jPanel1.add(panelRound3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 350, 250, -1));
 
-        panelRound4.setBackground(new java.awt.Color(227, 215, 215));
+        panelRound4.setBackground(new java.awt.Color(204, 204, 255));
         panelRound4.setRoundBottomLeft(15);
         panelRound4.setRoundBottomRight(15);
         panelRound4.setRoundTopLeft(15);
