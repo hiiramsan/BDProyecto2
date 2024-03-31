@@ -43,7 +43,7 @@ public class ConsultasFrame2 extends javax.swing.JFrame {
         this.rfcSelected = rfcSelected;
         this.tipoConsulta = tipoConsulta;
 
-        //cargarDatosTabla(tramites, tablaTramites, tipoConsulta);
+        
         if (tipoConsulta == "Todos") {
             List<Tramite> tramites = consultaBO.obtenerTramites(rfcSelected);
             cargarDatosTablaTramites(tramites, tablaTramites);
@@ -124,8 +124,6 @@ public class ConsultasFrame2 extends javax.swing.JFrame {
         modeloTabla.addColumn("Estado");
         modeloTabla.addColumn("Fecha Expedición");
         modeloTabla.addColumn("Persona");
-        //modeloTabla.addColumn("Tramite");
-        
         
         for (Tramite tramite : tramites) {
             Object[] fila = new Object[5];
@@ -139,8 +137,9 @@ public class ConsultasFrame2 extends javax.swing.JFrame {
             fila[3] = (fechaExpedicion != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaExpedicion) : "NoDate";
             fila[4] = tramite.getPersona().getNombre() + " " + tramite.getPersona().getApellidoPaterno();
             
-            
+            modeloTabla.addRow(fila);
         }
+        
 
         tabla.setModel(modeloTabla);
     }

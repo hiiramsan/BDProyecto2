@@ -9,6 +9,7 @@ excepciones\MenorDeEdadException.class
 excepciones\AutomovilExistenteException.class
 excepciones\NoPropietarioException.class
 conexion\ConexionDAO.class
+encriptador\Encriptador.class
 excepciones\LicenciaActivaException.class
 dtos\AutomovilDTO.class
 negocio\automovil\AutomovilBO.class

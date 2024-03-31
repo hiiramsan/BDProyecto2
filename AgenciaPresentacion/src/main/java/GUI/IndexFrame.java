@@ -556,7 +556,7 @@ public class IndexFrame extends javax.swing.JFrame {
         Calendar fecha20 = Calendar.getInstance();
         fecha20.set(2010, Calendar.OCTOBER, 31);
 
-        // Crear 20 instancias de PersonaDTO con nombres aleatorios y fechas de nacimiento diferentes
+        // Crear 20 instancias 
         PersonaDTO persona1 = new PersonaDTO("1234567891234", "Carlos", "Sanchez", "Meneses", "6443018817", fecha1, false);
         PersonaDTO persona2 = new PersonaDTO("9876543219876", "Alejandro", "López", "Pérez", "6443022244", fecha2, false);
         PersonaDTO persona3 = new PersonaDTO("1234560987656", "Laura", "García", "Hernández", "6443000011", fecha3, true);

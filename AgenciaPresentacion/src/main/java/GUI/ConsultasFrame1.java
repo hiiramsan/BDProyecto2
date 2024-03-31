@@ -19,6 +19,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import negocio.consultas.ConsultaBO;
 import negocio.consultas.IConsulta;
+import utils.Validadores;
 
 /**
  *
@@ -28,6 +29,7 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
 
     IConexionDAO conexionDAO = new ConexionDAO();
     IConsulta consultaBO = new ConsultaBO(conexionDAO);
+    Validadores val = new Validadores();
     String consulta;
 
     /**
@@ -50,18 +52,20 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
             tituloTablas.setText("No se encontro ninguna persona");
         } else {
             tituloTablas.setText("Selecciona 1 de " + personas.size() + " personas encontradas para continuar");
-        }
 
-        for (Persona persona : personas) {
-            Date fecha = persona.getFechaNacimiento().getTime();
-            String fechaString = (fecha != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fecha) : "NoDate";
-            model.addRow(new Object[]{persona.getRfc(), persona.getNombre(), fechaString, persona.getTelefono()});
-        }
+            for (Persona persona : personas) {
+                Date fecha = persona.getFechaNacimiento().getTime();
+                String fechaString = (fecha != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fecha) : "NoDate";
+                model.addRow(new Object[]{persona.getRfc(), persona.getNombre(), fechaString, persona.getTelefono()});
+            }
+            tablaPersonas.setModel(model);
 
-        tablaPersonas.setModel(model);
+            tablitaSP.setVisible(true);
+            tablePersonas.setVisible(true);
+
+        }
         tituloTablas.setVisible(true);
-        tablitaSP.setVisible(true);
-        tablePersonas.setVisible(true);
+
     }
 
     /**
@@ -445,18 +449,19 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
             if (inputTxt.getText().isBlank() && !fechaNacRB.isSelected()) {
                 errorTxt2.setText("Campo vacio");
             } else {
-                // ya a buscar jajajaj
-                
+
                 if (nombreRB.isSelected()) {
-                    // buscar CONSULTA por NOMBRE
                     personasObtenidas = consultaBO.buscarPersonaPorNombreSimilar(inputTxt.getText());
                     cargarDatosTabla(personasObtenidas, tablePersonas);
                 } else if (rfcRB.isSelected()) {
-                    // buscar CONSULTA por RFC
-                    personasObtenidas = consultaBO.buscarPersonaPorRFC(inputTxt.getText());
-                    cargarDatosTabla(personasObtenidas, tablePersonas);
+                    if (val.validarRFC(inputTxt.getText())) {
+                        personasObtenidas = consultaBO.buscarPersonaPorRFC(inputTxt.getText());
+                        cargarDatosTabla(personasObtenidas, tablePersonas);
+                    } else {
+                        errorTxt2.setText("Formato de RFC invalido");
+                    }
+
                 } else {
-                    // buscar CONSULTA por fecha naca
                     personasObtenidas = consultaBO.buscarPersonaPorFechaNacimiento(fecha);
                     cargarDatosTabla(personasObtenidas, tablePersonas);
                 }

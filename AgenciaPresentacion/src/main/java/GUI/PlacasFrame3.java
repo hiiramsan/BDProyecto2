@@ -419,6 +419,7 @@ public class PlacasFrame3 extends javax.swing.JFrame {
         // TODO add your handling code here:
         PlacaDTO placa;
         if (esNuevo) {
+            
             try {
                 placa = placaBO.registrarPlacaAutoNuevo(automovilDTO, costo, personaDTO);
 
