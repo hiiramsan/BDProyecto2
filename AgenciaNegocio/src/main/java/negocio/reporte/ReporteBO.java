@@ -98,7 +98,8 @@ public class ReporteBO implements IReporte {
                 tabla.addCell(fechaExpedicionString);
                 tabla.addCell(String.valueOf(placa.getCosto()));
                 tabla.addCell("Expedición de Placas");
-                tabla.addCell(placa.getPersona().getNombre());
+                String nombreCompleto = placa.getPersona().getNombre() + " " + placa.getPersona().getApellidoPaterno();
+                tabla.addCell(nombreCompleto);
             }
 
             Phrase piePagina = new Phrase("AGENCIA FISCAL - Página 1");
@@ -160,7 +161,8 @@ public class ReporteBO implements IReporte {
                 tabla.addCell(String.valueOf(licencia.getCosto()));
                 tabla.addCell("Expedición de Licencias");
                 tabla.addCell(fechaVigenciaString);
-                tabla.addCell(licencia.getPersona().getNombre());
+                String nombreCompleto = licencia.getPersona().getNombre() + " " + licencia.getPersona().getApellidoPaterno();
+                tabla.addCell(nombreCompleto);
             }
 
             Phrase piePagina = new Phrase("AGENCIA FISCAL - Página 1");
@@ -217,7 +219,8 @@ public class ReporteBO implements IReporte {
                 tabla.addCell(fechaExpedicionString);
                 tabla.addCell(String.valueOf(tramite.getCosto()));
                 tabla.addCell(String.valueOf(tramite.getEstado()));
-                tabla.addCell(tramite.getPersona().getNombre());
+                String nombreCompleto = tramite.getPersona().getNombre() + " " + tramite.getPersona().getApellidoPaterno();
+                tabla.addCell(nombreCompleto);
             }
 
             Phrase piePagina = new Phrase("AGENCIA FISCAL - Página 1");
