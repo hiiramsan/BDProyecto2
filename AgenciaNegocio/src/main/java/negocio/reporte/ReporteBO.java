@@ -246,4 +246,19 @@ public class ReporteBO implements IReporte {
             System.out.println("error");
         }
      }
+     
+    @Override
+     public List<Tramite> buscarTramites(Date fechaInicio, Date fechaFin, String nombre) {
+         return this.reporteDAO.buscarTramites(fechaInicio, fechaFin, nombre);
+     }
+     
+    @Override
+     public List<Licencia> buscarLicencias(Date fechaInicio, Date fechaFin, String nombre){
+         return this.reporteDAO.buscarLicencias(fechaInicio, fechaFin, nombre);
+     }
+     
+    @Override
+     public List<Placa> buscarPlacas(Date fechaInicio, Date fechaFin, String nombre) {
+         return this.reporteDAO.buscarPlacas(fechaInicio, fechaFin, nombre);
+     }
 }

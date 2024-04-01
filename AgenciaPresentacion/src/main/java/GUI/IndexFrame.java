@@ -489,7 +489,7 @@ public class IndexFrame extends javax.swing.JFrame {
 
     private void reportesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportesBtnActionPerformed
         // TODO add your handling code here:
-        ReportesFrame1 rf = new ReportesFrame1();
+        ReportesFrame rf = new ReportesFrame();
         rf.setVisible(true);
         dispose();
     }//GEN-LAST:event_reportesBtnActionPerformed
@@ -676,7 +676,7 @@ public class IndexFrame extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-        ReportesFrame1 rf = new ReportesFrame1();
+        ReportesFrame rf = new ReportesFrame();
         rf.setVisible(true);
         dispose();
     }//GEN-LAST:event_jLabel6MouseClicked

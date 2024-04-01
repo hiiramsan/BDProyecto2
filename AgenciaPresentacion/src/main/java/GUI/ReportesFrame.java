@@ -29,24 +29,19 @@ import negocio.reporte.ReporteBO;
  *
  * @author carlo
  */
-public class ReportesFrame1 extends javax.swing.JFrame {
+public class ReportesFrame extends javax.swing.JFrame {
 
     IConexionDAO conexionDAO = new ConexionDAO();
     IReporte reporteBO = new ReporteBO(conexionDAO);
     
-    
-    List<Tramite> tramiteNombre;
-    List<Tramite> tramiteFechas;
-    List<Licencia> licencias;
-    List<Placa> placas;
     List<Tramite> tramites;
-    
-    String tipoExportar;
-    
+    List<Placa> placas;
+    List<Licencia> licencias;
+
     /**
      * Creates new form LicenciasFrame
      */
-    public ReportesFrame1() {
+    public ReportesFrame() {
         initComponents();
 
         // setear invisibles la parte de la segunda screen
@@ -55,11 +50,6 @@ public class ReportesFrame1 extends javax.swing.JFrame {
         tablaResultados.setVisible(false);
         separadorTramites.setVisible(false);
         exportarBtn.setVisible(false);
-
-        nombreTxt.setEnabled(false);
-        fechaIni.setEnabled(false);
-        fechaFin.setEnabled(false);
-        operacionComboBox.setEnabled(false);
     }
 
     public void cargarReportePlacasEnTabla(JTable tabla, List<Placa> placas) {
@@ -118,7 +108,7 @@ public class ReportesFrame1 extends javax.swing.JFrame {
         modeloTabla.addColumn("Estado");
         modeloTabla.addColumn("Fecha Expedición");
         modeloTabla.addColumn("Persona");
-        
+
         for (Tramite tramite : tramites) {
             Object[] fila = new Object[4];
             fila[0] = tramite.getCosto();
@@ -169,15 +159,14 @@ public class ReportesFrame1 extends javax.swing.JFrame {
         fechaIni = new com.toedter.calendar.JDateChooser();
         nombreTxt = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        nombreRB = new javax.swing.JRadioButton();
-        tramitesRB = new javax.swing.JRadioButton();
-        fechasRB = new javax.swing.JRadioButton();
         errorTxt = new javax.swing.JLabel();
         labelTramites = new javax.swing.JLabel();
         separadorTramites = new javax.swing.JSeparator();
         scrollPane = new javax.swing.JScrollPane();
         tablaResultados = new javax.swing.JTable();
         buscarBtn1 = new utils.Btn();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -343,64 +332,31 @@ public class ReportesFrame1 extends javax.swing.JFrame {
         jPanel1.add(buscarPorTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, -1, -1));
 
         operacionComboBox.setBackground(java.awt.SystemColor.control);
-        operacionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Licencias", "Placas", "Todos" }));
+        operacionComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Licencias", "Placas" }));
         operacionComboBox.setBorder(null);
-        jPanel1.add(operacionComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 190, 40));
+        jPanel1.add(operacionComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 190, 40));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(148, 13, 73));
-        jLabel11.setText("Generar reporte por:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
+        jLabel11.setText("Nombre");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, -1, -1));
 
         jLabel2.setText("Fecha Fin");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 540, -1, -1));
-        jPanel1.add(fechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 540, 100, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, -1, -1));
+        jPanel1.add(fechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 420, 100, -1));
 
         jLabel4.setText("Fecha Inicio");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, -1, -1));
-        jPanel1.add(fechaIni, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 500, 100, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
+        jPanel1.add(fechaIni, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 100, -1));
 
         nombreTxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(nombreTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 620, 230, 30));
+        jPanel1.add(nombreTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 230, 30));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, -1, -1));
 
-        nombreRB.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup4.add(nombreRB);
-        nombreRB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        nombreRB.setText("Buscar por Nombre");
-        nombreRB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreRBActionPerformed(evt);
-            }
-        });
-        jPanel1.add(nombreRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 580, -1, -1));
-
-        tramitesRB.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup4.add(tramitesRB);
-        tramitesRB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        tramitesRB.setText("Buscar por Tramites");
-        tramitesRB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tramitesRBActionPerformed(evt);
-            }
-        });
-        jPanel1.add(tramitesRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
-
-        fechasRB.setBackground(new java.awt.Color(255, 255, 255));
-        buttonGroup4.add(fechasRB);
-        fechasRB.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        fechasRB.setText("Buscar por rango de fechas");
-        fechasRB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fechasRBActionPerformed(evt);
-            }
-        });
-        jPanel1.add(fechasRB, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, -1, -1));
-
         errorTxt.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(errorTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
+        jPanel1.add(errorTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 600, -1, -1));
 
         labelTramites.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         labelTramites.setForeground(new java.awt.Color(64, 60, 60));
@@ -438,7 +394,17 @@ public class ReportesFrame1 extends javax.swing.JFrame {
                 buscarBtn1ActionPerformed(evt);
             }
         });
-        jPanel1.add(buscarBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 610, 100, 40));
+        jPanel1.add(buscarBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 580, 100, 40));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(148, 13, 73));
+        jLabel12.setText("Tipo Tramite");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(148, 13, 73));
+        jLabel18.setText("Rango de fechas");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -481,56 +447,14 @@ public class ReportesFrame1 extends javax.swing.JFrame {
 
     private void exportarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportarBtnActionPerformed
 
-        if(null != tipoExportar) switch (tipoExportar) {
-            case "tramiteNombre":
-                reporteBO.generarReporteTramites(tramiteNombre);
-                break;
-            case "tramiteFechas":
-                reporteBO.generarReporteTramites(tramiteFechas);
-                break;
-            case "licencias":
-                reporteBO.generarReporteLicencias(licencias);
-                break;
-            case "placas":
-                reporteBO.generarReportePlacas(placas);
-                break;
-            case "tramites":
-                reporteBO.generarReporteTramites(tramites);
-                break;
-            default:
-                break;
+        if (operacionComboBox.getSelectedItem() == "Todos") {
+            reporteBO.generarReporteTramites(tramites);
+        } else if (operacionComboBox.getSelectedItem() == "Licencias") {
+            reporteBO.generarReporteLicencias(licencias);
+        } else {
+            reporteBO.generarReportePlacas(placas);
         }
     }//GEN-LAST:event_exportarBtnActionPerformed
-
-    private void nombreRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreRBActionPerformed
-        // TODO add your handling code here:
-        if (nombreRB.isSelected()) {
-            operacionComboBox.setEnabled(false);
-            fechaIni.setEnabled(false);
-            fechaFin.setEnabled(false);
-            nombreTxt.setEnabled(true);
-        }
-    }//GEN-LAST:event_nombreRBActionPerformed
-
-    private void tramitesRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tramitesRBActionPerformed
-        // TODO add your handling code here:
-        if (tramitesRB.isSelected()) {
-            operacionComboBox.setEnabled(true);
-            fechaIni.setEnabled(false);
-            fechaFin.setEnabled(false);
-            nombreTxt.setEnabled(false);
-        }
-    }//GEN-LAST:event_tramitesRBActionPerformed
-
-    private void fechasRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechasRBActionPerformed
-        // TODO add your handling code here:
-        if (fechasRB.isSelected()) {
-            operacionComboBox.setEnabled(false);
-            fechaIni.setEnabled(true);
-            fechaFin.setEnabled(true);
-            nombreTxt.setEnabled(false);
-        }
-    }//GEN-LAST:event_fechasRBActionPerformed
 
     private void exportarBtnFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_exportarBtnFocusLost
         // TODO add your handling code here:
@@ -544,50 +468,28 @@ public class ReportesFrame1 extends javax.swing.JFrame {
 
     private void buscarBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtn1ActionPerformed
 
-        if (!nombreRB.isSelected() && !fechasRB.isSelected() && !tramitesRB.isSelected()) {
-            errorTxt.setText("Debes seleccionar al menos una opción para continuar");
+        if (operacionComboBox.getSelectedItem() == "Todos") {
+            tramites = reporteBO.buscarTramites(fechaIni.getDate(), fechaFin.getDate(), nombreTxt.getText());
+            cargarReporteTramitesEnTabla(tramites, tablaResultados);
+        } else if (operacionComboBox.getSelectedItem() == "Licencias") {
+            licencias = reporteBO.buscarLicencias(fechaIni.getDate(), fechaFin.getDate(), nombreTxt.getText());
+            cargarReporteLicenciasEnTabla(tablaResultados, licencias);
         } else {
-            if (nombreRB.isSelected() && nombreTxt.getText().isBlank()) {
-                errorTxt.setText("Rellena el espacio correspondiente");
-            } else if (fechasRB.isSelected() && (fechaIni.getDate() == null || fechaFin.getDate() == null)) {
-                errorTxt.setText("Debes seleccionar ambas fechas");
-            } else {
-                if (nombreRB.isSelected()) {
-                    tramiteNombre = reporteBO.obtenerReportePorNombre(nombreTxt.getText());
-                    cargarReporteTramitesEnTabla(tramiteNombre, tablaResultados);
-                    tipoExportar = "tramiteNombre";
-                } else if (fechasRB.isSelected()) {
-                    tramiteFechas = reporteBO.obtenerReportePorFechas(fechaIni.getDate(), fechaFin.getDate());
-                    cargarReporteTramitesEnTabla(tramiteFechas, tablaResultados);
-                    tipoExportar = "tramiteFechas";
-                } else {
-                    if ("Placas".equals(operacionComboBox.getSelectedItem().toString())) {
-                        placas = reporteBO.obtenerTodasLasPlacas();
-                        cargarReportePlacasEnTabla(tablaResultados, placas);
-                        tipoExportar = "placas";
-                    } else if ("Licencias".equals(operacionComboBox.getSelectedItem().toString())) {
-                         licencias = reporteBO.obtenerTodasLasLicencias();
-                        cargarReporteLicenciasEnTabla(tablaResultados, licencias);
-                        tipoExportar = "licencias";
-                    } else {
-                        tramites = reporteBO.obtenerTodosLosTramites();
-                        cargarReporteTramitesEnTabla(tramites, tablaResultados);
-                        tipoExportar = "tramites";
-                    }
-                }
-
-                labelTramites.setVisible(true);
-                scrollPane.setVisible(true);
-                tablaResultados.setVisible(true);
-                separadorTramites.setVisible(true);
-                exportarBtn.setVisible(true);
-                Color colorNormal = new Color(148, 13, 73);
-                panelRound7.setBackground(colorNormal);
-                Color blanco = Color.WHITE;
-                jLabel16.setForeground(blanco);
-                jLabel17.setForeground(blanco);
-            }
+            placas = reporteBO.buscarPlacas(fechaIni.getDate(), fechaFin.getDate(), nombreTxt.getText());
+            cargarReportePlacasEnTabla(tablaResultados, placas);
         }
+
+        labelTramites.setVisible(true);
+        scrollPane.setVisible(true);
+        tablaResultados.setVisible(true);
+        separadorTramites.setVisible(true);
+        exportarBtn.setVisible(true);
+        Color colorNormal = new Color(148, 13, 73);
+        panelRound7.setBackground(colorNormal);
+        Color blanco = Color.WHITE;
+        jLabel16.setForeground(blanco);
+        jLabel17.setForeground(blanco);
+
 
     }//GEN-LAST:event_buscarBtn1ActionPerformed
 
@@ -600,14 +502,15 @@ public class ReportesFrame1 extends javax.swing.JFrame {
     private utils.Btn exportarBtn;
     private com.toedter.calendar.JDateChooser fechaFin;
     private com.toedter.calendar.JDateChooser fechaIni;
-    private javax.swing.JRadioButton fechasRB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -617,7 +520,6 @@ public class ReportesFrame1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelTramites;
-    private javax.swing.JRadioButton nombreRB;
     private javax.swing.JTextField nombreTxt;
     private javax.swing.JComboBox<String> operacionComboBox;
     private utils.PanelRound panelRound5;
@@ -627,6 +529,5 @@ public class ReportesFrame1 extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JSeparator separadorTramites;
     private javax.swing.JTable tablaResultados;
-    private javax.swing.JRadioButton tramitesRB;
     // End of variables declaration//GEN-END:variables
 }

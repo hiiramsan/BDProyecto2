@@ -15,9 +15,21 @@ import java.util.List;
  * @author carlo
  */
 public interface IReporteDAO {
+
     public List<Tramite> obtenerReportePorNombre(String nombre);
+
     public List<Tramite> obtenerReportePorFechas(Date inicio, Date fin);
+
     public List<Placa> obtenerTodasLasPlacas();
+
     public List<Licencia> obtenerTodasLasLicencias();
+
     public List<Tramite> obtenerTodosLosTramites();
+
+    public List<Tramite> buscarTramites(Date fechaInicio, Date fechaFin, String nombre);
+
+    public List<Licencia> buscarLicencias(Date fechaInicio, Date fechaFin, String nombre);
+
+    public List<Placa> buscarPlacas(Date fechaInicio, Date fechaFin, String nombre);
+
 }

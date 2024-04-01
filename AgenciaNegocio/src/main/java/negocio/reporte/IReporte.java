@@ -30,4 +30,10 @@ public interface IReporte {
      public void generarReporteLicencias(List<Licencia> licencias);
      
      public void generarReporteTramites(List<Tramite> tramites);
+     
+     public List<Tramite> buscarTramites(Date fechaInicio, Date fechaFin, String nombre);
+     
+     public List<Licencia> buscarLicencias(Date fechaInicio, Date fechaFin, String nombre);
+     
+     public List<Placa> buscarPlacas(Date fechaInicio, Date fechaFin, String nombre);
 }
