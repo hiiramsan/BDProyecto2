@@ -356,8 +356,10 @@ public class PlacasFrame1 extends javax.swing.JFrame {
     private void rfcTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rfcTxtKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if (!Character.isDigit(c)) {
+        if (!Character.isLetterOrDigit(c)) {
             evt.consume();
+        } else {
+            evt.setKeyChar(Character.toUpperCase(c));
         }
     }//GEN-LAST:event_rfcTxtKeyTyped
 

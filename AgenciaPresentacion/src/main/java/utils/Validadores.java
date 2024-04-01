@@ -22,6 +22,7 @@ public class Validadores {
     }
     
     public boolean validarRFC(String rfc) {
-        return esNumerica(rfc) && rfc.length() <= 13;
+        String regex = "^[a-zA-Z0-9]*$";
+        return rfc.matches(regex);
     }
 }

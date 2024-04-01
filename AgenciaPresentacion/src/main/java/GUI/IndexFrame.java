@@ -557,19 +557,19 @@ public class IndexFrame extends javax.swing.JFrame {
         fecha20.set(2010, Calendar.OCTOBER, 31);
 
         // Crear 20 instancias 
-        PersonaDTO persona1 = new PersonaDTO("1234567891234", "Carlos", "Sanchez", "Meneses", "6443018817", fecha1, false);
-        PersonaDTO persona2 = new PersonaDTO("9876543219876", "Alejandro", "López", "Pérez", "6443022244", fecha2, false);
-        PersonaDTO persona3 = new PersonaDTO("1234560987656", "Laura", "García", "Hernández", "6443000011", fecha3, true);
-        PersonaDTO persona4 = new PersonaDTO("1111111111111", "María", "Martínez", "González", "6443055577", fecha4, false);
-        PersonaDTO persona5 = new PersonaDTO("2222222222222", "Javier", "Rodríguez", "Díaz", "6443044400", fecha5, true);
-        PersonaDTO persona6 = new PersonaDTO("3333333333333", "Ana", "Pérez", "Sánchez", "6443012345", fecha6, false);
-        PersonaDTO persona7 = new PersonaDTO("4444444444444", "David", "Gómez", "López", "6443088888", fecha7, false);
+        PersonaDTO persona1 = new PersonaDTO("SAMC0422HSRNS", "Carlos", "Sanchez", "Meneses", "6443018817", fecha1, false);
+        PersonaDTO persona2 = new PersonaDTO("LAGJ9305021L5", "Alejandro", "López", "Pérez", "6443022244", fecha2, false);
+        PersonaDTO persona3 = new PersonaDTO("VELJ7809254Q3", "Laura", "García", "Hernández", "6443000011", fecha3, true);
+        PersonaDTO persona4 = new PersonaDTO("JACM590831B16", "María", "Martínez", "González", "6443055577", fecha4, false);
+        PersonaDTO persona5 = new PersonaDTO("KOLJ890319CL1", "Javier", "Rodríguez", "Díaz", "6443044400", fecha5, true);
+        PersonaDTO persona6 = new PersonaDTO("PIRJ911023L71", "Ana", "Pérez", "Sánchez", "6443012345", fecha6, false);
+        PersonaDTO persona7 = new PersonaDTO("ROMJ770112123", "David", "Gómez", "López", "6443088888", fecha7, false);
         PersonaDTO persona8 = new PersonaDTO("5555555555555", "Sofía", "Hernández", "Ramírez", "6443077777", fecha8, true);
-        PersonaDTO persona9 = new PersonaDTO("6666666666666", "Miguel", "Cruz", "Flores", "6443066666", fecha9, false);
-        PersonaDTO persona10 = new PersonaDTO("7777777777777", "Paola", "Ruiz", "Vázquez", "6443000000", fecha10, false);
-        PersonaDTO persona11 = new PersonaDTO("8888888888888", "Diego", "Gutiérrez", "Torres", "6443099999", fecha11, true);
-        PersonaDTO persona12 = new PersonaDTO("9999999999999", "Isabel", "Díaz", "Ortiz", "6443023456", fecha12, false);
-        PersonaDTO persona13 = new PersonaDTO("1212121212121", "Fernando", "Santiago", "Núñez", "6443032109", fecha13, false);
+        PersonaDTO persona9 = new PersonaDTO("LIM2959401E50", "Miguel", "Cruz", "Flores", "6443066666", fecha9, false);
+        PersonaDTO persona10 = new PersonaDTO("XIMJ880801E50", "Paola", "Ruiz", "Vázquez", "6443000000", fecha10, false);
+        PersonaDTO persona11 = new PersonaDTO("SAMJ8411241T9", "Diego", "Gutiérrez", "Torres", "6443099999", fecha11, true);
+        PersonaDTO persona12 = new PersonaDTO("PIRJ911023L71", "Isabel", "Díaz", "Ortiz", "6443023456", fecha12, false);
+        PersonaDTO persona13 = new PersonaDTO("TONJ7112258H9", "Fernando", "Santiago", "Núñez", "6443032109", fecha13, false);
         PersonaDTO persona14 = new PersonaDTO("2323232323232", "Carmen", "Flores", "Luna", "6443087654", fecha14, true);
         PersonaDTO persona15 = new PersonaDTO("3434343434343", "José", "García", "Mendoza", "6443012345", fecha15, false);
         PersonaDTO persona16 = new PersonaDTO("4545454545454", "Elena", "Hernández", "Jiménez", "6443054321", fecha16, false);
