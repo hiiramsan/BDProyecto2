@@ -47,7 +47,7 @@ public class Automovil implements Serializable {
     @ManyToOne
     @JoinColumn(name = "persona_id", nullable = false)
     private Persona persona;
-    
+
     @OneToMany(mappedBy = "automovil")
     private List<Placa> placas;
 

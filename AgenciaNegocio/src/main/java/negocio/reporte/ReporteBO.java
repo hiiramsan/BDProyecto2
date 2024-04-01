@@ -205,11 +205,12 @@ public class ReporteBO implements IReporte {
             Paragraph fecha = new Paragraph("Fecha de generación: " + formatoFecha.format(fechaActual));
             fecha.setAlignment(Element.ALIGN_RIGHT);
 
-            PdfPTable tabla = new PdfPTable(4);
+            PdfPTable tabla = new PdfPTable(5);
             tabla.addCell("Fecha");
             tabla.addCell("Costo");
             tabla.addCell("Estado");
             tabla.addCell("Persona");
+            tabla.addCell("Tramite");
 
             for (Tramite tramite : tramites) {
                 Calendar fechaExpedicionCalendar = tramite.getFechaExpedicion();
@@ -221,6 +222,7 @@ public class ReporteBO implements IReporte {
                 tabla.addCell(String.valueOf(tramite.getEstado()));
                 String nombreCompleto = tramite.getPersona().getNombre() + " " + tramite.getPersona().getApellidoPaterno();
                 tabla.addCell(nombreCompleto);
+                tabla.addCell(tramite.getDecriminatorValue());
             }
 
             Phrase piePagina = new Phrase("AGENCIA FISCAL - Página 1");
