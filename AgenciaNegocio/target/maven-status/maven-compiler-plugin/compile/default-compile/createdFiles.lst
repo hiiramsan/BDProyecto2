@@ -16,6 +16,7 @@ negocio\automovil\AutomovilBO.class
 negocio\reporte\IReporte.class
 negocio\placa\IPlaca.class
 negocio\reporte\ReporteBO.class
+negocio\reporte\ReporteBO$PageNumberEvent.class
 excepciones\PersonaExistenteException.class
 conexion\IConexionDAO.class
 negocio\consultas\ConsultaBO.class

@@ -15,15 +15,6 @@ import java.util.List;
  * @author carlo
  */
 public interface IReporte {
-    public List<Tramite> obtenerReportePorNombre(String nombre);
-    
-    public List<Tramite> obtenerReportePorFechas(Date inicio, Date fin);
-    
-     public List<Placa> obtenerTodasLasPlacas();
-     
-     public List<Licencia> obtenerTodasLasLicencias();
-     
-     public List<Tramite> obtenerTodosLosTramites();
      
      public void generarReportePlacas(List<Placa> placas);
      
