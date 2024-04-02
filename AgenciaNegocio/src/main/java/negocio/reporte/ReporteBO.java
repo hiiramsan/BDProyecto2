@@ -24,11 +24,15 @@ import conexion.ConexionDAO;
 import conexion.IConexionDAO;
 import daos.reporte.IReporteDAO;
 import daos.reporte.ReporteDAO;
+import dtos.LicenciaDTO;
+import dtos.PlacaDTO;
+import dtos.TramiteDTO;
 import entidadesJPA.Licencia;
 import entidadesJPA.Placa;
 import entidadesJPA.Tramite;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -48,38 +52,36 @@ public class ReporteBO implements IReporte {
     }
 
     @Override
-    public void generarReportePlacas(List<Placa> placas) {
+    public void generarReportePlacas(List<PlacaDTO> placas) {
         Document doc = new Document();
 
         try {
-            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("ReporteTramites.pdf"));
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("ReportePlacas.pdf"));
             writer.setPageEvent(new PageNumberEvent());
 
             Font tituloFont = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD);
-            Paragraph titulo = new Paragraph("Reporte de Trámites", tituloFont);
+            Paragraph titulo = new Paragraph("Reporte de Placas", tituloFont);
             titulo.setAlignment(Element.ALIGN_CENTER);
 
             Date fechaActual = new Date();
-            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
             Paragraph fecha = new Paragraph("Fecha de generación: " + formatoFecha.format(fechaActual));
             fecha.setAlignment(Element.ALIGN_RIGHT);
 
             PdfPTable tabla = new PdfPTable(4);
             tabla.addCell(createCell("Fecha", true));
             tabla.addCell(createCell("Costo", true));
-            tabla.addCell(createCell("Tramite", true));
+            tabla.addCell(createCell("Trámite", true));
             tabla.addCell(createCell("Persona", true));
 
-            for (Placa placa : placas) {
-                Calendar fechaExpedicionCalendar = placa.getFechaExpedicion();
-                Date fechaExpedicion = (fechaExpedicionCalendar != null) ? fechaExpedicionCalendar.getTime() : null;
-                String fechaExpedicionString = (fechaExpedicion != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaExpedicion) : "NoDate";
+            for (PlacaDTO placa : placas) {
 
-                tabla.addCell(createCell(fechaExpedicionString, false));
+                String fechaExpedicionFormateada = (placa.getFechaExpedicion() != null) ? formatoFecha.format(placa.getFechaExpedicion().getTime()) : "NoDate";
+                tabla.addCell(createCell(fechaExpedicionFormateada, false));
+
                 tabla.addCell(createCell(String.valueOf(placa.getCosto()), false));
                 tabla.addCell(createCell("Expedición de Placas", false));
-                String nombreCompleto = placa.getPersona().getNombre() + " " + placa.getPersona().getApellidoPaterno();
-                tabla.addCell(createCell(nombreCompleto, false));
+                tabla.addCell(createCell(placa.getNombrePersona(), false));
             }
 
             doc.open();
@@ -91,38 +93,27 @@ public class ReporteBO implements IReporte {
             doc.add(tabla);
             doc.close();
 
-            JOptionPane.showMessageDialog(null, "PDF exportado! ruta: AgenciaPresentacion ", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "PDF exportado! Ruta: ReportePlacas.pdf", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("error");
+            System.out.println("Error al generar el reporte de placas.");
         }
-    }
-
-    private PdfPCell createCell(String content, boolean header) {
-        PdfPCell cell = new PdfPCell(new Phrase(content));
-        if (header) {
-            cell.setBackgroundColor(new BaseColor(122, 194,225));
-        } else {
-            cell.setBackgroundColor(new BaseColor(205, 232, 244));
-        }
-
-        return cell;
     }
 
     @Override
-    public void generarReporteLicencias(List<Licencia> licencias) {
+    public void generarReporteLicencias(List<LicenciaDTO> licencias) {
         Document doc = new Document();
 
         try {
-            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("ReporteTramites.pdf"));
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("ReporteLicencias.pdf"));
             writer.setPageEvent(new PageNumberEvent());
 
             Font tituloFont = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD);
-            Paragraph titulo = new Paragraph("Reporte de Trámites", tituloFont);
+            Paragraph titulo = new Paragraph("Reporte de Licencias", tituloFont);
             titulo.setAlignment(Element.ALIGN_CENTER);
 
             Date fechaActual = new Date();
-            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
             Paragraph fecha = new Paragraph("Fecha de generación: " + formatoFecha.format(fechaActual));
             fecha.setAlignment(Element.ALIGN_RIGHT);
 
@@ -133,20 +124,18 @@ public class ReporteBO implements IReporte {
             tabla.addCell(createCell("Vigencia", true));
             tabla.addCell(createCell("Persona", true));
 
-            for (Licencia licencia : licencias) {
-                Calendar fechaExpedicionCalendar = licencia.getFechaExpedicion();
-                Date fechaExpedicion = (fechaExpedicionCalendar != null) ? fechaExpedicionCalendar.getTime() : null;
-                String fechaExpedicionString = (fechaExpedicion != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaExpedicion) : "NoDate";
-                Calendar fechaVigenciaCalendar = licencia.getVigencia();
-                Date fechaVigencia = (fechaVigenciaCalendar != null) ? fechaVigenciaCalendar.getTime() : null;
-                String fechaVigenciaString = (fechaVigencia != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaVigencia) : "NoDate";
+            for (LicenciaDTO licencia : licencias) {
 
-                tabla.addCell(createCell(fechaExpedicionString, false));
+                String fechaExpedicionFormateada = (licencia.getFechaExpedicion() != null) ? formatoFecha.format(licencia.getFechaExpedicion().getTime()) : "NoDate";
+                tabla.addCell(createCell(fechaExpedicionFormateada, false));
+
                 tabla.addCell(createCell(String.valueOf(licencia.getCosto()), false));
                 tabla.addCell(createCell("Expedición de Licencias", false));
-                tabla.addCell(createCell(fechaVigenciaString, false));
-                String nombreCompleto = licencia.getPersona().getNombre() + " " + licencia.getPersona().getApellidoPaterno();
-                tabla.addCell(createCell(nombreCompleto, false));
+
+                String fechaVigenciaFormateada = (licencia.getFechaVigencia() != null) ? formatoFecha.format(licencia.getFechaVigencia().getTime()) : "NoDate";
+                tabla.addCell(createCell(fechaVigenciaFormateada, false));
+
+                tabla.addCell(createCell(licencia.getNombrePersona(), false));
             }
 
             doc.open();
@@ -158,10 +147,130 @@ public class ReporteBO implements IReporte {
             doc.add(tabla);
             doc.close();
 
-            JOptionPane.showMessageDialog(null, "PDF exportado! ruta: AgenciaPresentacion ", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "PDF exportado! Ruta: ReporteLicencias.pdf", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Error al generar el reporte de licencias.");
         }
+    }
+
+    @Override
+    public void generarReporteTramites(List<TramiteDTO> tramites) {
+        Document doc = new Document();
+
+        try {
+            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("ReporteTramites.pdf"));
+            writer.setPageEvent(new PageNumberEvent());
+
+            Font tituloFont = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD);
+            Paragraph titulo = new Paragraph("Reporte de Trámites", tituloFont);
+            titulo.setAlignment(Element.ALIGN_CENTER);
+
+            Date fechaActual = new Date();
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+            Paragraph fecha = new Paragraph("Fecha de generación: " + formatoFecha.format(fechaActual));
+            fecha.setAlignment(Element.ALIGN_RIGHT);
+
+            PdfPTable tabla = new PdfPTable(5);
+            tabla.addCell(createCell("Fecha", true));
+            tabla.addCell(createCell("Costo", true));
+            tabla.addCell(createCell("Estado", true));
+            tabla.addCell(createCell("Persona", true));
+            tabla.addCell(createCell("Trámite", true));
+
+            for (TramiteDTO tramite : tramites) {
+                String fechaExpedicionFormateada = (tramite.getFechaExpedicion() != null) ? formatoFecha.format(tramite.getFechaExpedicion().getTime()) : "NoDate";
+                tabla.addCell(createCell(fechaExpedicionFormateada, false));
+                tabla.addCell(createCell(Double.toString(tramite.getCosto()), false));
+                tabla.addCell(createCell(String.valueOf(tramite.getEstado()), false));
+                tabla.addCell(createCell(tramite.getNombrePersona(), false));
+                tabla.addCell(createCell(tramite.getTipoTramite(), false));
+            }
+
+            doc.open();
+            doc.add(titulo);
+            doc.add(Chunk.NEWLINE);
+            doc.add(fecha);
+            doc.add(Chunk.NEWLINE);
+            doc.add(Chunk.NEWLINE);
+            doc.add(tabla);
+            doc.close();
+
+            JOptionPane.showMessageDialog(null, "PDF exportado! Ruta: ReporteTramites.pdf", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error al generar el reporte de trámites.");
+        }
+    }
+
+    @Override
+    public List<TramiteDTO> buscarTramites(Date fechaInicio, Date fechaFin, String nombre) {
+        List<Tramite> tramites = this.reporteDAO.buscarTramites(fechaInicio, fechaFin, nombre);
+        List<TramiteDTO> tramitesDTO = new ArrayList<>();
+
+        for (Tramite tramite : tramites) {
+            TramiteDTO dto = new TramiteDTO();
+            Date fechaExp = tramite.getFechaExpedicion().getTime();
+            dto.setFechaExpedicion(fechaExp);
+            dto.setCosto(tramite.getCosto());
+            dto.setEstado(tramite.getEstado());
+            String nombreCompleto = tramite.getPersona().getNombre() + tramite.getPersona().getApellidoPaterno();
+            dto.setNombrePersona(nombreCompleto);
+            dto.setTipoTramite(tramite.getDecriminatorValue());
+            tramitesDTO.add(dto);
+        }
+
+        return tramitesDTO;
+    }
+
+    @Override
+    public List<LicenciaDTO> buscarLicencias(Date fechaInicio, Date fechaFin, String nombre) {
+        List<Licencia> licencias = this.reporteDAO.buscarLicencias(fechaInicio, fechaFin, nombre);
+        List<LicenciaDTO> licenciasDTO = new ArrayList<>();
+
+        for (Licencia licencia : licencias) {
+            LicenciaDTO dto = new LicenciaDTO();
+            dto.setFechaExpedicion(licencia.getFechaExpedicion());
+            dto.setCosto(licencia.getCosto());
+            dto.setFechaVigencia(licencia.getVigencia());
+            String nombreCompleto = licencia.getPersona().getNombre() + licencia.getPersona().getApellidoPaterno();
+            dto.setNombrePersona(nombreCompleto);
+
+            licenciasDTO.add(dto);
+        }
+
+        return licenciasDTO;
+    }
+
+    @Override
+    public List<PlacaDTO> buscarPlacas(Date fechaInicio, Date fechaFin, String nombre) {
+        List<Placa> placas = this.reporteDAO.buscarPlacas(fechaInicio, fechaFin, nombre);
+        List<PlacaDTO> placasDTO = new ArrayList<>();
+
+        for (Placa placa : placas) {
+            PlacaDTO dto = new PlacaDTO();
+            dto.setFechaExpedicion(placa.getFechaExpedicion());
+            dto.setCosto(placa.getCosto());
+            String nombreCompleto = placa.getPersona().getNombre() + placa.getPersona().getApellidoPaterno();
+            dto.setNombrePersona(nombreCompleto);
+            dto.setClaveNumerica(placa.getNumeroAlfanumerico());
+
+            placasDTO.add(dto);
+        }
+
+        return placasDTO;
+    }
+
+    private PdfPCell createCell(String content, boolean header) {
+        PdfPCell cell = new PdfPCell(new Phrase(content));
+        if (header) {
+            cell.setBackgroundColor(new BaseColor(122, 194, 225));
+        } else {
+            cell.setBackgroundColor(new BaseColor(205, 232, 244));
+        }
+
+        return cell;
     }
 
     private static class PageNumberEvent extends PdfPageEventHelper {
@@ -175,74 +284,5 @@ public class ReporteBO implements IReporte {
                     document.right() - 50,
                     document.bottom() - 10, 0);
         }
-    }
-
-    @Override
-    public void generarReporteTramites(List<Tramite> tramites) {
-        Document doc = new Document();
-
-        try {
-            PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("ReporteTramites.pdf"));
-            writer.setPageEvent(new PageNumberEvent());
-
-            Font tituloFont = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD);
-            Paragraph titulo = new Paragraph("Reporte de Trámites", tituloFont);
-            titulo.setAlignment(Element.ALIGN_CENTER);
-
-            Date fechaActual = new Date();
-            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            Paragraph fecha = new Paragraph("Fecha de generación: " + formatoFecha.format(fechaActual));
-            fecha.setAlignment(Element.ALIGN_RIGHT);
-
-            PdfPTable tabla = new PdfPTable(5);
-            tabla.addCell(createCell("Fecha", true));
-            tabla.addCell(createCell("Costo", true));
-            tabla.addCell(createCell("Estado", true));
-            tabla.addCell(createCell("Persona", true));
-            tabla.addCell(createCell("Tramite", true));
-
-            for (Tramite tramite : tramites) {
-                Calendar fechaExpedicionCalendar = tramite.getFechaExpedicion();
-                Date fechaExpedicion = (fechaExpedicionCalendar != null) ? fechaExpedicionCalendar.getTime() : null;
-                String fechaExpedicionString = (fechaExpedicion != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaExpedicion) : "NoDate";
-
-                tabla.addCell(createCell(fechaExpedicionString, false));
-                tabla.addCell(createCell(String.valueOf(tramite.getCosto()), false));
-                tabla.addCell(createCell(String.valueOf(tramite.getEstado()), false));
-                String nombreCompleto = tramite.getPersona().getNombre() + " " + tramite.getPersona().getApellidoPaterno();
-                tabla.addCell(createCell(nombreCompleto, false));
-                tabla.addCell(createCell(tramite.getDecriminatorValue(), false));
-            }
-
-            doc.open();
-            doc.add(titulo);
-            doc.add(Chunk.NEWLINE);
-            doc.add(fecha);
-            doc.add(Chunk.NEWLINE);
-            doc.add(Chunk.NEWLINE);
-            doc.add(tabla);
-            doc.close();
-
-            JOptionPane.showMessageDialog(null, "PDF exportado! ruta: AgenciaPresentacion ", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("error");
-        }
-    }
-
-    @Override
-    public List<Tramite> buscarTramites(Date fechaInicio, Date fechaFin, String nombre) {
-        return this.reporteDAO.buscarTramites(fechaInicio, fechaFin, nombre);
-    }
-
-    @Override
-    public List<Licencia> buscarLicencias(Date fechaInicio, Date fechaFin, String nombre) {
-        return this.reporteDAO.buscarLicencias(fechaInicio, fechaFin, nombre);
-    }
-
-    @Override
-    public List<Placa> buscarPlacas(Date fechaInicio, Date fechaFin, String nombre) {
-        return this.reporteDAO.buscarPlacas(fechaInicio, fechaFin, nombre);
     }
 }

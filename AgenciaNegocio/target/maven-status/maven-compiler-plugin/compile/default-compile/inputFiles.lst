@@ -21,6 +21,7 @@ C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\jav
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\java\conexion\ConexionDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\java\encriptador\Encriptador.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\java\negocio\licencia\LicenciaBO.java
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\java\dtos\TramiteDTO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\java\dtos\PersonaDTO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\java\excepciones\LicenciaActivaException.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\java\negocio\reporte\IReporte.java

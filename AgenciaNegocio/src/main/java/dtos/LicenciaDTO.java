@@ -18,22 +18,32 @@ public class LicenciaDTO implements Serializable {
     private Calendar fechaVigencia;
     private float costo;
     private EstadoTramite estado;
-
+    private String nombrePersona;
+    
     public LicenciaDTO() {
     }
 
-    
-    
-    public LicenciaDTO(Calendar fechaExpedicion, Calendar fechaVigencia, float costo, EstadoTramite estado) {
+    public LicenciaDTO(Calendar fechaExpedicion, Calendar fechaVigencia, float costo, EstadoTramite estado, String nombrePersona) {
         this.fechaExpedicion = fechaExpedicion;
         this.fechaVigencia = fechaVigencia;
         this.costo = costo;
         this.estado = estado;
+        this.nombrePersona = nombrePersona;
     }
-
+    
     public Calendar getFechaExpedicion() {
         return fechaExpedicion;
     }
+
+    public String getNombrePersona() {
+        return nombrePersona;
+    }
+
+    public void setNombrePersona(String nombrePersona) {
+        this.nombrePersona = nombrePersona;
+    }
+    
+    
 
     public void setFechaExpedicion(Calendar fechaExpedicion) {
         this.fechaExpedicion = fechaExpedicion;

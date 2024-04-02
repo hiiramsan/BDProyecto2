@@ -6,6 +6,9 @@ package GUI;
 
 import conexion.ConexionDAO;
 import conexion.IConexionDAO;
+import dtos.LicenciaDTO;
+import dtos.PlacaDTO;
+import dtos.TramiteDTO;
 import entidadesJPA.Licencia;
 import entidadesJPA.Placa;
 import entidadesJPA.Tramite;
@@ -33,10 +36,10 @@ public class ReportesFrame extends javax.swing.JFrame {
 
     IConexionDAO conexionDAO = new ConexionDAO();
     IReporte reporteBO = new ReporteBO(conexionDAO);
-    
-    List<Tramite> tramites;
-    List<Placa> placas;
-    List<Licencia> licencias;
+
+    List<TramiteDTO> tramites;
+    List<PlacaDTO> placas;
+    List<LicenciaDTO> licencias;
 
     /**
      * Creates new form LicenciasFrame
@@ -52,14 +55,14 @@ public class ReportesFrame extends javax.swing.JFrame {
         exportarBtn.setVisible(false);
     }
 
-    public void cargarReportePlacasEnTabla(JTable tabla, List<Placa> placas) {
+    public void cargarReportePlacasEnTabla(JTable tabla, List<PlacaDTO> placas) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         modeloTabla.addColumn("Fecha");
         modeloTabla.addColumn("Costo");
         modeloTabla.addColumn("Tramite");
         modeloTabla.addColumn("Persona");
 
-        for (Placa placa : placas) {
+        for (PlacaDTO placa : placas) {
 
             Object[] fila = new Object[4];
             Calendar fechaExpedicionCalendar = placa.getFechaExpedicion();
@@ -67,7 +70,7 @@ public class ReportesFrame extends javax.swing.JFrame {
             fila[0] = (fechaExpedicion != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaExpedicion) : "NoDate";
             fila[1] = placa.getCosto();
             fila[2] = "Placa";
-            fila[3] = placa.getPersona().getNombre() + " " + placa.getPersona().getApellidoPaterno();
+            fila[3] = placa.getNombrePersona();
 
             modeloTabla.addRow(fila);
         }
@@ -75,7 +78,7 @@ public class ReportesFrame extends javax.swing.JFrame {
         tabla.setModel(modeloTabla);
     }
 
-    public void cargarReporteLicenciasEnTabla(JTable tabla, List<Licencia> licencias) {
+    public void cargarReporteLicenciasEnTabla(JTable tabla, List<LicenciaDTO> licencias) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         modeloTabla.addColumn("Fecha");
         modeloTabla.addColumn("Costo");
@@ -83,7 +86,7 @@ public class ReportesFrame extends javax.swing.JFrame {
         modeloTabla.addColumn("Vigencia");
         modeloTabla.addColumn("Persona");
 
-        for (Licencia licencia : licencias) {
+        for (LicenciaDTO licencia : licencias) {
 
             Object[] fila = new Object[5];
             Calendar fechaExpedicionCalendar = licencia.getFechaExpedicion();
@@ -91,10 +94,10 @@ public class ReportesFrame extends javax.swing.JFrame {
             fila[0] = (fechaExpedicion != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaExpedicion) : "NoDate";
             fila[1] = licencia.getCosto();
             fila[2] = "Licencia";
-            Calendar fechaVigenciaCalendar = licencia.getVigencia();
+            Calendar fechaVigenciaCalendar = licencia.getFechaVigencia();
             Date fechaVigencia = (fechaVigenciaCalendar != null) ? fechaVigenciaCalendar.getTime() : null;
             fila[3] = (fechaVigencia != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaVigencia) : "NoDate";
-            fila[4] = licencia.getPersona().getNombre() + " " + licencia.getPersona().getApellidoPaterno();
+            fila[4] = licencia.getNombrePersona();
 
             modeloTabla.addRow(fila);
         }
@@ -102,22 +105,21 @@ public class ReportesFrame extends javax.swing.JFrame {
         tabla.setModel(modeloTabla);
     }
 
-    public void cargarReporteTramitesEnTabla(List<Tramite> tramites, JTable tabla) {
+    public void cargarReporteTramitesEnTabla(List<TramiteDTO> tramites, JTable tabla) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         modeloTabla.addColumn("Costo");
         modeloTabla.addColumn("Estado");
         modeloTabla.addColumn("Fecha Expedición");
         modeloTabla.addColumn("Persona");
 
-        for (Tramite tramite : tramites) {
+        for (TramiteDTO tramite : tramites) {
             Object[] fila = new Object[4];
             fila[0] = tramite.getCosto();
             fila[1] = tramite.getEstado();
-
-            Calendar fechaExpedicionCalendar = tramite.getFechaExpedicion();
-            Date fechaExpedicion = (fechaExpedicionCalendar != null) ? fechaExpedicionCalendar.getTime() : null;
-            fila[2] = (fechaExpedicion != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fechaExpedicion) : "NoDate";
-            fila[3] = tramite.getPersona().getNombre() + " " + tramite.getPersona().getApellidoPaterno();
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaExpedicionFormateada = (tramite.getFechaExpedicion() != null) ? formatoFecha.format(tramite.getFechaExpedicion().getTime()) : "NoDate";
+            fila[2] = fechaExpedicionFormateada;
+            fila[3] = tramite.getNombrePersona();
             modeloTabla.addRow(fila);
 
         }

@@ -14,23 +14,36 @@ import java.util.Calendar;
  * @author carlo
  */
 public class PlacaDTO implements Serializable {
+
     private String claveNumerica;
     private EstadoTramite estado;
     private Calendar fechaExpedicion;
     private Automovil automovil;
     private float costo;
+    private String nombrePersona;
 
     public PlacaDTO() {
     }
 
-    public PlacaDTO(String claveNumerica, EstadoTramite estado, Calendar fechaExpedicion, Automovil automovil, float costo) {
+    public PlacaDTO(String claveNumerica, EstadoTramite estado, Calendar fechaExpedicion, Automovil automovil, float costo, String nombrePersona) {
         this.claveNumerica = claveNumerica;
         this.estado = estado;
         this.fechaExpedicion = fechaExpedicion;
         this.automovil = automovil;
         this.costo = costo;
+        this.nombrePersona = nombrePersona;
+    }
+
+    public String getNombrePersona() {
+        return nombrePersona;
+    }
+
+    public void setNombrePersona(String nombrePersona) {
+        this.nombrePersona = nombrePersona;
     }
     
+    
+
     public String getClaveNumerica() {
         return claveNumerica;
     }

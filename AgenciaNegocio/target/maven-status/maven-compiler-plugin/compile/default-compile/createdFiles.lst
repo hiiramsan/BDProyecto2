@@ -1,5 +1,6 @@
 negocio\persona\PersonaBO.class
 negocio\consultas\IConsulta.class
+dtos\TramiteDTO.class
 negocio\placa\PlacaBO.class
 excepciones\LicenciaInactivaException.class
 excepciones\PersonaNoEncontradaException.class
