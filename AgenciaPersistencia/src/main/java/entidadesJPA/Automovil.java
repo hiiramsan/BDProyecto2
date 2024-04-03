@@ -18,8 +18,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
- * @author carlo
+ * Clase que representa la entidad de Automovil en la base de datos.
+ * Esta clase es parte del modelo de persistencia JPA.
+ * Contiene información sobre los automóviles registrados en el sistema.
+ * @author Carlos Sanchez
  */
 @Entity
 @Table(name = "automoviles")
@@ -51,9 +53,21 @@ public class Automovil implements Serializable {
     @OneToMany(mappedBy = "automovil")
     private List<Placa> placas;
 
+    /**
+     * Constructor por defecto de la clase Automovil.
+     */
     public Automovil() {
     }
 
+    /**
+     * Constructor de la clase Automovil.
+     * @param numSerie Número de serie del automóvil.
+     * @param marca Marca del automóvil.
+     * @param linea Línea del automóvil.
+     * @param color Color del automóvil.
+     * @param modelo Modelo del automóvil.
+     * @param persona Persona asociada al automóvil.
+     */
     public Automovil(String numSerie, String marca, String linea, String color, int modelo, Persona persona) {
         this.numSerie = numSerie;
         this.marca = marca;

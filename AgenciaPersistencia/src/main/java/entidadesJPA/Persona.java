@@ -21,8 +21,9 @@ import javax.persistence.TemporalType;
 
 
 /**
- *
- * @author carlos
+ * Clase que representa la entidad de Persona en la base de datos.
+ * Contiene información sobre las personas registradas en el sistema.
+ * @author Carlos Sanchez
  */
 @Entity
 @Table(name = "personas")
@@ -54,13 +55,22 @@ public class Persona implements Serializable {
     @Column(name="discapacidad")
     private boolean discapacidad;
 
-    // originalmente estaba persist
     @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
     private List<Automovil> automoviles;
 
     @OneToMany(mappedBy = "persona", cascade = CascadeType.PERSIST)
     private List<Tramite> tramites;
     
+    /**
+     * Constructor de la clase Persona.
+     * @param rfc RFC de la persona.
+     * @param nombre Nombre de la persona.
+     * @param apellidoPaterno Apellido paterno de la persona.
+     * @param apellidoMaterno Apellido materno de la persona.
+     * @param telefono Teléfono de la persona.
+     * @param fechaNacimiento Fecha de nacimiento de la persona.
+     * @param discapacidad Indica si la persona tiene alguna discapacidad.
+     */
     public Persona(String rfc, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, Calendar fechaNacimiento, boolean discapacidad) {
         this.rfc = rfc;
         this.nombre = nombre;
@@ -71,6 +81,9 @@ public class Persona implements Serializable {
         this.discapacidad = discapacidad;
     }
 
+    /**
+     * Constructor por defecto de la clase Persona.
+     */
     public Persona() {
     }
 
@@ -154,14 +167,9 @@ public class Persona implements Serializable {
         this.tramites = tramites;
     }
 
-    
-    
     @Override
     public String toString() {
         return "Persona{" + "id=" + id + ", rfc=" + rfc + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", telefono=" + telefono + ", fechaNacimiento=" + fechaNacimiento + ", discapacidad=" + discapacidad + ", automoviles=" + automoviles + ", tramites=" + tramites + '}';
     }
 
-    
-    
-    
 }

@@ -7,22 +7,19 @@ package entidadesJPA;
 import com.mycompany.agenciapersistencia.controlador.utils.EstadoTramite;
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
- * @author carlo
+ * Clase que representa la entidad de Placa en la base de datos.
+ * Extiende de la clase Tramite.
+ * Contiene información sobre las placas registradas en el sistema.
+ * @author Carlos Sanchez
  */
 @Entity
 @DiscriminatorValue("placa")
@@ -39,18 +36,36 @@ public class Placa extends Tramite implements Serializable {
     @JoinColumn(name="automovil_id", nullable=false)
     private Automovil automovil;
 
+    /**
+     * Constructor de la clase Placa.
+     * @param fechaRecepcion Fecha de recepción de la placa.
+     * @param numeroAlfanumerico Número alfanumérico de la placa.
+     * @param automovil Automóvil asociado a la placa.
+     */
     public Placa(Calendar fechaRecepcion, String numeroAlfanumerico, Automovil automovil) {
         this.fechaRecepcion = fechaRecepcion;
         this.numeroAlfanumerico = numeroAlfanumerico;
         this.automovil = automovil;
     }
 
+    /**
+     * Constructor de la clase Placa.
+     * @param numeroAlfanumerico Número alfanumérico de la placa.
+     * @param automovil Automóvil asociado a la placa.
+     * @param costo Costo de la placa.
+     * @param estado Estado de la placa.
+     * @param fechaExpedicion Fecha de expedición de la placa.
+     * @param persona Persona asociada a la placa.
+     */
     public Placa(String numeroAlfanumerico, Automovil automovil, float costo, EstadoTramite estado, Calendar fechaExpedicion, Persona persona) {
         super(costo, estado, fechaExpedicion, persona);
         this.numeroAlfanumerico = numeroAlfanumerico;
         this.automovil = automovil;
     }
 
+    /**
+     * Constructor por defecto de la clase Placa.
+     */
     public Placa() {
     }
 
@@ -77,14 +92,9 @@ public class Placa extends Tramite implements Serializable {
     public void setAutomovil(Automovil automovil) {
         this.automovil = automovil;
     }
-    
-    
 
     @Override
     public String toString() {
         return "Placa{" + "fechaRecepcion=" + fechaRecepcion + ", numeroAlfanumerico=" + numeroAlfanumerico + ", automovil=" + automovil + '}';
     }
-    
-    
-    
 }
