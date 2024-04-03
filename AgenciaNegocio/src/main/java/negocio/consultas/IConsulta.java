@@ -4,6 +4,9 @@
  */
 package negocio.consultas;
 
+import dtos.PersonaDTO;
+import dtos.PlacaDTO;
+import dtos.TramiteDTO;
 import entidadesJPA.Persona;
 import entidadesJPA.Placa;
 import entidadesJPA.Tramite;
@@ -15,10 +18,10 @@ import java.util.List;
  * @author carlo
  */
 public interface IConsulta {
-    public List<Persona> buscarPersonaPorRFC(String rfc);
-    public List<Persona> buscarPersonaPorNombreSimilar(String nombre);
-    public List<Persona> buscarPersonaPorFechaNacimiento(Date fechaNacimiento);
+    public List<PersonaDTO> buscarPersonaPorRFC(String rfc);
+    public List<PersonaDTO> buscarPersonaPorNombreSimilar(String nombre);
+    public List<PersonaDTO> buscarPersonaPorFechaNacimiento(Date fechaNacimiento);
     public List<?> consultarTramites(String rfc, String consulta);
-    public List<Tramite> obtenerTramites(String rfc);
-    public List<Placa> obtenerPlacasPorFechaYNombre(Date fechaInicio, Date fechaFin, String nombre);
+    public List<TramiteDTO> obtenerTramites(String rfc);
+    public List<PlacaDTO> obtenerPlacasPorFechaYNombre(Date fechaInicio, Date fechaFin, String nombre);
 }

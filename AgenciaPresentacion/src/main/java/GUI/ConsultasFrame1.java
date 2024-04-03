@@ -6,6 +6,7 @@ package GUI;
 
 import conexion.ConexionDAO;
 import conexion.IConexionDAO;
+import dtos.PersonaDTO;
 import entidadesJPA.Persona;
 import entidadesJPA.Tramite;
 import java.text.SimpleDateFormat;
@@ -44,7 +45,7 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
         tablitaSP.setVisible(false);
     }
 
-    public void cargarDatosTabla(List<Persona> personas, JTable tablaPersonas) {
+    public void cargarDatosTabla(List<PersonaDTO> personas, JTable tablaPersonas) {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[]{"RFC", "Nombre", "Birth", "Telefono"});
 
@@ -53,7 +54,7 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
         } else {
             tituloTablas.setText("Selecciona 1 de " + personas.size() + " personas encontradas para continuar");
 
-            for (Persona persona : personas) {
+            for (PersonaDTO persona : personas) {
                 Date fecha = persona.getFechaNacimiento().getTime();
                 String fechaString = (fecha != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fecha) : "NoDate";
                 model.addRow(new Object[]{persona.getRfc(), persona.getNombre(), fechaString, persona.getTelefono()});
@@ -439,9 +440,8 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         // TODO add your handling code here:
         Date fecha = jfecha.getDate();
-        //  String fechaString = (fecha != null) ? new SimpleDateFormat("yyyy-MM-dd").format(fecha) : "NoDate";
 
-        List<Persona> personasObtenidas;
+        List<PersonaDTO> personasObtenidas;
 
         if ((!nombreRB.isSelected() && !rfcRB.isSelected() && !fechaNacRB.isSelected())) {
             errorTxt.setText("Debes seleccionar una para continuar");

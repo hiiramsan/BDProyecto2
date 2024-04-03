@@ -108,14 +108,14 @@ public class ReportesFrame extends javax.swing.JFrame {
     public void cargarReporteTramitesEnTabla(List<TramiteDTO> tramites, JTable tabla) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         modeloTabla.addColumn("Costo");
-        modeloTabla.addColumn("Estado");
+        modeloTabla.addColumn("Tipo Tramite");
         modeloTabla.addColumn("Fecha Expedición");
         modeloTabla.addColumn("Persona");
 
         for (TramiteDTO tramite : tramites) {
             Object[] fila = new Object[4];
             fila[0] = tramite.getCosto();
-            fila[1] = tramite.getEstado();
+            fila[1] = tramite.getTipoTramite();
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
             String fechaExpedicionFormateada = (tramite.getFechaExpedicion() != null) ? formatoFecha.format(tramite.getFechaExpedicion().getTime()) : "NoDate";
             fila[2] = fechaExpedicionFormateada;

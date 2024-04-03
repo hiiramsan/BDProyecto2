@@ -117,11 +117,10 @@ public class ReporteBO implements IReporte {
             Paragraph fecha = new Paragraph("Fecha de generación: " + formatoFecha.format(fechaActual));
             fecha.setAlignment(Element.ALIGN_RIGHT);
 
-            PdfPTable tabla = new PdfPTable(5);
+            PdfPTable tabla = new PdfPTable(4);
             tabla.addCell(createCell("Fecha", true));
             tabla.addCell(createCell("Costo", true));
             tabla.addCell(createCell("Trámite", true));
-            tabla.addCell(createCell("Vigencia", true));
             tabla.addCell(createCell("Persona", true));
 
             for (LicenciaDTO licencia : licencias) {
@@ -132,8 +131,7 @@ public class ReporteBO implements IReporte {
                 tabla.addCell(createCell(String.valueOf(licencia.getCosto()), false));
                 tabla.addCell(createCell("Expedición de Licencias", false));
 
-                String fechaVigenciaFormateada = (licencia.getFechaVigencia() != null) ? formatoFecha.format(licencia.getFechaVigencia().getTime()) : "NoDate";
-                tabla.addCell(createCell(fechaVigenciaFormateada, false));
+      
 
                 tabla.addCell(createCell(licencia.getNombrePersona(), false));
             }
@@ -171,10 +169,9 @@ public class ReporteBO implements IReporte {
             Paragraph fecha = new Paragraph("Fecha de generación: " + formatoFecha.format(fechaActual));
             fecha.setAlignment(Element.ALIGN_RIGHT);
 
-            PdfPTable tabla = new PdfPTable(5);
+            PdfPTable tabla = new PdfPTable(4);
             tabla.addCell(createCell("Fecha", true));
             tabla.addCell(createCell("Costo", true));
-            tabla.addCell(createCell("Estado", true));
             tabla.addCell(createCell("Persona", true));
             tabla.addCell(createCell("Trámite", true));
 
@@ -182,7 +179,6 @@ public class ReporteBO implements IReporte {
                 String fechaExpedicionFormateada = (tramite.getFechaExpedicion() != null) ? formatoFecha.format(tramite.getFechaExpedicion().getTime()) : "NoDate";
                 tabla.addCell(createCell(fechaExpedicionFormateada, false));
                 tabla.addCell(createCell(Double.toString(tramite.getCosto()), false));
-                tabla.addCell(createCell(String.valueOf(tramite.getEstado()), false));
                 tabla.addCell(createCell(tramite.getNombrePersona(), false));
                 tabla.addCell(createCell(tramite.getTipoTramite(), false));
             }
@@ -215,7 +211,7 @@ public class ReporteBO implements IReporte {
             dto.setFechaExpedicion(fechaExp);
             dto.setCosto(tramite.getCosto());
             dto.setEstado(tramite.getEstado());
-            String nombreCompleto = tramite.getPersona().getNombre() + tramite.getPersona().getApellidoPaterno();
+            String nombreCompleto = tramite.getPersona().getNombre()+ " " + tramite.getPersona().getApellidoPaterno();
             dto.setNombrePersona(nombreCompleto);
             dto.setTipoTramite(tramite.getDecriminatorValue());
             tramitesDTO.add(dto);
@@ -234,7 +230,7 @@ public class ReporteBO implements IReporte {
             dto.setFechaExpedicion(licencia.getFechaExpedicion());
             dto.setCosto(licencia.getCosto());
             dto.setFechaVigencia(licencia.getVigencia());
-            String nombreCompleto = licencia.getPersona().getNombre() + licencia.getPersona().getApellidoPaterno();
+            String nombreCompleto = licencia.getPersona().getNombre() + " "+ licencia.getPersona().getApellidoPaterno();
             dto.setNombrePersona(nombreCompleto);
 
             licenciasDTO.add(dto);
@@ -252,7 +248,7 @@ public class ReporteBO implements IReporte {
             PlacaDTO dto = new PlacaDTO();
             dto.setFechaExpedicion(placa.getFechaExpedicion());
             dto.setCosto(placa.getCosto());
-            String nombreCompleto = placa.getPersona().getNombre() + placa.getPersona().getApellidoPaterno();
+            String nombreCompleto = placa.getPersona().getNombre()+ " " + placa.getPersona().getApellidoPaterno();
             dto.setNombrePersona(nombreCompleto);
             dto.setClaveNumerica(placa.getNumeroAlfanumerico());
 
