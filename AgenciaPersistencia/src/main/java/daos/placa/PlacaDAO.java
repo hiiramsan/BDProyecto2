@@ -1,7 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Esta clase implementa los métodos de la interfaz IPlacaDAO para interactuar con la entidad Placa en la base de datos.
  */
+
 package daos.placa;
 
 import com.mycompany.agenciapersistencia.controlador.utils.EstadoTramite;
@@ -11,14 +11,13 @@ import entidadesJPA.Automovil;
 import entidadesJPA.Persona;
 import entidadesJPA.Placa;
 import java.util.Calendar;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 /**
- *
- * @author carlo
+ * Esta clase implementa los métodos de la interfaz IPlacaDAO para interactuar con la entidad Placa en la base de datos.
+ * @author Carlos Sanchez
  */
 public class PlacaDAO implements IPlacaDAO {
 
@@ -28,15 +27,21 @@ public class PlacaDAO implements IPlacaDAO {
         this.conexion = conexion;
     }
 
+    /**
+     * Registra una nueva placa en la base de datos.
+     * @param automovil El automóvil asociado a la placa.
+     * @param costo El costo de la placa.
+     * @param claveNumerica La clave numérica de la placa.
+     * @param persona La persona propietaria del automóvil.
+     * @return Objeto PlacaDTO con los datos de la placa registrada.
+     */
     @Override
     public PlacaDTO registrarPlaca(Automovil automovil, float costo, String claveNumerica, Persona persona) {
         EntityManager entityManager = conexion.crearConexion();
         entityManager.getTransaction().begin();
 
         try {
-
             Calendar fechaExpedicion = Calendar.getInstance();
-
             Placa placa = new Placa(claveNumerica, automovil, costo, EstadoTramite.ACTIVA, fechaExpedicion, persona);
             entityManager.persist(placa);
             entityManager.getTransaction().commit();
@@ -51,13 +56,17 @@ public class PlacaDAO implements IPlacaDAO {
             return placaDTO;
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
-
             throw e;
         } finally {
             entityManager.close();
         }
     }
 
+    /**
+     * Obtiene la placa activa asociada a un automóvil.
+     * @param automovil El automóvil para el cual se busca la placa activa.
+     * @return La placa activa asociada al automóvil, o null si no se encuentra ninguna placa activa.
+     */
     public Placa obtenerPlacaActiva(Automovil automovil) {
         EntityManager entityManager = conexion.crearConexion();
         try {
@@ -73,6 +82,10 @@ public class PlacaDAO implements IPlacaDAO {
         }
     }
 
+    /**
+     * Desactiva la placa asociada a un automóvil.
+     * @param automovil El automóvil del cual se desactivará la placa.
+     */
     public void desactivarPlaca(Automovil automovil) {
         EntityManager entityManager = conexion.crearConexion();
         entityManager.getTransaction().begin();
@@ -94,5 +107,4 @@ public class PlacaDAO implements IPlacaDAO {
             entityManager.close();
         }
     }
-
 }

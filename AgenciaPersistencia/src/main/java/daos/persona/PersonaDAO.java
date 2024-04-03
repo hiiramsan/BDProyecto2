@@ -1,33 +1,29 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Esta clase implementa la interfaz IPersonaDAO y proporciona métodos para interactuar con la entidad Persona en la base de datos.
  */
+
 package daos.persona;
 
 import conexion.IConexionDAO;
 import dtos.PersonaDTO;
-import entidadesJPA.Automovil;
-import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
-import entidadesJPA.Placa;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 /**
- *
- * @author carlo
+ * Clase que implementa la interfaz IPersonaDAO y proporciona métodos para interactuar con la entidad Persona en la base de datos.
  */
 public class PersonaDAO implements IPersonaDAO {
 
     private final IConexionDAO conexion;
-    private static final Logger LOG = Logger.getLogger(PersonaDAO.class.getName());
 
+    /**
+     * Constructor de la clase PersonaDAO.
+     * @param conexion Objeto que implementa la interfaz IConexionDAO para gestionar la conexión a la base de datos.
+     */
     public PersonaDAO(IConexionDAO conexion) {
         this.conexion = conexion;
     }
@@ -38,11 +34,11 @@ public class PersonaDAO implements IPersonaDAO {
 
         entityManager.getTransaction().begin();
 
-        Persona personaARegisrar = new Persona(persona.getRfc(), persona.getNombre(), persona.getApellidoPaterno(),
+        Persona personaARegistrar = new Persona(persona.getRfc(), persona.getNombre(), persona.getApellidoPaterno(),
                 persona.getApellidoMaterno(), persona.getTelefono(),
                 persona.getFechaNacimiento(), persona.isDiscapacidad());
 
-        entityManager.persist(personaARegisrar);
+        entityManager.persist(personaARegistrar);
 
         entityManager.getTransaction().commit();
         entityManager.close();
@@ -106,7 +102,6 @@ public class PersonaDAO implements IPersonaDAO {
         entityManager.getTransaction().begin();
 
         try {
-
             String jpql = "SELECT p FROM Persona p WHERE p.rfc = :rfc";
             TypedQuery<Persona> query = entityManager.createQuery(jpql, Persona.class);
             query.setParameter("rfc", rfc);
@@ -133,10 +128,8 @@ public class PersonaDAO implements IPersonaDAO {
             Period periodo = Period.between(fechaNacimiento, fechaActual);
             int edad = periodo.getYears();
             return edad >= 18;
-
         } else {
             return false;
         }
     }
-
 }

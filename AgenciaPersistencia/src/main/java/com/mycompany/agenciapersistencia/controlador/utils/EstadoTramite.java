@@ -5,9 +5,12 @@
 package com.mycompany.agenciapersistencia.controlador.utils;
 
 /**
- *
- * @author carlo
+ * Enumerado que representa los estados posibles de un trámite.
+ * Los posibles estados son: ACTIVA y VENCIDA.
+ * 
+ * @author Carlos Sanchez
  */
 public enum EstadoTramite {
-    ACTIVA, VENCIDA
+    ACTIVA, // Estado del trámite cuando está activo
+    VENCIDA // Estado del trámite cuando ha vencido
 }

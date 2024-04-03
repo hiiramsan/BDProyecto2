@@ -15,13 +15,17 @@ import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 
 /**
- *
- * @author carlo
+ * Clase que implementa la interfaz IReporteDAO y proporciona métodos para buscar tramites, licencias y placas en base a ciertos criterios.
+ * @author Carlos Sanchez
  */
 public class ReporteDAO implements IReporteDAO {
 
     private final IConexionDAO conexion;
 
+    /**
+     * Constructor de la clase ReporteDAO.
+     * @param conexion Objeto que implementa la interfaz IConexionDAO para establecer la conexión con la base de datos.
+     */
     public ReporteDAO(IConexionDAO conexion) {
         this.conexion = conexion;
     }

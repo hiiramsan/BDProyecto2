@@ -1,7 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Esta clase implementa la interfaz ILicenciaDAO y proporciona métodos para interactuar con la entidad Licencia en la base de datos.
  */
+
 package daos.licencia;
 
 import daos.persona.PersonaDAO;
@@ -15,32 +15,28 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import com.mycompany.agenciapersistencia.controlador.utils.EstadoTramite;
 import javax.persistence.TemporalType;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 
 /**
- *
- * @author carlo
+ * Clase que implementa la interfaz ILicenciaDAO y proporciona métodos para interactuar con la entidad Licencia en la base de datos.
+ * @author Carlos Sanchez
  */
 public class LicenciaDAO implements ILicenciaDAO {
 
     private final IConexionDAO conexion;
 
+    /**
+     * Constructor de la clase LicenciaDAO.
+     * @param conexion Objeto que implementa la interfaz IConexionDAO para gestionar la conexión a la base de datos.
+     */
     public LicenciaDAO(IConexionDAO conexion) {
         this.conexion = conexion;
     }
-
-    // metodo que comprueba si una persona tiene una licencia activa (maybe no funciona despues)
+    
     @Override
     public boolean consultarLicencia(Persona persona) {
-
         List<Tramite> tramites = persona.getTramites();
 
         for (Tramite tramite : tramites) {
@@ -51,7 +47,6 @@ public class LicenciaDAO implements ILicenciaDAO {
                     return true;
                 }
             }
-
         }
         return false;
     }
@@ -62,9 +57,7 @@ public class LicenciaDAO implements ILicenciaDAO {
         entityManager.getTransaction().begin();
 
         try {
-
             Calendar fechaHoy = Calendar.getInstance();
-
             Calendar fechaVigencia = Calendar.getInstance();
             fechaVigencia.setTimeInMillis(fechaHoy.getTimeInMillis());
             fechaVigencia.add(Calendar.YEAR, vigencia);
@@ -112,5 +105,4 @@ public class LicenciaDAO implements ILicenciaDAO {
             entityManager.close();
         }
     }
-
 }

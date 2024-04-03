@@ -568,14 +568,14 @@ public class IndexFrame extends javax.swing.JFrame {
         PersonaDTO persona9 = new PersonaDTO("LIM2959401E50", "Miguel", "Cruz", "Flores", "6443066666", fecha9, false);
         PersonaDTO persona10 = new PersonaDTO("XIMJ880801E50", "Paola", "Ruiz", "Vázquez", "6443000000", fecha10, false);
         PersonaDTO persona11 = new PersonaDTO("SAMJ8411241T9", "Diego", "Gutiérrez", "Torres", "6443099999", fecha11, true);
-        PersonaDTO persona12 = new PersonaDTO("PIRJ911023L71", "Isabel", "Díaz", "Ortiz", "6443023456", fecha12, false);
+        PersonaDTO persona12 = new PersonaDTO("PVEBHJKN23L71", "Isabel", "Díaz", "Ortiz", "6443023456", fecha12, false);
         PersonaDTO persona13 = new PersonaDTO("TONJ7112258H9", "Fernando", "Santiago", "Núñez", "6443032109", fecha13, false);
         PersonaDTO persona14 = new PersonaDTO("2323232323232", "Carmen", "Flores", "Luna", "6443087654", fecha14, true);
         PersonaDTO persona15 = new PersonaDTO("3434343434343", "José", "García", "Mendoza", "6443012345", fecha15, false);
         PersonaDTO persona16 = new PersonaDTO("4545454545454", "Elena", "Hernández", "Jiménez", "6443054321", fecha16, false);
         PersonaDTO persona17 = new PersonaDTO("5656565656565", "Manuel", "Pérez", "Díaz", "6443078943", fecha17, true);
-        PersonaDTO persona18 = new PersonaDTO("6767676767676", "Luisa", "Martínez", "Sánchez", "6443043210", fecha18, false);
-        PersonaDTO persona19 = new PersonaDTO("7878787878787", "Juan", "González", "Romero", "6443098765", fecha19, false);
+        PersonaDTO persona18 = new PersonaDTO("7676743567676", "Luisa", "Martínez", "Sánchez", "6443043210", fecha18, false);
+        PersonaDTO persona19 = new PersonaDTO("7878783434874", "Juan", "González", "Romero", "6443098765", fecha19, false);
         PersonaDTO persona20 = new PersonaDTO("8989898989898", "Patricia", "Sánchez", "Gómez", "6443007894", fecha20, false);
 
         IConexionDAO conexionDAO = new ConexionDAO();

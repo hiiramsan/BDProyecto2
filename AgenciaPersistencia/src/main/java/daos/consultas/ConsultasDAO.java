@@ -1,37 +1,38 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Esta clase implementa la interfaz IConsultasDAO y proporciona métodos para realizar consultas relacionadas con entidades como Persona, Licencia, Placa y Tramite en la base de datos.
  */
+
 package daos.consultas;
 
 import conexion.IConexionDAO;
-import daos.persona.PersonaDAO;
 import entidadesJPA.Licencia;
 import entidadesJPA.Persona;
 import entidadesJPA.Placa;
 import entidadesJPA.Tramite;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 
 /**
- *
- * @author carlo
+ * Clase que implementa la interfaz IConsultasDAO y proporciona métodos para realizar consultas en la base de datos.
+ * @author Carlos Sanchez
  */
 public class ConsultasDAO implements IConsultasDAO {
 
     private final IConexionDAO conexion;
 
+    /**
+     * Constructor de la clase ConsultasDAO.
+     * @param conexion Objeto que implementa la interfaz IConexionDAO para gestionar la conexión a la base de datos.
+     */
     public ConsultasDAO(IConexionDAO conexion) {
         this.conexion = conexion;
     }
 
     @Override
     public List<Persona> buscarPersonaPorRFC(String rfc) {
-
         EntityManager entityManager = conexion.crearConexion();
         entityManager.getTransaction().begin();
         try {
@@ -39,8 +40,6 @@ public class ConsultasDAO implements IConsultasDAO {
             TypedQuery<Persona> query = entityManager.createQuery(jpql, Persona.class);
             query.setParameter("rfc", rfc);
             return query.getResultList();
-        } catch (Exception e) {
-            throw e;
         } finally {
             entityManager.close();
         }

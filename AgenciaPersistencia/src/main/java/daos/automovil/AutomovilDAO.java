@@ -1,7 +1,8 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Esta clase representa un Data Access Object (DAO) para la entidad Automovil.
+ * Proporciona métodos para interactuar con la base de datos relacionados con Automovil.
  */
+
 package daos.automovil;
 
 import conexion.IConexionDAO;
@@ -13,13 +14,18 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 /**
- *
- * @author carlo
+ * Clase que implementa la interfaz IAutomovilDAO y proporciona operaciones de acceso a datos relacionadas con Automovil.
+ * Esta clase se encarga de realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) sobre la tabla Automovil en la base de datos.
+ * @author Carlos Sanchez
  */
 public class AutomovilDAO implements IAutomovilDAO {
 
     private final IConexionDAO conexion;
 
+    /**
+     * Constructor de la clase AutomovilDAO.
+     * @param conexion Objeto que implementa la interfaz IConexionDAO para gestionar la conexión a la base de datos.
+     */
     public AutomovilDAO(IConexionDAO conexion) {
         this.conexion = conexion;
     }
@@ -145,5 +151,4 @@ public class AutomovilDAO implements IAutomovilDAO {
         }
         return null; // 
     }
-
 }
