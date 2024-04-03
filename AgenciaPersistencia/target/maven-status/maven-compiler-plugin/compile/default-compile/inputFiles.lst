@@ -10,6 +10,7 @@ C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\mai
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\placa\PlacaDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\consultas\IConsultasDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\automovil\AutomovilDAO.java
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\entidadesJPA\Vehiculo.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\conexion\IConexionDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\daos\persona\PersonaDAO.java
 C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaPersistencia\src\main\java\entidadesJPA\Automovil.java

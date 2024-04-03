@@ -1,4 +1,5 @@
 daos\automovil\IAutomovilDAO.class
+entidadesJPA\Vehiculo.class
 com\mycompany\agenciapersistencia\controlador\utils\EstadoTramite.class
 entidadesJPA\Persona.class
 daos\consultas\IConsultasDAO.class
