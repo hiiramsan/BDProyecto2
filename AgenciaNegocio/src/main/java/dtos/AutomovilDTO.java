@@ -7,8 +7,10 @@ package dtos;
 import java.io.Serializable;
 
 /**
- *
- * @author carlo
+ * Clase que representa un DTO (Data Transfer Object) para la entidad Automovil.
+ * Contiene los atributos necesarios para transferir datos de Automovil entre diferentes componentes del sistema.
+ * 
+ * @author Carlos Sanchez
  */
 public class AutomovilDTO implements Serializable {
 
@@ -21,6 +23,14 @@ public class AutomovilDTO implements Serializable {
     public AutomovilDTO() {
     }
     
+    /**
+     * Constructor de AutomovilDTO.
+     * @param numeroSerie Número de serie del automóvil.
+     * @param marca Marca del automóvil.
+     * @param linea Línea del automóvil.
+     * @param color Color del automóvil.
+     * @param modelo Modelo del automóvil.
+     */
     public AutomovilDTO(String numeroSerie, String marca, String linea, String color, int modelo) {
         this.numeroSerie = numeroSerie;
         this.marca = marca;
@@ -74,6 +84,4 @@ public class AutomovilDTO implements Serializable {
         return "AutomovilDTO{" + "numeroSerie=" + numeroSerie + ", marca=" + marca + ", linea=" + linea + ", color=" + color + ", modelo=" + modelo + '}';
     }
     
-    
-
 }

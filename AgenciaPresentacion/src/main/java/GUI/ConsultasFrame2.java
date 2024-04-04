@@ -27,8 +27,8 @@ import negocio.consultas.ConsultaBO;
 import negocio.consultas.IConsulta;
 
 /**
- *
- * @author carlo
+ * Clase consultas frame 2
+ * @author Carlos Snahcez
  */
 public class ConsultasFrame2 extends javax.swing.JFrame {
 

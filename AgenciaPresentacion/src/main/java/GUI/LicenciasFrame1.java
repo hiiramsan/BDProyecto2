@@ -13,8 +13,8 @@ import utils.Validadores;
 
 
 /**
- *
- * @author carlo
+ * Clase Licencias Frame
+ * @author Carlos Sanchez
  */
 public class LicenciasFrame1 extends javax.swing.JFrame {
     Validadores val = new Validadores();

@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Clase Conexion 
  */
 package conexion;
 
@@ -11,13 +10,19 @@ import javax.persistence.Persistence;
 /**
  * Esta clase proporciona métodos para establecer una conexión con la base de datos utilizando JPA.
  * Implementa la interfaz IConexionDAO.
- * @author carlo
+ * 
+ * @author Carlos Sanchez
  */
 public class ConexionDAO implements IConexionDAO {
     
     /**
+     * Constructor por defecto de la clase ConexionDAO.
+     */
+    public ConexionDAO() {
+    }
+    
+    /**
      * Crea y devuelve una instancia de EntityManager para interactuar con la base de datos.
-     * 
      * @return una instancia de EntityManager
      */
     @Override

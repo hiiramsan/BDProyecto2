@@ -24,14 +24,22 @@ import javax.persistence.TemporalType;
 @Entity
 @DiscriminatorValue("placa")
 public class Placa extends Tramite implements Serializable {
-        
+    /**
+     * fecha recepcion
+     */
     @Column(name = "fecha_recepcion")
     @Temporal(TemporalType.DATE)
     private Calendar fechaRecepcion;
     
+    /**
+     * placa, numero alfanumerico
+     */
     @Column(name="numero_alfanumerico", length=7, nullable=false)
     private String numeroAlfanumerico;
     
+    /**
+     * automovil entity
+     */
     @ManyToOne
     @JoinColumn(name="automovil_id", nullable=false)
     private Automovil automovil;
@@ -69,30 +77,58 @@ public class Placa extends Tramite implements Serializable {
     public Placa() {
     }
 
+    /**
+     * Obtiene la fecha de recepción de la placa.
+     * @return La fecha de recepción de la placa.
+     */
     public Calendar getFechaRecepcion() {
         return fechaRecepcion;
     }
 
+    /**
+     * Establece la fecha de recepción de la placa.
+     * @param fechaRecepcion La fecha de recepción de la placa.
+     */
     public void setFechaRecepcion(Calendar fechaRecepcion) {
         this.fechaRecepcion = fechaRecepcion;
     }
 
+    /**
+     * Obtiene el número alfanumérico de la placa.
+     * @return El número alfanumérico de la placa.
+     */
     public String getNumeroAlfanumerico() {
         return numeroAlfanumerico;
     }
 
+    /**
+     * Establece el número alfanumérico de la placa.
+     * @param numeroAlfanumerico El número alfanumérico de la placa.
+     */
     public void setNumeroAlfanumerico(String numeroAlfanumerico) {
         this.numeroAlfanumerico = numeroAlfanumerico;
     }
 
+    /**
+     * Obtiene el automóvil asociado a la placa.
+     * @return El automóvil asociado a la placa.
+     */
     public Automovil getAutomovil() {
         return automovil;
     }
 
+    /**
+     * Establece el automóvil asociado a la placa.
+     * @param automovil El automóvil asociado a la placa.
+     */
     public void setAutomovil(Automovil automovil) {
         this.automovil = automovil;
     }
 
+    /**
+     * Retorna una representación en cadena de la placa.
+     * @return Una cadena que representa la placa.
+     */
     @Override
     public String toString() {
         return "Placa{" + "fechaRecepcion=" + fechaRecepcion + ", numeroAlfanumerico=" + numeroAlfanumerico + ", automovil=" + automovil + '}';

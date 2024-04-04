@@ -5,10 +5,14 @@
 package excepciones;
 
 /**
- *
+ * Excepción lanzada cuando se intenta realizar una acción relacionada con una licencia que ya está activa.
  * @author carlo
  */
 public class LicenciaActivaException extends Exception {
+    /**
+     * Construye una nueva LicenciaActivaException con el mensaje detallado especificado.
+     * @param mensaje el mensaje detallado.
+     */
     public LicenciaActivaException(String mensaje) {
         super(mensaje);
     }

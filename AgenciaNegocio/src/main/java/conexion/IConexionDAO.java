@@ -7,9 +7,14 @@ package conexion;
 import javax.persistence.EntityManager;
 
 /**
- *
- * @author carlo
+ * Interfaz que define el método para crear una conexión con la base de datos.
+ * @author Carlos Sanchez
  */
 public interface IConexionDAO {
+    
+    /**
+     * Método para crear una conexión con la base de datos.
+     * @return EntityManager que representa la conexión con la base de datos.
+     */
     public EntityManager crearConexion();
 }

@@ -13,8 +13,8 @@ import utils.Validadores;
 
 
 /**
- *
- * @author carlo
+ * Clase Frame Placas 1
+ * @author Carlos Sanchez
  */
 public class PlacasFrame1 extends javax.swing.JFrame {
     Validadores val = new Validadores();

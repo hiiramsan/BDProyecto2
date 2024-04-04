@@ -1,6 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
+ * Enum Estado Tramite
  */
 package com.mycompany.agenciapersistencia.controlador.utils;
 
@@ -11,6 +10,14 @@ package com.mycompany.agenciapersistencia.controlador.utils;
  * @author Carlos Sanchez
  */
 public enum EstadoTramite {
-    ACTIVA, // Estado del trámite cuando está activo
-    VENCIDA // Estado del trámite cuando ha vencido
+
+    /**
+     *  Estado del trámite cuando está activo
+     */
+    ACTIVA, 
+
+    /**
+     *  Estado del trámite cuando ha vencido
+     */
+    VENCIDA 
 }

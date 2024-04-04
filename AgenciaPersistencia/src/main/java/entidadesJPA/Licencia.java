@@ -23,6 +23,9 @@ import javax.persistence.TemporalType;
 @DiscriminatorValue("licencia")
 public class Licencia extends Tramite implements Serializable {
     
+    /**
+     * vigencia
+     */
     @Column(name = "vigencia")
     @Temporal(TemporalType.DATE)
     private Calendar vigencia;
@@ -54,16 +57,24 @@ public class Licencia extends Tramite implements Serializable {
     public Licencia() {
     }
 
+    /**
+     * Obtiene la fecha de vigencia de la licencia.
+     * @return La fecha de vigencia de la licencia.
+     */
     public Calendar getVigencia() {
         return vigencia;
     }
 
+    /**
+     * Establece la fecha de vigencia de la licencia.
+     * @param vigencia La fecha de vigencia de la licencia.
+     */
     public void setVigencia(Calendar vigencia) {
         this.vigencia = vigencia;
     }
     
     /**
-     * Método para determinar el estado de la licencia (ACTIVA o VENCIDA) basado en su fecha de vigencia.
+     * Determina el estado de la licencia (ACTIVA o VENCIDA) basado en su fecha de vigencia.
      * @return EstadoTramite.ACTIVA si la licencia está vigente, EstadoTramite.VENCIDA si la licencia está vencida.
      */
     public EstadoTramite determinarEstado() {
@@ -75,6 +86,10 @@ public class Licencia extends Tramite implements Serializable {
         }
     }
 
+    /**
+     * Retorna una representación en cadena de la licencia.
+     * @return Una cadena que representa la licencia.
+     */
     @Override
     public String toString() {
         return "Licencia{" + "vigencia=" + vigencia + '}';

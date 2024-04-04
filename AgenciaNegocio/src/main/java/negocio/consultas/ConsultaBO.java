@@ -20,18 +20,28 @@ import java.util.Date;
 import java.util.List;
 
 /**
- *
- * @author carlo
+ * La clase ConsultaBO implementa la interfaz IConsulta y proporciona métodos para realizar consultas relacionadas con personas y trámites.
+ * 
+ * @author Carlos Sanchez
  */
 public class ConsultaBO implements IConsulta {
 
     IConexionDAO conexionDAO = new ConexionDAO();
     IConsultasDAO consultaDAO = new ConsultasDAO(conexionDAO);
 
+    /**
+     * Constructor de la clase ConsultaBO.
+     * @param conexionDAO El objeto de conexión a la base de datos.
+     */
     public ConsultaBO(IConexionDAO conexionDAO) {
         this.conexionDAO = conexionDAO;
     }
 
+    /**
+     * Transforma una entidad Persona en un objeto PersonaDTO.
+     * @param persona La entidad Persona a transformar.
+     * @return El objeto PersonaDTO resultante.
+     */
     public PersonaDTO transformarDTO(Persona persona) {
         PersonaDTO personaDto = new PersonaDTO();
         personaDto.setRfc(persona.getRfc());
@@ -87,7 +97,7 @@ public class ConsultaBO implements IConsulta {
             case "Placas":
                 return consultaDAO.obtenerPlacasPorRFC(rfc);
             default:
-                throw new IllegalArgumentException("Consulta no valida");
+                throw new IllegalArgumentException("Consulta no válida");
         }
     }
 

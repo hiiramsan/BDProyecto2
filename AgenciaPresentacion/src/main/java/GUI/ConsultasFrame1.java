@@ -23,8 +23,8 @@ import negocio.consultas.IConsulta;
 import utils.Validadores;
 
 /**
- *
- * @author carlo
+ * Clase Consultas Frame
+ * @author Carlos Sanchez
  */
 public class ConsultasFrame1 extends javax.swing.JFrame {
 

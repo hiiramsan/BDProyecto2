@@ -18,8 +18,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author carlo
+ * La clase PersonaBO implementa la interfaz IPersona y proporciona métodos para realizar operaciones relacionadas con las personas.
+ * Esta clase maneja la lógica de negocio para registrar una nueva persona, obtener información de una persona y consultar la existencia de una persona.
+ * 
+ * @author Carlos Sanchez
  */
 public class PersonaBO implements IPersona {
 
@@ -27,6 +29,10 @@ public class PersonaBO implements IPersona {
     IPersonaDAO personaDAO = new PersonaDAO(conexionDAO);
     private static final Logger LOG = Logger.getLogger(PersonaBO.class.getName());
 
+    /**
+     * Constructor de la clase PersonaBO.
+     * @param conexionDAO El objeto de conexión a la base de datos.
+     */
     public PersonaBO(IConexionDAO conexionDAO) {
         this.conexionDAO = conexionDAO;
     }

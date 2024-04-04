@@ -29,8 +29,8 @@ import negocio.reporte.IReporte;
 import negocio.reporte.ReporteBO;
 
 /**
- *
- * @author carlo
+ * Clase Frame Reportes
+ * @author Carlos Sanchez
  */
 public class ReportesFrame extends javax.swing.JFrame {
 

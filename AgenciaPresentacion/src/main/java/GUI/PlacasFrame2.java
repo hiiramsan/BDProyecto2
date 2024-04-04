@@ -24,8 +24,8 @@ import utils.Validadores;
 
 
 /**
- *
- * @author carlo
+ * Clase Placas Frame 2
+ * @author Carlos Sanchez
  */
 public class PlacasFrame2 extends javax.swing.JFrame {
 

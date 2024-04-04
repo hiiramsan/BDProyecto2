@@ -19,8 +19,10 @@ import excepciones.NoPropietarioException;
 import java.util.logging.Logger;
 
 /**
- *
- * @author carlo
+ * La clase AutomovilBO implementa la interfaz IAutomovil y proporciona métodos para realizar operaciones relacionadas con los automóviles.
+ * Esta clase maneja la lógica de negocio para registrar nuevos automóviles y recuperar automóviles usados.
+ * 
+ * @author Carlos Sanchez
  */
 public class AutomovilBO implements IAutomovil {
 
@@ -29,6 +31,10 @@ public class AutomovilBO implements IAutomovil {
     IAutomovilDAO automovilDAO = new AutomovilDAO(conexionDAO);
     IPersonaDAO personaDAO = new PersonaDAO(conexionDAO);
 
+    /**
+     * Constructor de la clase AutomovilBO.
+     * @param conexion El objeto de conexión a la base de datos.
+     */
     public AutomovilBO(IConexionDAO conexion) {
         this.conexionDAO = conexionDAO;
     }
@@ -45,7 +51,7 @@ public class AutomovilBO implements IAutomovil {
 
         Boolean autoYaExiste = automovilDAO.existeAutomovil(numeroSerie);
         if (autoYaExiste) {
-            throw new AutomovilExistenteException("EL auto ya existe");
+            throw new AutomovilExistenteException("El automóvil ya existe.");
         } else {
             return this.automovilDAO.registrarAutomovil(numeroSerie, marca, linea, color, modelo, personaAutomovil);
         }

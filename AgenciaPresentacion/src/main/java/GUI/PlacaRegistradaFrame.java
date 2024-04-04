@@ -18,8 +18,8 @@ import negocio.placa.IPlaca;
 import negocio.placa.PlacaBO;
 
 /**
- *
- * @author carlo
+ * Clase Frame de confirmacion de placa registrada
+ * @author Carlos Sanchez
  */
 public class PlacaRegistradaFrame extends javax.swing.JFrame {
     private PlacaDTO placaDTO;

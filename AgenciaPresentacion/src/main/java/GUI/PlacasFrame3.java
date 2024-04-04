@@ -21,8 +21,8 @@ import negocio.placa.IPlaca;
 import negocio.placa.PlacaBO;
 
 /**
- *
- * @author carlo
+ * Clase Placas Frame 3
+ * @author Carlos Sanchez
  */
 public class PlacasFrame3 extends javax.swing.JFrame {
 

@@ -1,6 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ * Clase que implementa la interfaz IConexionDAO para establecer una conexión a una base de datos utilizando JPA.
  */
 package conexion;
 
@@ -9,14 +8,19 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *
- * @author carlo
+ * Clase que implementa la interfaz IConexionDAO y proporciona métodos para establecer una conexión con la base de datos.
+ * @author Carlos Sanchez
  */
 public class ConexionDAO implements IConexionDAO {
+    
+    /**
+     * Método para crear y retornar una conexión EntityManager a la base de datos.
+     * @return EntityManager para interactuar con la base de datos.
+     */
     @Override
     public EntityManager crearConexion() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConexionPU");
-        EntityManager em = emf.createEntityManager();
-        return em;
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ConexionPU"); // Crea una fábrica de EntityManager utilizando la unidad de persistencia "ConexionPU"
+        EntityManager em = emf.createEntityManager(); // Crea y devuelve un EntityManager a partir de la fábrica
+        return em; // Retorna el EntityManager para interactuar con la base de datos
     }
 }

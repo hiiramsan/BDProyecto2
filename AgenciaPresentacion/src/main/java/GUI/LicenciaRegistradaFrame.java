@@ -11,8 +11,8 @@ import java.util.Calendar;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author carlo
+ * Clase Licencia Registrada Frame (esta clase sirve para cofirmar al usuario que se registro)
+ * @author Carlos Sanchez
  */
 public class LicenciaRegistradaFrame extends javax.swing.JFrame {
     private PersonaDTO personaDTO;

@@ -5,34 +5,44 @@
 package encriptador;
 
 /**
- *
- * @author carlo
+ * Clase que proporciona métodos para encriptar y desencriptar cadenas de texto.
+ * Utiliza un simple algoritmo de desplazamiento de caracteres ASCII.
+ * 
+ * @author Carlos Sanchez
  */
 public class Encriptador {
 
+    /**
+     * Método que encripta una cadena de texto utilizando un algoritmo de desplazamiento.
+     * @param str Cadena de texto a encriptar.
+     * @return Cadena de texto encriptada.
+     */
     public static String encriptar(String str) {
         char[] charArray = str.toCharArray();
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for (char c : charArray) {
             int cAsc = (int) c;
-            cAsc=c+12;
+            cAsc += 12; // Desplazamiento de 12 caracteres
             char ce = (char) cAsc;
-            s = s.concat(Character.toString(ce));
-       
+            s.append(ce);
         }
-        return s;
+        return s.toString();
     }
    
+    /**
+     * Método que desencripta una cadena de texto encriptada utilizando un algoritmo de desplazamiento.
+     * @param str Cadena de texto encriptada.
+     * @return Cadena de texto desencriptada.
+     */
     public static String desencriptar(String str) {
         char[] charArray = str.toCharArray();
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for (char c : charArray) {
             int cAsc = (int) c;
-            cAsc=c-12;
+            cAsc -= 12; // Desplazamiento inverso de 12 caracteres
             char ce = (char) cAsc;
-            s = s.concat(Character.toString(ce));
-       
+            s.append(ce);
         }
-          return s;
+        return s.toString();
     }
 }

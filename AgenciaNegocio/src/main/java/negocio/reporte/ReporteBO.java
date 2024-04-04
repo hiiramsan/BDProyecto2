@@ -39,8 +39,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author carlo
+ * Clase que implementa la generación de reportes en formato PDF para diferentes tipos de trámites, incluyendo placas y licencias.
+ * @author Carlos Sanchez
  */
 public class ReporteBO implements IReporte {
 
@@ -257,7 +257,13 @@ public class ReporteBO implements IReporte {
 
         return placasDTO;
     }
-
+    
+    /**
+     * Método privado para crear una celda en una tabla PDF.
+     * @param content Contenido de la celda.
+     * @param header Indicador de si la celda pertenece a la cabecera de la tabla.
+     * @return Celda creada con el contenido especificado.
+     */
     private PdfPCell createCell(String content, boolean header) {
         PdfPCell cell = new PdfPCell(new Phrase(content));
         if (header) {
@@ -268,7 +274,10 @@ public class ReporteBO implements IReporte {
 
         return cell;
     }
-
+    
+    /**
+     * Clase interna para manejar la numeración de páginas en el documento PDF.
+     */
     private static class PageNumberEvent extends PdfPageEventHelper {
 
         @Override

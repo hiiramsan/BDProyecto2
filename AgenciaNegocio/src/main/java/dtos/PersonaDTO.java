@@ -8,8 +8,10 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 /**
- *
- * @author carlo
+ * Clase que representa un DTO (Data Transfer Object) para la entidad Persona.
+ * Contiene los atributos necesarios para transferir datos de Persona entre diferentes componentes del sistema.
+ * 
+ * @author Carlos Sanchez
  */
 public class PersonaDTO implements Serializable {
     private String rfc;
@@ -25,8 +27,16 @@ public class PersonaDTO implements Serializable {
     public PersonaDTO() {
     }
 
-    
-    
+    /**
+     * Constructor de PersonaDTO.
+     * @param rfc RFC de la persona.
+     * @param nombre Nombre de la persona.
+     * @param apellidoPaterno Apellido paterno de la persona.
+     * @param apellidoMaterno Apellido materno de la persona.
+     * @param telefono Teléfono de la persona.
+     * @param fechaNacimiento Fecha de nacimiento de la persona.
+     * @param discapacidad Indica si la persona tiene alguna discapacidad.
+     */
     public PersonaDTO(String rfc, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, Calendar fechaNacimiento, boolean discapacidad) {
         this.rfc = rfc;
         this.nombre = nombre;

@@ -5,10 +5,16 @@
 package excepciones;
 
 /**
- *
- * @author carlo
+ * Exception thrown when attempting to add a duplicate automobile.
+ * 
+ * @author Carlos Sanchez
  */
 public class AutomovilExistenteException extends Exception {
+    
+    /**
+     * Constructs a new AutomovilExistenteException with the specified detail message.
+     * @param mensaje the detail message.
+     */
     public AutomovilExistenteException(String mensaje) {
         super(mensaje);
     }

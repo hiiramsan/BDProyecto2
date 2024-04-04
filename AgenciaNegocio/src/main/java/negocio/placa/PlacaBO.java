@@ -28,8 +28,11 @@ import java.util.Random;
 import javax.persistence.EntityManager;
 
 /**
- *
- * @author carlo
+ * La clase PlacaBO implementa la interfaz IPlaca y proporciona métodos para realizar operaciones relacionadas con las placas de vehículos.
+ * Esta clase maneja la lógica de negocio para calcular el costo de una placa, generar una nueva placa, registrar placas para vehículos nuevos y usados, 
+ * así como obtener información de un vehículo a través de su placa.
+ * 
+ * @author Carlos Sanchez
  */
 public class PlacaBO implements IPlaca {
 
@@ -44,6 +47,10 @@ public class PlacaBO implements IPlaca {
     private static final int NUM_LETRAS = LETRAS.length();
     private static final int NUM_DIGITOS = 1000;
 
+    /**
+     * Constructor de la clase PlacaBO.
+     * @param conexionDAO El objeto de conexión a la base de datos.
+     */
     public PlacaBO(IConexionDAO conexionDAO) {
         this.conexionDAO = conexionDAO;
     }

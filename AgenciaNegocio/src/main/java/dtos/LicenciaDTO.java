@@ -9,8 +9,10 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 /**
- *
- * @author carlo
+ * Clase que representa un DTO (Data Transfer Object) para la entidad Licencia.
+ * Contiene los atributos necesarios para transferir datos de Licencia entre diferentes componentes del sistema.
+ * 
+ * @author Carlos Sanchez
  */
 public class LicenciaDTO implements Serializable {
 
@@ -23,6 +25,14 @@ public class LicenciaDTO implements Serializable {
     public LicenciaDTO() {
     }
 
+    /**
+     * Constructor de LicenciaDTO.
+     * @param fechaExpedicion Fecha de expedición de la licencia.
+     * @param fechaVigencia Fecha de vigencia de la licencia.
+     * @param costo Costo de la licencia.
+     * @param estado Estado de la licencia.
+     * @param nombrePersona Nombre de la persona asociada a la licencia.
+     */
     public LicenciaDTO(Calendar fechaExpedicion, Calendar fechaVigencia, float costo, EstadoTramite estado, String nombrePersona) {
         this.fechaExpedicion = fechaExpedicion;
         this.fechaVigencia = fechaVigencia;

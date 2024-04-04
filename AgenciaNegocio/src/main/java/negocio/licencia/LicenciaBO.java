@@ -19,8 +19,10 @@ import excepciones.MenorDeEdadException;
 import java.util.logging.Logger;
 
 /**
- *
- * @author carlo
+ * La clase LicenciaBO implementa la interfaz ILicencias y proporciona métodos para realizar operaciones relacionadas con las licencias de conducir.
+ * Esta clase maneja la lógica de negocio para calcular el costo de una licencia, consultar la existencia de una licencia para una persona y registrar una nueva licencia.
+ * 
+ * @author Carlos sanchez
  */
 public class LicenciaBO implements ILicencias {
 
@@ -29,6 +31,10 @@ public class LicenciaBO implements ILicencias {
     IPersonaDAO personaDAO = new PersonaDAO(conexionDAO);
     private static final Logger LOG = Logger.getLogger(LicenciaBO.class.getName());
 
+    /**
+     * Constructor de la clase LicenciaBO.
+     * @param conexionDAO El objeto de conexión a la base de datos.
+     */
     public LicenciaBO(IConexionDAO conexionDAO) {
         this.conexionDAO = conexionDAO;
     }

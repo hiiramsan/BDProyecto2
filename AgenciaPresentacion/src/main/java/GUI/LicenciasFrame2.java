@@ -22,9 +22,9 @@ import negocio.licencia.LicenciaBO;
 import negocio.persona.IPersona;
 import negocio.persona.PersonaBO;
 
-/**
- *
- * @author carlo
+/** 
+ * Clase Licencias Frame 2
+ * @author Carlos Sanchez
  */
 public class LicenciasFrame2 extends javax.swing.JFrame {
 

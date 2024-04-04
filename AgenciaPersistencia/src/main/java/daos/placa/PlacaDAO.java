@@ -23,6 +23,10 @@ public class PlacaDAO implements IPlacaDAO {
 
     private final IConexionDAO conexion;
 
+    /**
+     * Constructor de PlacaDAO
+     * @param conexion conexion
+     */
     public PlacaDAO(IConexionDAO conexion) {
         this.conexion = conexion;
     }
@@ -67,6 +71,7 @@ public class PlacaDAO implements IPlacaDAO {
      * @param automovil El automóvil para el cual se busca la placa activa.
      * @return La placa activa asociada al automóvil, o null si no se encuentra ninguna placa activa.
      */
+    @Override
     public Placa obtenerPlacaActiva(Automovil automovil) {
         EntityManager entityManager = conexion.crearConexion();
         try {
@@ -86,6 +91,7 @@ public class PlacaDAO implements IPlacaDAO {
      * Desactiva la placa asociada a un automóvil.
      * @param automovil El automóvil del cual se desactivará la placa.
      */
+    @Override
     public void desactivarPlaca(Automovil automovil) {
         EntityManager entityManager = conexion.crearConexion();
         entityManager.getTransaction().begin();

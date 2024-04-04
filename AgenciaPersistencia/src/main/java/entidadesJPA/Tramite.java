@@ -36,22 +36,37 @@ import javax.persistence.TemporalType;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo_tramite", discriminatorType = DiscriminatorType.STRING)
 public class Tramite implements Serializable {
-
+    
+    /**
+     * id
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    /**
+     * costo
+     */
     @Column(name="costo", nullable=false)
     private float costo;
     
+    /**
+     * Estado Tramite
+     */
     @Enumerated(EnumType.STRING)
     @Column(name="estado", nullable=false)
     private EstadoTramite estado;
     
+    /**
+     * fecha expedicion
+     */
     @Column(name = "fecha_expedicion")
     @Temporal(TemporalType.DATE)
     private Calendar fechaExpedicion;
     
+    /**
+     * persona entty
+     */
     @ManyToOne
     @JoinColumn(name="persona_id", nullable=false)
     private Persona persona;
@@ -164,6 +179,10 @@ public class Tramite implements Serializable {
         return this.getClass().getAnnotation(DiscriminatorValue.class).value();
     }
     
+    /**
+     * Metodo toString
+     * @return string de tramite
+     */
     @Override
     public String toString() {
         return "Tramite{" + "id=" + id + ", costo=" + costo + ", estado=" + estado + ", fechaExpedicion=" + fechaExpedicion + ", persona=" + persona + '}';

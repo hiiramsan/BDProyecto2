@@ -19,8 +19,8 @@ import negocio.persona.IPersona;
 import negocio.persona.PersonaBO;
 
 /**
- *
- * @author carlo
+ * Clase Frame Index 
+ * @author Carlos Sanchez
  */
 public class IndexFrame extends javax.swing.JFrame {
 
