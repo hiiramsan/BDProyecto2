@@ -30,6 +30,7 @@ import negocio.reporte.ReporteBO;
 
 /**
  * Clase Frame Reportes
+ *
  * @author Carlos Sanchez
  */
 public class ReportesFrame extends javax.swing.JFrame {
@@ -55,6 +56,12 @@ public class ReportesFrame extends javax.swing.JFrame {
         exportarBtn.setVisible(false);
     }
 
+    /**
+     * Cargar reportes de placas en tabla
+     *
+     * @param tabla
+     * @param placas
+     */
     public void cargarReportePlacasEnTabla(JTable tabla, List<PlacaDTO> placas) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         modeloTabla.addColumn("Fecha");
@@ -78,6 +85,12 @@ public class ReportesFrame extends javax.swing.JFrame {
         tabla.setModel(modeloTabla);
     }
 
+    /**
+     * Cargar reporte de licencias en tabla
+     *
+     * @param tabla
+     * @param licencias
+     */
     public void cargarReporteLicenciasEnTabla(JTable tabla, List<LicenciaDTO> licencias) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         modeloTabla.addColumn("Fecha");
@@ -105,6 +118,12 @@ public class ReportesFrame extends javax.swing.JFrame {
         tabla.setModel(modeloTabla);
     }
 
+    /**
+     * Cargar reportes de tramites en tabla
+     *
+     * @param tramites
+     * @param tabla
+     */
     public void cargarReporteTramitesEnTabla(List<TramiteDTO> tramites, JTable tabla) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         modeloTabla.addColumn("Costo");
@@ -349,6 +368,27 @@ public class ReportesFrame extends javax.swing.JFrame {
 
         jLabel4.setText("Fecha Inicio");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, -1));
+
+        fechaIni.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fechaIniFocusGained(evt);
+            }
+        });
+        fechaIni.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fechaIniMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                fechaIniMouseExited(evt);
+            }
+        });
+        fechaIni.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                fechaIniInputMethodTextChanged(evt);
+            }
+        });
         jPanel1.add(fechaIni, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 100, -1));
 
         nombreTxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -405,7 +445,7 @@ public class ReportesFrame extends javax.swing.JFrame {
 
         jLabel18.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(148, 13, 73));
-        jLabel18.setText("Rango de fechas");
+        jLabel18.setText("Rango de fechas (Seleccione ambas)");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
 
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
@@ -494,6 +534,25 @@ public class ReportesFrame extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_buscarBtn1ActionPerformed
+
+    private void fechaIniFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fechaIniFocusGained
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_fechaIniFocusGained
+
+    private void fechaIniInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_fechaIniInputMethodTextChanged
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_fechaIniInputMethodTextChanged
+
+    private void fechaIniMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fechaIniMouseExited
+        // TODO add your handling code here
+    }//GEN-LAST:event_fechaIniMouseExited
+
+    private void fechaIniMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fechaIniMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_fechaIniMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

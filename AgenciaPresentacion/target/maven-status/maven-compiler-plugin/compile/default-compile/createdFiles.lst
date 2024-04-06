@@ -10,6 +10,7 @@ utils\Btn.class
 GUI\LicenciaRegistradaFrame$2.class
 GUI\PlacasFrame1$1.class
 GUI\LicenciaRegistradaFrame.class
+GUI\ReportesFrame$8.class
 GUI\PlacasFrame2$6.class
 GUI\LicenciasFrame2$1.class
 GUI\ConsultasFrame1$3.class
@@ -31,6 +32,7 @@ GUI\ConsultasFrame2.class
 GUI\PlacasFrame3$4.class
 GUI\PlacasFrame2$5.class
 GUI\ConsultasFrame1$4.class
+GUI\ReportesFrame$7.class
 GUI\IndexFrame$5.class
 GUI\IndexFrame$8.class
 GUI\PlacasFrame2$12.class
@@ -47,6 +49,7 @@ GUI\PlacasFrame2$8.class
 GUI\ConsultasFrame1$9.class
 GUI\PlacasFrame3$3.class
 GUI\PlacasFrame2$1.class
+GUI\ReportesFrame$6.class
 GUI\IndexFrame$6.class
 GUI\ReportesFrame.class
 GUI\LicenciasFrame1$1.class

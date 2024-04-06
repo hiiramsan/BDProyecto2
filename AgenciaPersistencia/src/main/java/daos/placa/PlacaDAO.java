@@ -14,6 +14,10 @@ import java.util.Calendar;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 /**
  * Esta clase implementa los métodos de la interfaz IPlacaDAO para interactuar con la entidad Placa en la base de datos.
@@ -109,6 +113,26 @@ public class PlacaDAO implements IPlacaDAO {
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
             e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
+    }
+    
+    @Override
+     public boolean placaExiste(String numeroAlfanumerico) {
+        EntityManager entityManager = conexion.crearConexion();
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Long> query = cb.createQuery(Long.class);
+        Root<Placa> root = query.from(Placa.class);
+
+        Predicate predicate = cb.equal(root.get("numeroAlfanumerico"), numeroAlfanumerico);
+        query.select(cb.count(root)).where(predicate);
+
+        try {
+            Long count = entityManager.createQuery(query).getSingleResult();
+            return count > 0;
+        } catch (NoResultException ex) {
+            return false;
         } finally {
             entityManager.close();
         }

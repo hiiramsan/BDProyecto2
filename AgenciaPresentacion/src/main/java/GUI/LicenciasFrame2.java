@@ -37,6 +37,7 @@ public class LicenciasFrame2 extends javax.swing.JFrame {
 
     /**
      * Creates new form LicenciasFrame
+     * @param personaDTO personaDTO solicitante de Licencia
      */
     public LicenciasFrame2(PersonaDTO personaDTO) {
         initComponents();

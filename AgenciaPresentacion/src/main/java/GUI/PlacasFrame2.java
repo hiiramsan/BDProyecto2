@@ -22,9 +22,9 @@ import negocio.placa.IPlaca;
 import negocio.placa.PlacaBO;
 import utils.Validadores;
 
-
 /**
  * Clase Placas Frame 2
+ *
  * @author Carlos Sanchez
  */
 public class PlacasFrame2 extends javax.swing.JFrame {
@@ -37,6 +37,8 @@ public class PlacasFrame2 extends javax.swing.JFrame {
 
     /**
      * Creates new form LicenciasFrame
+     *
+     * @param personaDTO personaDTO
      */
     public PlacasFrame2(PersonaDTO personaDTO) {
         initComponents();
@@ -87,6 +89,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
         lineaTxt = new javax.swing.JTextField();
         errorRBTxt = new javax.swing.JLabel();
         camposErrorTxt = new javax.swing.JLabel();
+        textoError = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -421,6 +424,9 @@ public class PlacasFrame2 extends javax.swing.JFrame {
         camposErrorTxt.setForeground(new java.awt.Color(255, 51, 51));
         jPanel1.add(camposErrorTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 500, -1, -1));
 
+        textoError.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel1.add(textoError, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 520, -1, -1));
+
         jPanel4.setBackground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -531,9 +537,9 @@ public class PlacasFrame2 extends javax.swing.JFrame {
                         || modeloTxt.getText().isBlank()) {
                     camposErrorTxt.setText("Favor de llenar todos los campos");
                 } else {
-                    if (!val.esNumerica(modeloTxt.getText()) || !val.validarNumSerie(numSerieTxt.getText()) ) {
-                       camposErrorTxt.setText("El modelo y numero de serie debe de ser un numero");
-                       return; 
+                    if (!val.esNumerica(modeloTxt.getText()) || !val.validarNumSerie(numSerieTxt.getText())) {
+                        camposErrorTxt.setText("El modelo y numero de serie debe de ser un numero");
+                        return;
                     }
 
                     int modeloInt = Integer.parseInt(modeloTxt.getText());
@@ -556,14 +562,19 @@ public class PlacasFrame2 extends javax.swing.JFrame {
                     }
                 }
             } else {
-                try {
-                    AutomovilDTO autoUsadoARecuperar = placaBO.obtenerAutoPorPlacas(numSerieTxt.getText(), personaDTO.getRfc());
-                    PlacasFrame3 pf3 = new PlacasFrame3(personaDTO, autoUsadoARecuperar, false);
-                    pf3.setVisible(true);
-                    dispose();
-                } catch (AutomovilInexistenteException ex) {
-                    JOptionPane.showMessageDialog(null, "Las placas no coinciden con un automovil registrado o no es propietatio. ", "Error", JOptionPane.ERROR_MESSAGE);
+                if (val.validarFormatoPlaca(numSerieTxt.getText())) {
+                    try {
+                        AutomovilDTO autoUsadoARecuperar = placaBO.obtenerAutoPorPlacas(numSerieTxt.getText(), personaDTO.getRfc());
+                        PlacasFrame3 pf3 = new PlacasFrame3(personaDTO, autoUsadoARecuperar, false);
+                        pf3.setVisible(true);
+                        dispose();
+                    } catch (AutomovilInexistenteException ex) {
+                        JOptionPane.showMessageDialog(null, "Las placas no coinciden con un automovil registrado o no es propietatio. ", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    textoError.setText("Formato de placa invalido");
                 }
+
             }
         }
 
@@ -572,6 +583,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
     private void avanzarBtnFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_avanzarBtnFocusLost
         // TODO add your handling code here:
         camposErrorTxt.setText("");
+        textoError.setText("");
     }//GEN-LAST:event_avanzarBtnFocusLost
 
     private void panelRound5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRound5MouseClicked
@@ -604,10 +616,10 @@ public class PlacasFrame2 extends javax.swing.JFrame {
     }//GEN-LAST:event_modeloTxtKeyTyped
 
     private void numSerieTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numSerieTxtKeyTyped
-        // TODO add your handling code here:
+
         char c = evt.getKeyChar();
-        if (!Character.isDigit(c)) {
-            evt.consume();
+        if (Character.isLetterOrDigit(c)) {
+            evt.setKeyChar(Character.toUpperCase(c));
         }
     }//GEN-LAST:event_numSerieTxtKeyTyped
 
@@ -647,6 +659,7 @@ public class PlacasFrame2 extends javax.swing.JFrame {
     private utils.PanelRound panelRound8;
     private utils.PanelRound panelRound9;
     private javax.swing.JLabel regresarMenuBtn;
+    private javax.swing.JLabel textoError;
     private javax.swing.JLabel tuntantan;
     private javax.swing.JRadioButton usadoRB;
     // End of variables declaration//GEN-END:variables

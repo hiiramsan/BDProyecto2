@@ -34,7 +34,10 @@ public class PlacasFrame3 extends javax.swing.JFrame {
     boolean esNuevo = false;
 
     /**
-     * Creates new form
+     * Creates new form PlacasFrame3
+     * @param personaDTO
+     * @param automovilDTO
+     * @param esNuevo
      */
     public PlacasFrame3(PersonaDTO personaDTO, AutomovilDTO automovilDTO, boolean esNuevo) {
         initComponents();

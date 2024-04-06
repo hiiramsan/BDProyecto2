@@ -45,6 +45,11 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
         tablitaSP.setVisible(false);
     }
 
+    /**
+     * Metodo para cargar los datos en la tabla
+     * @param personas
+     * @param tablaPersonas
+     */
     public void cargarDatosTabla(List<PersonaDTO> personas, JTable tablaPersonas) {
         DefaultTableModel model = new DefaultTableModel();
         model.setColumnIdentifiers(new String[]{"RFC", "Nombre", "Birth", "Telefono"});
@@ -68,7 +73,7 @@ public class ConsultasFrame1 extends javax.swing.JFrame {
         tituloTablas.setVisible(true);
 
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

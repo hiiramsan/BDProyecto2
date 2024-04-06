@@ -38,4 +38,10 @@ public interface IPlacaDAO {
      */
     public void desactivarPlaca(Automovil automovil);
 
+    /**
+     * Verifica si una placa con el mismo numeroAlfanumerico existe
+     * @param numeroAlfanumerico
+     * @return true si si existe, false si noooo
+     */
+    public boolean placaExiste(String numeroAlfanumerico);
 }

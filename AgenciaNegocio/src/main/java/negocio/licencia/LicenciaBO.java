@@ -77,7 +77,7 @@ public class LicenciaBO implements ILicencias {
     public LicenciaDTO registrarLicencia(PersonaDTO persona, int vigencia, float costo) throws MenorDeEdadException, LicenciaActivaException {
         Persona personaABuscar = personaDAO.buscarPersonaPorRFC(persona.getRfc());
         Boolean esMayorDeEdad = personaDAO.esMayorDeEdad(persona.getRfc());
-        Boolean tieneLicenciaActiva = licenciaDAO.consultarLicencia(personaABuscar);
+        Boolean tieneLicenciaActiva = licenciaDAO.tieneLicenciaActiva(personaABuscar);
 
         if (!tieneLicenciaActiva && esMayorDeEdad) {
             return this.licenciaDAO.registrarLicencia(personaABuscar, vigencia, costo);
