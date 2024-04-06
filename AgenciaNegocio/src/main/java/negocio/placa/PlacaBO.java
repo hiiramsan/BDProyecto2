@@ -102,6 +102,7 @@ public class PlacaBO implements IPlaca {
         Boolean licenciaActiva = licenciaDAO.tieneLicenciaActiva(personaPlaca);
 
         if (licenciaActiva) {
+            
             return this.placaDAO.registrarPlaca(automovilPlaca, costo, claveNumerica, personaPlaca);
         } else {
             throw new LicenciaInactivaException("La persona no tiene una licencia activa");

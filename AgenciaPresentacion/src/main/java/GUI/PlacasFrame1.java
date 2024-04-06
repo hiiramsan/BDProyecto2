@@ -7,19 +7,23 @@ package GUI;
 import conexion.ConexionDAO;
 import conexion.IConexionDAO;
 import dtos.PersonaDTO;
+import negocio.licencia.ILicencias;
+import negocio.licencia.LicenciaBO;
 import negocio.persona.IPersona;
 import negocio.persona.PersonaBO;
 import utils.Validadores;
 
-
 /**
  * Clase Frame Placas 1
+ *
  * @author Carlos Sanchez
  */
 public class PlacasFrame1 extends javax.swing.JFrame {
+
     Validadores val = new Validadores();
     IConexionDAO conexion = new ConexionDAO();
     IPersona personaBO = new PersonaBO(conexion);
+    ILicencias licenciaBO = new LicenciaBO(conexion);
 
     /**
      * Creates new form
@@ -141,6 +145,11 @@ public class PlacasFrame1 extends javax.swing.JFrame {
         buscarBtn.setText("Buscar");
         buscarBtn.setColorClick(new java.awt.Color(204, 204, 204));
         buscarBtn.setColorOver(new java.awt.Color(153, 153, 153));
+        buscarBtn.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                buscarBtnFocusLost(evt);
+            }
+        });
         buscarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarBtnActionPerformed(evt);
@@ -336,9 +345,17 @@ public class PlacasFrame1 extends javax.swing.JFrame {
 
                 if (personaExiste) {
                     PersonaDTO person = personaBO.obtenerPersona(rfcTxt.getText());
-                    PlacasFrame2 pf2 = new PlacasFrame2(person);
-                    pf2.setVisible(true);
-                    dispose();
+                    Boolean licenciaActiva = licenciaBO.consultarLicencia(person);
+
+                    if (licenciaActiva) {
+                        PlacasFrame2 pf2 = new PlacasFrame2(person);
+                        pf2.setVisible(true);
+                        dispose();
+                    } else {
+                        textoError.setText("Solicitante no tiene licencia activa");
+                    textoError.setVisible(true);
+                    }
+
                 } else {
                     textoError.setText("Persona no encontrada");
                     textoError.setVisible(true);
@@ -362,6 +379,11 @@ public class PlacasFrame1 extends javax.swing.JFrame {
             evt.setKeyChar(Character.toUpperCase(c));
         }
     }//GEN-LAST:event_rfcTxtKeyTyped
+
+    private void buscarBtnFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_buscarBtnFocusLost
+        // TODO add your handling code here:
+        textoError.setText("");
+    }//GEN-LAST:event_buscarBtnFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
