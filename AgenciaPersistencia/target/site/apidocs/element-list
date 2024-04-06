@@ -1,0 +1,9 @@
+com.mycompany.agenciapersistencia.controlador.utils
+conexion
+daos.automovil
+daos.consultas
+daos.licencia
+daos.persona
+daos.placa
+daos.reporte
+entidadesJPA

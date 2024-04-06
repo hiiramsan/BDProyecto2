@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"conexion"},{"l":"dtos"},{"l":"encriptador"},{"l":"excepciones"},{"l":"negocio.automovil"},{"l":"negocio.consultas"},{"l":"negocio.licencia"},{"l":"negocio.persona"},{"l":"negocio.placa"},{"l":"negocio.reporte"}];updateSearchResults();

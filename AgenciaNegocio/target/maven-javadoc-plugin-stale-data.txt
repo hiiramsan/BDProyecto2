@@ -1,0 +1,69 @@
+@options
+@packages
+-classpath
+'C:/Users/carlo/.m2/repository/com/mycompany/AgenciaPersistencia/1.0-SNAPSHOT/AgenciaPersistencia-1.0-SNAPSHOT.jar;C:/Users/carlo/.m2/repository/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar;C:/Users/carlo/.m2/repository/com/google/protobuf/protobuf-java/3.21.9/protobuf-java-3.21.9.jar;C:/Users/carlo/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.core/2.7.12/org.eclipse.persistence.core-2.7.12.jar;C:/Users/carlo/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.asm/9.4.0/org.eclipse.persistence.asm-9.4.0.jar;C:/Users/carlo/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.antlr/2.7.12/org.eclipse.persistence.antlr-2.7.12.jar;C:/Users/carlo/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.jpa/2.7.12/org.eclipse.persistence.jpa-2.7.12.jar;C:/Users/carlo/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.jpa.jpql/2.7.12/org.eclipse.persistence.jpa.jpql-2.7.12.jar;C:/Users/carlo/.m2/repository/org/eclipse/persistence/org.eclipse.persistence.moxy/2.7.12/org.eclipse.persistence.moxy-2.7.12.jar;C:/Users/carlo/.m2/repository/org/eclipse/persistence/jakarta.persistence/2.2.3/jakarta.persistence-2.2.3.jar;C:/Users/carlo/.m2/repository/com/mycompany/AgenciaNegocio/1.0-SNAPSHOT/AgenciaNegocio-1.0-SNAPSHOT.jar;C:/Users/carlo/.m2/repository/com/itextpdf/itextpdf/5.5.12/itextpdf-5.5.12.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'20'
+-sourcepath
+'C:/Users/carlo/OneDrive/Documents/GitHub/BDProyecto2/AgenciaNegocio/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/carlo/OneDrive/Documents/GitHub/BDProyecto2/AgenciaNegocio/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'AgenciaNegocio 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'AgenciaNegocio 1.0-SNAPSHOT API'
+conexion
+dtos
+encriptador
+excepciones
+negocio.automovil
+negocio.consultas
+negocio.licencia
+negocio.persona
+negocio.placa
+negocio.reporte
+C:\Users\carlo\.m2\repository\com\mycompany\AgenciaPersistencia\1.0-SNAPSHOT\AgenciaPersistencia-1.0-SNAPSHOT.jar = 1712366261639
+C:\Users\carlo\.m2\repository\com\mysql\mysql-connector-j\8.0.33\mysql-connector-j-8.0.33.jar = 1706036714073
+C:\Users\carlo\.m2\repository\com\google\protobuf\protobuf-java\3.21.9\protobuf-java-3.21.9.jar = 1706036716054
+C:\Users\carlo\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.core\2.7.12\org.eclipse.persistence.core-2.7.12.jar = 1708629684495
+C:\Users\carlo\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.asm\9.4.0\org.eclipse.persistence.asm-9.4.0.jar = 1708629685274
+C:\Users\carlo\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.antlr\2.7.12\org.eclipse.persistence.antlr-2.7.12.jar = 1708629684737
+C:\Users\carlo\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.jpa\2.7.12\org.eclipse.persistence.jpa-2.7.12.jar = 1708629686200
+C:\Users\carlo\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.jpa.jpql\2.7.12\org.eclipse.persistence.jpa.jpql-2.7.12.jar = 1708629686070
+C:\Users\carlo\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.moxy\2.7.12\org.eclipse.persistence.moxy-2.7.12.jar = 1708629685533
+C:\Users\carlo\.m2\repository\org\eclipse\persistence\jakarta.persistence\2.2.3\jakarta.persistence-2.2.3.jar = 1708629685198
+C:\Users\carlo\.m2\repository\com\mycompany\AgenciaNegocio\1.0-SNAPSHOT\AgenciaNegocio-1.0-SNAPSHOT.jar = 1712366654237
+C:\Users\carlo\.m2\repository\com\itextpdf\itextpdf\5.5.12\itextpdf-5.5.12.jar = 1711779162135
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\src\main\java = 1711910314543
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\allclasses-index.html = 1712366669044
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\allpackages-index.html = 1712366669049
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\copy.svg = 1712366669122
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\element-list = 1712366668539
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\help-doc.html = 1712366669108
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\index-all.html = 1712366669092
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\index.html = 1712366669014
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\member-search-index.js = 1712366669060
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\module-search-index.js = 1712366669051
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\overview-summary.html = 1712366669099
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\overview-tree.html = 1712366669005
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\package-search-index.js = 1712366669055
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\script.js = 1712366669118
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\search-page.js = 1712366669131
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\search.html = 1712366669095
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\search.js = 1712366669127
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\serialized-form.html = 1712366668709
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\stylesheet.css = 1712366669113
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\tag-search-index.js = 1712366669062
+C:\Users\carlo\OneDrive\Documents\GitHub\BDProyecto2\AgenciaNegocio\target\site\apidocs\type-search-index.js = 1712366669057
